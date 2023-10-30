@@ -18,18 +18,26 @@ type CardProviderProps = {
     children: ReactNode;
 };
 
-type CardContextProps = {
-    products: ProductData[];
-};
 
 type CartItem = {
     id: number
     quantity: number
 }
 
-const CardContext = createContext<CardContextProps>({
-    products: []
-});
+type CardContextProps = {
+    products: ProductData[];
+    cartItems: CartItem[];
+    roundToNearestMultiple: (number: number) => number;
+    getItemQuantity: (id: number) => number;
+    increaseCartQuantity: (id: number) => void;
+    decreaseCartQuantity: (id: number) => void;
+    removeFromCart: (id: number) => void;
+    handleClose: () => void;
+    handleShow: () => void;
+    show: boolean;
+};
+
+const CardContext = createContext({} as CardContextProps)
 
 export const useCardContext = () => {
     return useContext(CardContext);
@@ -40,12 +48,14 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
         "shopping-cart",
         [])
+
+    const [run, setRun] = useState(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
 
-    /* ------ */
+    /* --Copyright (c) 2022 WebDevSimplified-- */
     const getItemQuantity = (id: number) => {
         return cartItems.find((item) => item.id === id)?.quantity || 0;
     };
@@ -66,8 +76,65 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         });
     };
 
+    const decreaseCartQuantity = (id: number) => {
+        setCartItems((currItems) => {
+            if (currItems.find((item) => item.id === id)?.quantity === 1) {
+                return currItems.filter((item) => item.id !== id);
+            } else {
+                return currItems.map((item) => {
+                    if (item.id === id) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    } else {
+                        return item;
+                    }
+                });
+            }
+        });
+    };
+
+    const removeFromCart = (id: number) => {
+        setCartItems((currItems) => {
+            return currItems.filter((item) => item.id !== id);
+        });
+    };
+
+    const cartQuantity = cartItems.reduce(
+        (quantity, item) => item.quantity + Number(quantity),
+        0
+    );
+    /* --Copyright (c) 2022 WebDevSimplified--end-- */
+
+    useEffect(() => {
+        if (cartQuantity > 1) {
+            handleShow();
+            setTimeout(() => {
+                handleClose();
+            }, 1000);
+        }
+    }, [cartQuantity]);
+
+    //Árak kerekitése.
+    const roundToNearestMultiple = (number: number) => {
+        if (number >= 1000) {
+            return Math.ceil(number / 100) * 100 - 10;
+        } else if (number >= 100) {
+            return Math.ceil(number / 10) * 10;
+        } else {
+            return number;
+        }
+    };
+
     const contextValue: CardContextProps = {
-        products
+        products,
+        cartItems,
+        show,
+        handleClose,
+        handleShow,
+        getItemQuantity,
+        decreaseCartQuantity,
+        increaseCartQuantity,
+        removeFromCart,
+        roundToNearestMultiple,
     }
 
     return (

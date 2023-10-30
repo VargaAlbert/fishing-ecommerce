@@ -19,14 +19,13 @@ type ProductsProviderProps = {
 type ProductsContextProps = {
   products: ProductData[];
   currentPosts: ProductData[];
-  /* ----- */
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   toggleDisplayStyle: () => void;
-  /* ------ */
+
   pages: number[],
   menuList: string[];
-  /* ------ */
+
   currentPage: number;
   postsPerPage: number;
   currentLenght: number;
@@ -35,23 +34,25 @@ type ProductsContextProps = {
   responsiveVisible: boolean;
 };
 
-const ProductsContext = createContext<ProductsContextProps>({
+const ProductsContext = createContext({} as ProductsContextProps)
+
+/* const ProductsContext = createContext<ProductsContextProps>({
   setCurrentPage: () => 0,
   setCategory: () => "",
   toggleDisplayStyle: () => { },
-  /* ------ */
+ 
   products: [],
   currentPosts: [],
   menuList: [],
   pages: [],
-  /* ------ */
+  
   currentPage: 0,
   postsPerPage: 0,
   currentLenght: 0,
   category: "",
   displayStyle: "",
   responsiveVisible: false,
-});
+}); */
 
 export const useProductsContext = () => {
   return useContext(ProductsContext);
@@ -122,10 +123,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     category,
     setCategory,
     menuList,
-    /* --------- */
+
     displayStyle,
     responsiveVisible,
-    /* --------- */
+
     toggleDisplayStyle,
     currentPosts,
     currentLenght,
