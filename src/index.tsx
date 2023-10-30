@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ProductsProvider } from "./context/ProductsContext";
+import { CardProvider } from "./context/CardContext";
 import App from './App';
 import './scss/index.scss';
-import { ProductsProvider } from "./context/ProductsContext";
+
 
 
 const root = ReactDOM.createRoot(
@@ -12,7 +15,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ProductsProvider>
-      <App />
+      <CardProvider>
+        <App />
+      </CardProvider>
     </ProductsProvider>
   </React.StrictMode>
 );

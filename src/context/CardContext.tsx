@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { data } from "../data/Data";
 import { useLocalStorage } from "../hooks/useLocalStorage"
-import { type } from "os";
 
 export type ProductData = {
     ID_PRODUC: number;
@@ -48,8 +47,6 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
         "shopping-cart",
         [])
-
-    const [run, setRun] = useState(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

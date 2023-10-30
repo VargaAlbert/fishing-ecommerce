@@ -21,6 +21,8 @@ type ProductsContextProps = {
   currentPosts: ProductData[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
+  handleCloseMenu: () => void;
+  handleShowMenu: () => void;
   toggleDisplayStyle: () => void;
 
   pages: number[],
@@ -32,6 +34,7 @@ type ProductsContextProps = {
   category: string;
   displayStyle: string;
   responsiveVisible: boolean;
+  showMenu: boolean;
 };
 
 const ProductsContext = createContext({} as ProductsContextProps)
@@ -68,6 +71,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const [category, setCategory] = useState("");
   const [displayStyle, setDisplayStyle] = useState("");
   const [responsiveVisible, setResponsiveVisible] = useState(false);
+
+  const [showMenu, setShowMenu] = useState(false);
+  const handleCloseMenu = () => setShowMenu(false);
+  const handleShowMenu = () => setShowMenu(true);
 
   /* ----privat var----- */
   const lastPostIndex = currentPage * postsPerPage;
@@ -131,6 +138,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     currentPosts,
     currentLenght,
     pages,
+
+    showMenu,
+    handleCloseMenu,
+    handleShowMenu
   };
 
   return (

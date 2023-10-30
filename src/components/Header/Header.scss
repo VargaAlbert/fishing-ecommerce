@@ -1,0 +1,110 @@
+@use "../../scss/variable.scss";
+@use "../../scss/ancestor-class.scss";
+
+.nav-background {
+    width: 100%;
+    height: 4.5rem;
+    background-color: variable.$color-main-background-nav;
+    border-bottom: 2px solid variable.$color-font-secondary;
+}
+
+.nav_container {
+    padding: 0.3rem 0.5rem;
+    @extend %nav-icon;
+    @include variable.container-my;
+    height: 100%;
+    background-color: variable.$color-main-background-nav;
+    text-align: center;
+    @include variable.flexBox(row, nowrap, center, space-between, center);
+    gap: 0.5rem;
+
+    .nav_icon_container {
+        @include variable.flexBox(row, nowrap, normal, normal, normal);
+        gap: 0.5rem;
+    }
+
+    .icon_container {
+        @include variable.flexBox(column, nowrap, center, center, center);
+        font-size: variable.$size-r05;
+        font-weight: variable.$weights-9;
+    }
+
+    .nav_menu_container {
+        display: none;
+    }
+
+    .logo_container {
+        height: 100%;
+        @include variable.flexBox(column, nowrap, center, center, center);
+        .logo-link {
+            height: 70%;
+            img {
+                height: 100%;
+            }
+        }
+    }
+
+    .icon {
+        @extend %nav-icon;
+        &:hover {
+            cursor: pointer;
+            color: variable.$color-main-button-hover;
+        }
+    }
+}
+
+@include variable.Small {
+    .nav_container {
+        padding: 0.3rem 1rem;
+        .icon_container {
+            font-size: variable.$size-r05 + 0.2;
+        }
+        .icon {
+            font-size: variable.$size-r20;
+        }
+    }
+}
+@include variable.Medium {
+    .nav_container {
+        padding: 0.3rem 1.5rem;
+        .logo_container {
+            .logo-link {
+                height: 100%;
+            }
+        }
+    }
+}
+@include variable.Large {
+    .nav_container {
+        padding: 0.3rem 2rem;
+        .nav_icon_container {
+            gap: 1.2rem;
+        }
+    }
+}
+@include variable.Extra-large {
+    .nav_container {
+        .nav_menu_container {
+            height: 100%;
+            width: 50%;
+            @include variable.flexBox(row, nowrap, center, space-evenly, center);
+            .link {
+                white-space: nowrap;
+                font-size: variable.$size-r10;
+                font-weight: variable.$weights-9;
+            }
+        }
+    }
+    .nav_menu_btn_container {
+        visibility: hidden;
+    }
+}
+@include variable.XXL-large {
+    .nav_container {
+        .nav_icon_container {
+            gap: 1.8rem;
+        }
+    }
+}
+@include variable.XXXL-large {
+}
