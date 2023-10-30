@@ -1,0 +1,87 @@
+@use "./variable.scss";
+
+//@extend %button;
+%nav-icon {
+    background-color: variable.$color-main-background-nav;
+    border: none;
+    color: variable.$color-basic-white;
+    font-size: variable.$size-r40;
+}
+
+@mixin main-button {
+    margin: 0.5rem;
+    padding: 0.4rem;
+    @include variable.flexBox(row, nowrap, center, space-around, center);
+    border-radius: 0.5rem;
+    font-size: variable.$size-r10 + 0.3rem;
+    font-weight: variable.$weights-6;
+    border: none;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background: variable.$color-main-button;
+    color: variable.$color-basic-white;
+    will-change: transform;
+    transition: transform 0.2s;
+
+    &:hover {
+        filter: brightness(110%);
+        -webkit-filter: brightness(110%);
+        transform: translateY(-5px);
+        transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+    }
+
+    &:active {
+        transform: scale(0.9);
+        transition: transform 34ms;
+    }
+
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
+}
+
+@mixin INC_DEC_btn_container {
+    height: 100%;
+    width: 100px;
+    white-space: nowrap;
+    padding: 0.4rem;
+    font-size: variable.$size-r10 + 0.2rem;
+    font-weight: variable.$weights-6;
+    border: 2px solid variable.$color-font-secondary;
+    border-radius: 0.5rem;
+
+    button {
+        height: 100%;
+        width: 30%;
+        background: none;
+        border: none;
+        outline: none;
+        margin: 0;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    input[type="number"] {
+        height: 100%;
+        background: none;
+        border: none;
+        outline: none;
+        width: 1.8rem;
+        text-align: center;
+        color: variable.$color-basic-white;
+        line-height: 0.5rem;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    }
+}
