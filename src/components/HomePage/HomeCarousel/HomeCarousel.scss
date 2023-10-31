@@ -1,0 +1,80 @@
+@use "../../../scss/variable.scss";
+@use "../../../scss/ancestor-class.scss";
+
+.carousel-container {
+    margin: 1rem auto;
+    width: 90%;
+}
+
+.car-item-cont {
+    @include variable.flexBox(column, nowrap, center, normal, center);
+    height: 100%;
+
+    .car-img-cont {
+        display: block;
+        width: 100%;
+    }
+
+    .car-item-text {
+        width: 100%;
+        height: 500px;
+        @include variable.flexBox(column, nowrap, center, space-between, normal);
+
+        p {
+            color: variable.$color-font-secondary;
+            font-size: variable.$size-r20;
+        }
+
+        h2 {
+            color: variable.$color-font-primary;
+            font-size: variable.$size-r40;
+            font-weight: variable.$weights-7;
+        }
+
+        h4 {
+            color: variable.$color-font-secondary;
+            font-size: variable.$size-r15;
+            margin: 2rem 0;
+        }
+        .home-car-btn {
+            @include ancestor-class.main-button;
+            width: 50%;
+        }
+    }
+}
+
+@include variable.Small {
+}
+@include variable.Medium {
+    .carousel-container {
+        margin: 2rem auto;
+        width: 80%;
+    }
+    .car-item-cont {
+        .car-img-cont {
+            width: 80%;
+        }
+    }
+}
+@include variable.Large {
+    .car-item-cont {
+        @include variable.flexBox(row-reverse, nowrap, center, normal, center);
+        .car-img-cont {
+            width: 50%;
+            height: 100%;
+        }
+        .car-item-text {
+            width: 50%;
+        }
+    }
+}
+@include variable.Extra-large {
+    .carousel-container {
+        margin: 3rem auto;
+        width: 70%;
+    }
+}
+@include variable.XXL-large {
+}
+@include variable.XXXL-large {
+}

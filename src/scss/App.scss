@@ -1,2 +1,10 @@
 @use "./reset.scss";
 @use "./variable.scss";
+
+.main-background {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    min-width: 350px;
+    background-color: variable.$color-main-background;
+}

@@ -13,31 +13,34 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <div className="main-background">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        {menuList.map((category) => {
-          return (
-            <Route
-              path={`/${category}`}
-              key={category}
-              element={<ProductsPage />}
-            />
-          );
-        })}
+          {menuList.map((category) => {
+            return (
+              <Route
+                path={`/${category}`}
+                key={category}
+                element={<ProductsPage />}
+              />
+            );
+          })}
 
-        {products.map((product) => {
-          return (
-            <Route
-              path={`/${category}/${product.ID_PRODUC}`}
-              key={product.ID_PRODUC}
-              element={<ProductProfilPage productId={product.ID_PRODUC} />}
-            />
-          );
-        })}
-      </Routes>
-      <Footer />
+          {products.map((product) => {
+            return (
+              <Route
+                path={`/${category}/${product.ID_PRODUC}`}
+                key={product.ID_PRODUC}
+                element={<ProductProfilPage productId={product.ID_PRODUC} />}
+              />
+            );
+          })}
+
+        </Routes>
+        <Footer />
+      </div>
     </Router>
   );
 }
