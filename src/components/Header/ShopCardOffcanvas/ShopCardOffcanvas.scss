@@ -9,7 +9,7 @@
     }
 }
 
-.offcanvas_icon_container {
+.offcanvas-icon-container {
     @include variable.flexBox(row, nowrap, center, center, center);
     gap: 1rem;
     .icon {
@@ -17,13 +17,13 @@
     }
 }
 
-.car_zero {
+.car-zero {
     margin: 5rem 1rem;
     font-size: variable.$size-r10 + 0.2rem;
     font-weight: variable.$weights-7;
 }
 
-.car_sum_cont {
+.car-sum-cont {
     width: 400px;
     height: 150px;
     padding: 1.5rem 1.5rem 0.5rem;
@@ -39,11 +39,11 @@
         @include variable.flexBox(row, nowrap, center, space-between, center);
     }
 
-    .car_sum_text {
+    .car-sum-text {
         font-size: variable.$size-r10 + 0.2;
         font-weight: variable.$weights-5;
     }
-    .car_sum_price {
+    .car-sum-price {
         font-size: variable.$size-r15;
         font-weight: variable.$weights-7;
     }
