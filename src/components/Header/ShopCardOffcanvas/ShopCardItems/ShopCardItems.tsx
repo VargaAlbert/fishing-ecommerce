@@ -3,12 +3,12 @@ import { useCardContext } from "../../../../context/CardContext";
 import { FaTrash } from "react-icons/fa6";
 import "./ShopCardItems.scss";
 
-type CartItemProps = {
+type ShopCardItemsProps = {
     id: number
     quantity: number
 }
 
-const ShopCardItems = ({ id, quantity }: CartItemProps) => {
+const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
 
     const {
         products,

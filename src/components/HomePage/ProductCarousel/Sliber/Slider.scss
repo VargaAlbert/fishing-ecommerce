@@ -1,0 +1,10 @@
+@use "../.././../../scss/variable.scss";
+
+.slider {
+    .slide {
+        margin: 0 20px;
+        height: 440px;
+        min-width: 250px;
+        @include variable.flexBox(row, nowrap, normal, normal, center);
+    }
+}

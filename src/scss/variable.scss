@@ -47,6 +47,11 @@ $color-font-primary: #fcfcfc;
 $color-font-secondary: #8f9ab3;
 //$color-font-erorr: #faebd7;
 
+//------------------
+$product-carousel-scrool: 30s;
+
+//--------------------
+
 // base:  @include variable.flexBox(row, nowrap, normal, normal, normal);
 @mixin flexBox($direction, $wrap, $align, $justify, $align-items) {
     display: flex;
