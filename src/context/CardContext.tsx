@@ -8,6 +8,7 @@ export type ProductData = {
     PRODUCT: string;
     SKUPINA: number;
     ROZMER: string;
+    DESCRIPTION: string;
     IMGURL_NO_WATER: string;
     CENA_S_DPH_EU_HUF: number;
     SORTIMENT: string;

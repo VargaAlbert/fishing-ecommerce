@@ -3,7 +3,7 @@
 
 .nav-background {
     width: 100%;
-    height: 4.5rem;
+    height: 5rem;
     background-color: variable.$color-main-background-nav;
     border-bottom: 2px solid variable.$color-font-secondary;
 }
@@ -97,7 +97,7 @@
     }
 
     .nav-menu-btn-container {
-        visibility: hidden;
+        display: none;
     }
 }
 @include variable.XXL-large {

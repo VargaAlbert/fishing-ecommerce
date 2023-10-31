@@ -1,9 +1,128 @@
 import React from "react";
+import logo from "../../img/logo.png";
+import {
+  FaSquareFacebook,
+  FaInstagram,
+  FaYoutube,
+  FaTiktok,
+  FaLocationDot,
+  FaPhoneFlip,
+  FaRegEnvelope,
+  FaCcVisa,
+  FaCcMastercard,
+} from "react-icons/fa6";
+
 import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <footer></footer>
+    <footer>
+      <div className="footer_main_container">
+        <div className="my-container">
+          <div className="footer_label_container">
+            <h3>Iratkozz fel hírlevelünkre!</h3>
+            <h4>
+              Mindig értesülj akcióinkrol, újdonságainkrol, és tarsd napra
+              készre a horgász tudásod.
+            </h4>
+          </div>
+          <div className="footer_form_container">
+            <form action="">
+              <div className="input_cont">
+                <div>
+                  <input type="text" placeholder="Neved" />
+                </div>
+                <div>
+                  <input type="text" placeholder="E-mail címed." />
+                </div>
+                <div>
+                  <button>Feliratkozás!</button>
+                </div>
+              </div>
+
+              <div className="afsz_cont">
+                <input type="checkbox" />
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae doloremque, voluptatem veritatis eveniet dolore
+                  perspiciatis culpa laborum itaque laboriosam assumenda a,
+                  aspernatur tempore odio neque et quidem consequuntur fuga
+                  sint.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="my-container">
+          <div className="footer_logo_container">
+            <img src={logo} alt="logo" />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur alias tempora molestias atque porro quos omnis
+              debitis, sed dolore dolor accusamus dicta.
+            </p>
+          </div>
+          <div className="footer_text_container">
+            <div className="info_text">
+              <h4>Általános</h4>
+              <ul>
+                <li>Klubb kártya</li>
+                <li>Rólunk</li>
+                <li>Garanciális javitás</li>
+              </ul>
+            </div>
+            <div className="info_text">
+              <h4>Információ</h4>
+              <ul>
+                <li>Vásárlási feltételek</li>
+                <li>Adatvédelmi nyilatkozat</li>
+                <li>Viszonteladóknak</li>
+              </ul>
+            </div>
+            <div className="contact">
+              <h4>Kapcsolat</h4>
+              <ul>
+                <li>
+                  <FaLocationDot className="icon" /> Debrecen
+                </li>
+                <li>
+                  <FaPhoneFlip className="icon" /> +36 55 555 5555
+                </li>
+                <li>
+                  <FaRegEnvelope className="icon" /> horgaszbolt@gmail.com
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="media_title">Media</h4>
+              <div className="media_cont">
+                <div>
+                  <FaSquareFacebook className="icon" />
+                </div>
+                <div>
+                  <FaInstagram className="icon" />
+                </div>
+                <div>
+                  <FaYoutube className="icon" />
+                </div>
+                <div>
+                  <FaTiktok className="icon" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="footer_end">
+          <div className="footer_end_container my-container">
+            <div>
+              <FaCcVisa className="icon" />
+              <FaCcMastercard className="icon" />
+            </div>
+            <p>© Varga Albert</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 

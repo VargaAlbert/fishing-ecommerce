@@ -14,7 +14,7 @@ const Slider = ({ product }: SliderProps) => {
 
     return (
         <div className="slide">
-            <div className="product_container" key={product.ID_PRODUC + product.EAN}>
+            <div className="product-container" key={product.ID_PRODUC + product.EAN}>
                 <Link to={`/${product.SORTIMENT}/${product.ID_PRODUC}`}>
                     <img
                         src={`${product.IMGURL_NO_WATER}`}
@@ -25,17 +25,17 @@ const Slider = ({ product }: SliderProps) => {
                 </Link>
 
                 <div>
-                    <p className="product_id">cikszám: {product.ID_PRODUC}</p>
+                    <p className="product-id">cikszám: {product.ID_PRODUC}</p>
                 </div>
                 <div>
                     <p className="price">
                         {`${roundToNearestMultiple(product.CENA_S_DPH_EU_HUF)}`} Ft
                     </p>
                 </div>
-                <div className="product_item_by_container">
-                    <FaHeart className="btn_by_icon" />
-                    <button className="by_btn" value={1}>
-                        <FaCartShopping className="btn_by_icon" />
+                <div className="product-item-by-container">
+                    <FaHeart className="btn-by-icon" />
+                    <button className="by-btn" value={1}>
+                        <FaCartShopping className="btn-by-icon" />
                         KOSÁRBA
                     </button>
                 </div>

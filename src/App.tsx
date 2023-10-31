@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { useProductsContext } from "./context/ProductsContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
@@ -15,30 +14,32 @@ const App = () => {
     <Router>
       <div className="main-background">
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+        <div className="main-container">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
 
-          {menuList.map((category) => {
-            return (
-              <Route
-                path={`/${category}`}
-                key={category}
-                element={<ProductsPage />}
-              />
-            );
-          })}
+            {menuList.map((category) => {
+              return (
+                <Route
+                  path={`/${category}`}
+                  key={category}
+                  element={<ProductsPage />}
+                />
+              );
+            })}
 
-          {products.map((product) => {
-            return (
-              <Route
-                path={`/${category}/${product.ID_PRODUC}`}
-                key={product.ID_PRODUC}
-                element={<ProductProfilPage productId={product.ID_PRODUC} />}
-              />
-            );
-          })}
+            {products.map((product) => {
+              return (
+                <Route
+                  path={`/${category}/${product.ID_PRODUC}`}
+                  key={product.ID_PRODUC}
+                  element={<ProductProfilPage productId={product.ID_PRODUC} />}
+                />
+              );
+            })}
 
-        </Routes>
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>

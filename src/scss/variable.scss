@@ -122,7 +122,7 @@ $nav-menu: 900px;
 
 //@include variable.container-my
 @mixin container-my {
-    max-width: 1650px;
+    max-width: $XXXL-large;
     width: 98%;
     margin: auto;
 }

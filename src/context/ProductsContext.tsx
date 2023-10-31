@@ -8,6 +8,7 @@ export type ProductData = {
   SKUPINA: number;
   ROZMER: string;
   IMGURL_NO_WATER: string;
+  DESCRIPTION: string;
   CENA_S_DPH_EU_HUF: number;
   SORTIMENT: string;
 };

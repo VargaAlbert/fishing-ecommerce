@@ -14,7 +14,7 @@ const ProductCarousel = () => {
     return (
         <div className="slider-main-container">
             <div className="slider-product-label">
-                <h3>Akciós termékein</h3>
+                <h3>Akciós termékeink</h3>
                 <h4>Válogass az akciós kínálatunkból.</h4>
             </div>
             <div className="slider">
