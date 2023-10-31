@@ -1,0 +1,65 @@
+@use "../../../../scss/variable.scss";
+@use "../../../../scss/ancestor-class.scss";
+
+.ShopCardItems-main-container {
+    width: 90%;
+    height: 170px;
+    border: 2px solid variable.$color-font-secondary;
+    background-color: variable.$color-main-background-product;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    @include variable.flexBox(column, nowrap, normal, space-between, normal);
+    gap: 0.8rem;
+
+    .img-container {
+        width: 35%;
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+    }
+
+    .content-container {
+        width: 100%;
+        @include variable.flexBox(row, nowrap, normal, space-between, normal);
+        gap: 1rem;
+
+        h3 {
+            margin: 0 0 1rem;
+            font-size: variable.$size-r10;
+            border-bottom: 1px solid variable.$color-font-secondary;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        .delete-icon-con {
+            @include variable.flexBox(row, nowrap, normal, space-between, normal);
+
+            .icon {
+                font-size: variable.$size-r10 + 0.3rem;
+
+                &:hover {
+                    color: variable.$color-main-button;
+                }
+            }
+        }
+    }
+
+    .price-container {
+        height: 40px;
+        @include variable.flexBox(row, nowrap, normal, space-between, center);
+
+        .INC-DEC-btn-container {
+            @include ancestor-class.INC-DEC-btn-container;
+        }
+
+        .price {
+            font-size: variable.$size-r10 + 0.3rem;
+            font-weight: variable.$weights-5;
+        }
+    }
+}
