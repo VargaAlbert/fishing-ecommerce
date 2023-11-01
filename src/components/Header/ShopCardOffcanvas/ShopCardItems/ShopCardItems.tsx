@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { useCardContext } from "../../../../context/CardContext";
 import { FaTrash } from "react-icons/fa6";
 import "./ShopCardItems.scss";
 
 type ShopCardItemsProps = {
     id: number
-    quantity: number
+    quantity: string
 }
 
 const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
@@ -15,15 +15,38 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
         cartItems,
         increaseCartQuantity,
         decreaseCartQuantity,
+        searchValue,
         removeFromCart,
         roundToNearestMultiple,
-        //searchValue,
-        //handleBlur,
     } = useCardContext();
 
     const item = products.find((item) => item.ID_PRODUC === id);
     if (item == null) {
         return null;
+    }
+
+    const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
+        e.target.value === "" ? (searchValue(" ", id, false)) : (searchValue(String(Math.abs(Number(e.target.value))), id, false));
+        console.log(e.target.value)
+        //searchValue(String(Math.abs(Number(e.target.value))), id, false)
+    }
+
+    const setValue = () => {
+        if (cartItems) {
+            const foundItem = cartItems.find((item) => item.id === id);
+            if (foundItem) {
+                return foundItem.quantity;
+            }
+        }
+        return 0;
+    };
+
+    const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) < 1) {
+            searchValue("1", id, false);
+        } else {
+            searchValue(String(Math.abs(Number(e.target.value))), id, false);
+        }
     }
 
     return (
@@ -53,16 +76,16 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
                     </button>
                     <input
                         type="number"
-                    /*  onChange={(e) => searchValue(e, item.ID_PRODUC)}
-                     value={cartItems.find((item) => item.id === id).quantity}
-                     onBlur={(e) => handleBlur(e, item.ID_PRODUC)} */
+                        onChange={setNumberValue}
+                        value={setValue()}
+                        onBlur={handleBlur}
                     />
                     <button onClick={() => increaseCartQuantity(item.ID_PRODUC)}>
                         +
                     </button>
                 </div>
                 <p className="price">
-                    {`${(quantity * roundToNearestMultiple(item.CENA_S_DPH_EU_HUF))
+                    {`${(Number(quantity) * roundToNearestMultiple(item.CENA_S_DPH_EU_HUF))
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} `}
                     Ft

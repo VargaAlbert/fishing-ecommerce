@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useCardContext } from "../../context/CardContext";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
@@ -10,44 +10,48 @@ type ProductProfilPageProps = {
 
 const ProductProfilPage = ({ productId }: ProductProfilPageProps) => {
 
-    const { products, roundToNearestMultiple } = useCardContext();
+    const { products, roundToNearestMultiple, searchValue } = useCardContext();
 
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState<string>("1");
 
-    /*     const setNumberValue = (e) => {
-            let v = e.target.value;
-            if (v === "") {
-                setValue("");
-            } else {
-                setValue(Math.abs(Number(v)));
-            }
-        }; */
+    const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
+        e.target.value === "" ? (setValue("")) : (setValue(String(Math.abs(Number(e.target.value)))));
+    }
 
-    /*     const handleBlur = (e) => {
-            let v = e.target.value;
-            if (v === "" || Number(v) < 1) {
-                setValue(1);
-            } else {
-                setValue(Math.abs(Number(v)));
-            }
-        }; */
+    const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) < 1) {
+            setValue("1");
+        } else {
+            setValue(e.target.value);
+        }
+    }
 
     const valueIncrease = () => {
-        setValue(value + 1);
-    };
+        setValue(String(Number(value) + 1))
+    }
 
     const valueDecrease = () => {
-        if (value === 1) {
-            setValue(1);
+        if (Number(value) === 1) {
+            setValue("1");
         } else {
-            setValue(value - 1);
+            setValue(String(Number(value) - 1));
         }
     };
+
+    const givesValue = () => {
+        if (value === typeof (String)) {
+            searchValue("1", productId, true);
+        } else {
+            searchValue(value, productId, true);
+        }
+        setValue("1");
+    }
 
     const product = products.find((product) => product.ID_PRODUC === productId);
     if (!product) {
         return <div><h2>Nincs ilyen termék!</h2></div>
     }
+
 
     return (
         <>
@@ -69,38 +73,20 @@ const ProductProfilPage = ({ productId }: ProductProfilPageProps) => {
                         <div className="descript-container"></div>
                         <div className="btn-container">
                             <div className="INC-DEC-btn-container">
-                                <button
-                                /*            onClick={() => {
-                                               valueDecrease();
-                                           }} */
-                                >
-                                    -
-                                </button>
-
+                                <button onClick={valueDecrease}> - </button>
                                 <input
                                     type="number"
                                     value={value}
-                                //onChange={setNumberValue}
-                                //onBlur={handleBlur}
+                                    onChange={setNumberValue}
+                                    onBlur={handleBlur}
                                 />
-
-                                <button
-                                /*                onClick={() => {
-                                                   valueIncrease();
-                                               }} */
-                                >
-                                    +
-                                </button>
+                                <button onClick={valueIncrease} > + </button>
                             </div>
                             <button
                                 className="by-btn"
-                                value={value}
-                            /*                onClick={(e) => {
-                                               searchValue(e, product.ID_PRODUC, true);
-                                               setValue(1);
-                                           }} */
+                                onClick={givesValue}
                             >
-                                <FaCartShopping className="btn-by-icon" />
+                                <FaCartShopping className="btn-by-icon" onClick={givesValue} />
                                 KOSÁRBA
                             </button>
                             <FaHeart className="btn-love-icon" />
@@ -115,7 +101,7 @@ const ProductProfilPage = ({ productId }: ProductProfilPageProps) => {
                         <p>{product.DESCRIPTION}</p>
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     );
 }

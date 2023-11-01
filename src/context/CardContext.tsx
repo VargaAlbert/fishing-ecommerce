@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { data } from "../data/Data";
 import { useLocalStorage } from "../hooks/useLocalStorage"
+import { strict } from "assert";
 
 export type ProductData = {
     ID_PRODUC: number;
@@ -21,17 +22,19 @@ type CardProviderProps = {
 
 type CartItem = {
     id: number
-    quantity: number
+    quantity: string
 }
 
 type CardContextProps = {
     products: ProductData[];
     cartItems: CartItem[];
     roundToNearestMultiple: (number: number) => number;
-    getItemQuantity: (id: number) => number;
+    getItemQuantity: (id: number) => string;
     increaseCartQuantity: (id: number) => void;
     decreaseCartQuantity: (id: number) => void;
     removeFromCart: (id: number) => void;
+    searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
+    //searchValue: (quantity: string) => void;
     handleClose: () => void;
     handleShow: () => void;
     show: boolean;
@@ -55,17 +58,17 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
 
     /* --Copyright (c) 2022 WebDevSimplified-- */
     const getItemQuantity = (id: number) => {
-        return cartItems.find((item) => item.id === id)?.quantity || 0;
+        return cartItems.find((item) => item.id === id)?.quantity || "0";
     };
 
     const increaseCartQuantity = (id: number) => {
         setCartItems((currItems) => {
             if (currItems.find((item) => item.id === id) == null) {
-                return [...currItems, { id, quantity: 1 }];
+                return [...currItems, { id, quantity: "1" }];
             } else {
                 return currItems.map((item) => {
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity + 1 };
+                        return { ...item, quantity: String(Number(item.quantity) + 1) };
                     } else {
                         return item;
                     }
@@ -76,12 +79,12 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
 
     const decreaseCartQuantity = (id: number) => {
         setCartItems((currItems) => {
-            if (currItems.find((item) => item.id === id)?.quantity === 1) {
+            if (currItems.find((item) => item.id === id)?.quantity === "1") {
                 return currItems.filter((item) => item.id !== id);
             } else {
                 return currItems.map((item) => {
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity - 1 };
+                        return { ...item, quantity: String(Number(item.quantity) - 1) };
                     } else {
                         return item;
                     }
@@ -96,20 +99,73 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         });
     };
 
-    const cartQuantity = cartItems.reduce(
-        (quantity, item) => item.quantity + Number(quantity),
-        0
-    );
+    /*     const cartQuantity = cartItems.reduce(
+            (quantity, item) => item.quantity + Number(quantity),
+            0
+        ); */
     /* --Copyright (c) 2022 WebDevSimplified--end-- */
 
-    useEffect(() => {
-        if (cartQuantity > 1) {
-            handleShow();
-            setTimeout(() => {
-                handleClose();
-            }, 1000);
-        }
-    }, [cartQuantity]);
+    const searchValue = (quantity: string, id: number, isSelfIncrease: boolean) => {
+
+        const limitValue = (quantity: number): number => {
+            return quantity > 999 ? 999 : quantity;
+        };
+
+        const value = limitValue(Number(quantity));
+
+        setCartItems((currItems) => {
+            if (currItems.find((item) => item.id === id) == null) {
+                return [...currItems, { id, quantity: String(value) }];
+            } else {
+                return currItems.map((item) => {
+                    if (item.id === id) {
+                        if (isSelfIncrease) {
+                            if (value === 0) {
+                                return {
+                                    ...item,
+                                    quantity: "",
+                                };
+                            } else {
+                                return {
+                                    ...item,
+                                    quantity: String(Number(item.quantity) + value),
+                                };
+                            }
+                        } else {
+                            if (value === 0) {
+                                return {
+                                    ...item,
+                                    quantity: "",
+                                };
+                            } else {
+                                return {
+                                    ...item,
+                                    quantity: String(value),
+                                };
+                            }
+                        }
+                    } else {
+                        return item;
+                    }
+                });
+            }
+        });
+    };
+
+
+    /*    const searchValue = (quantity: string) => {
+           console.log(typeof (quantity) + " hfhth " + quantity)
+       } */
+
+
+    /*     useEffect(() => {
+            if (cartQuantity > 1) {
+                handleShow();
+                setTimeout(() => {
+                    handleClose();
+                }, 1000);
+            }
+        }, [cartQuantity]); */
 
     //Árak kerekitése.
     const roundToNearestMultiple = (number: number) => {
@@ -131,6 +187,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         getItemQuantity,
         decreaseCartQuantity,
         increaseCartQuantity,
+        searchValue,
         removeFromCart,
         roundToNearestMultiple,
     }

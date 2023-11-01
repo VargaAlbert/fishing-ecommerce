@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from "react-router-dom";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useCardContext } from "../../context/CardContext";
@@ -9,7 +8,7 @@ import Pagination from './Pagination/Pagination';
 
 const ProductsPage = () => {
 
-    const { roundToNearestMultiple } = useCardContext();
+    const { roundToNearestMultiple, searchValue } = useCardContext();
     const { currentPosts, category } = useProductsContext();
 
     return (
@@ -44,12 +43,9 @@ const ProductsPage = () => {
                                     <FaHeart className="btn-by-icon" />
                                     <button
                                         className="by-btn"
-                                    /*   value={1}
-                                     onClick={(e) => {
-                                         searchValue(e, data.ID_PRODUC, true);
-                                     }} */
+                                        onClick={() => { searchValue("1", product.ID_PRODUC, true) }}
                                     >
-                                        <FaCartShopping className="btn-by-icon" />
+                                        <FaCartShopping className="btn-by-icon" onClick={() => { searchValue("1", product.ID_PRODUC, true) }} />
                                         KOSÁRBA
                                     </button>
                                 </div>
@@ -59,7 +55,7 @@ const ProductsPage = () => {
                 </div>
                 <Pagination />
             </div>
-        </div>
+        </div >
     )
 }
 export default ProductsPage;

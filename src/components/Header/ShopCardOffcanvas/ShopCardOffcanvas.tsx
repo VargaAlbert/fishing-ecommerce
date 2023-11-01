@@ -40,7 +40,7 @@ const ShopCardOffcanvas = () => {
                                         return (
                                             total +
                                             (item?.CENA_S_DPH_EU_HUF || 0) *
-                                            cartItem.quantity
+                                            Number(cartItem.quantity)
                                         );
                                     }, 0)
                                     .toString()
