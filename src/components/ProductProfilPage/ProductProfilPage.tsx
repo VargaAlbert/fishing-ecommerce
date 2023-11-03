@@ -86,7 +86,7 @@ const ProductProfilPage = ({ productId }: ProductProfilPageProps) => {
                                 className="by-btn"
                                 onClick={givesValue}
                             >
-                                <FaCartShopping className="btn-by-icon" onClick={givesValue} />
+                                <FaCartShopping className="btn-by-icon" />
                                 KOSÁRBA
                             </button>
                             <FaHeart className="btn-love-icon" />

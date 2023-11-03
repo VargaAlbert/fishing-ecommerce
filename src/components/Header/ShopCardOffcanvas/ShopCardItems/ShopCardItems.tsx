@@ -28,7 +28,6 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
     const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
         e.target.value === "" ? (searchValue(" ", id, false)) : (searchValue(String(Math.abs(Number(e.target.value))), id, false));
         console.log(e.target.value)
-        //searchValue(String(Math.abs(Number(e.target.value))), id, false)
     }
 
     const setValue = () => {

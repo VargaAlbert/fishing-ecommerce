@@ -27,6 +27,21 @@
         @include variable.flexBox(column, nowrap, center, center, center);
         font-size: variable.$size-r05;
         font-weight: variable.$weights-9;
+
+        position: relative;
+
+        .sum {
+            @include variable.flexBox(column, nowrap, center, center, center);
+            width: 28px;
+            height: 28px;
+            border-radius: 5rem;
+            box-shadow: 0 0 20px 0 red;
+            background-color: red;
+            position: absolute;
+            top: -12px;
+            right: -10px;
+            color: white;
+        }
     }
 
     .nav-menu-container {

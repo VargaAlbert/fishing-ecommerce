@@ -70,6 +70,17 @@
         color: variable.$color-font-primary;
     }
 
+    .btn-love-icon {
+        font-size: variable.$size-r20;
+        color: variable.$color-font-primary;
+
+        &:hover {
+            color: variable.$color-main-button-hover;
+            font-size: variable.$size-r20 + 0.2rem;
+            transition: 0.2s;
+        }
+    }
+
     .by-btn {
         @include ancestor-class.main-button;
         font-size: variable.$size-r10;
@@ -99,6 +110,9 @@
     }
 }
 @include variable.Large {
+    .product-item-container {
+        grid-gap: 3rem 3rem;
+    }
 }
 @include variable.Extra-large {
 }

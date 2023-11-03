@@ -1,0 +1,64 @@
+@use "../../../scss/variable.scss";
+@use "../../../scss/ancestor-class.scss";
+
+.roductshead-container {
+    margin: 4rem auto 0.5rem;
+    padding: 0 2rem;
+    height: 5rem;
+    width: calc(100% - 4rem);
+    border-radius: 1rem;
+    background-color: variable.$color-main-background-product;
+
+    @include variable.flexBox(row, nowrap, center, space-between, center);
+
+    .db-cont {
+        @include variable.flexBox(column, nowrap, center, center, flex-start);
+        color: variable.$color-font-secondary;
+
+        .db {
+            color: variable.$color-font-primary;
+        }
+    }
+
+    .filt-icon-cont {
+        @include variable.flexBox(column, nowrap, center, center, center);
+        color: variable.$color-font-primary;
+
+        .icon {
+            @extend %nav-icon;
+            margin: 0.3rem;
+
+            &:hover {
+                cursor: pointer;
+                color: variable.$color-main-button-hover;
+            }
+        }
+
+        span {
+            font-size: variable.$size-r10;
+            font-weight: variable.$weights-9;
+        }
+    }
+
+    .page-select-cont {
+        .label {
+            color: variable.$color-font-primary;
+            font-size: variable.$size-r10 - 0.2rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .filter-cont {
+        .select {
+            background-color: variable.$color-main-button-hover;
+        }
+
+        .label {
+            color: variable.$color-font-primary;
+            font-size: variable.$size-r10 - 0.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        width: 25%;
+    }
+}

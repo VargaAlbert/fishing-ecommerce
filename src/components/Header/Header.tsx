@@ -13,7 +13,7 @@ import "./Header.scss";
 const Header = () => {
 
   const { handleShowMenu } = useProductsContext();
-  const { handleShow } = useCardContext();
+  const { handleShow, cartQuantity } = useCardContext();
 
   return (
     <section className="nav-background">
@@ -48,6 +48,11 @@ const Header = () => {
           </span>
           <span className="icon-container">
             <FaCartShopping className="icon" onClick={handleShow} />
+            {cartQuantity === 0 ? (
+              <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>
+            ) : (
+              <span className="sum">{cartQuantity}</span>
+            )}
             KOSÁR
           </span>
         </div>

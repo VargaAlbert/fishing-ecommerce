@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { data } from "../data/Data";
 import { useLocalStorage } from "../hooks/useLocalStorage"
-import { strict } from "assert";
 
 export type ProductData = {
     ID_PRODUC: number;
@@ -34,9 +33,9 @@ type CardContextProps = {
     decreaseCartQuantity: (id: number) => void;
     removeFromCart: (id: number) => void;
     searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
-    //searchValue: (quantity: string) => void;
     handleClose: () => void;
     handleShow: () => void;
+    cartQuantity: number
     show: boolean;
 };
 
@@ -61,6 +60,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         return cartItems.find((item) => item.id === id)?.quantity || "0";
     };
 
+    /* --Copyright (c) 2022 WebDevSimplified-- */
     const increaseCartQuantity = (id: number) => {
         setCartItems((currItems) => {
             if (currItems.find((item) => item.id === id) == null) {
@@ -77,6 +77,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         });
     };
 
+    /* --Copyright (c) 2022 WebDevSimplified-- */
     const decreaseCartQuantity = (id: number) => {
         setCartItems((currItems) => {
             if (currItems.find((item) => item.id === id)?.quantity === "1") {
@@ -92,18 +93,20 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             }
         });
     };
-
+    /* --Copyright (c) 2022 WebDevSimplified-- */
     const removeFromCart = (id: number) => {
         setCartItems((currItems) => {
             return currItems.filter((item) => item.id !== id);
         });
     };
 
-    /*     const cartQuantity = cartItems.reduce(
-            (quantity, item) => item.quantity + Number(quantity),
-            0
-        ); */
-    /* --Copyright (c) 2022 WebDevSimplified--end-- */
+    /* --Copyright (c) 2022 WebDevSimplified-- */
+    const cartQuantity = cartItems.reduce(
+        (quantity, item) => Number(item.quantity) + Number(quantity),
+        0
+    );
+
+
 
     const searchValue = (quantity: string, id: number, isSelfIncrease: boolean) => {
 
@@ -122,25 +125,21 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
                         if (isSelfIncrease) {
                             if (value === 0) {
                                 return {
-                                    ...item,
-                                    quantity: "",
+                                    ...item, quantity: "",
                                 };
                             } else {
                                 return {
-                                    ...item,
-                                    quantity: String(Number(item.quantity) + value),
+                                    ...item, quantity: String(Number(item.quantity) + value),
                                 };
                             }
                         } else {
                             if (value === 0) {
                                 return {
-                                    ...item,
-                                    quantity: "",
+                                    ...item, quantity: "",
                                 };
                             } else {
                                 return {
-                                    ...item,
-                                    quantity: String(value),
+                                    ...item, quantity: String(value),
                                 };
                             }
                         }
@@ -152,20 +151,6 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         });
     };
 
-
-    /*    const searchValue = (quantity: string) => {
-           console.log(typeof (quantity) + " hfhth " + quantity)
-       } */
-
-
-    /*     useEffect(() => {
-            if (cartQuantity > 1) {
-                handleShow();
-                setTimeout(() => {
-                    handleClose();
-                }, 1000);
-            }
-        }, [cartQuantity]); */
 
     //Árak kerekitése.
     const roundToNearestMultiple = (number: number) => {
@@ -187,6 +172,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         getItemQuantity,
         decreaseCartQuantity,
         increaseCartQuantity,
+        cartQuantity,
         searchValue,
         removeFromCart,
         roundToNearestMultiple,

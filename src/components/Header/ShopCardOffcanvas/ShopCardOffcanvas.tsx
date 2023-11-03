@@ -8,7 +8,7 @@ import "./ShopCardOffcanvas.scss"
 
 const ShopCardOffcanvas = () => {
 
-    const { products, cartItems, show, handleClose } = useCardContext();
+    const { products, cartItems, show, handleClose, roundToNearestMultiple } = useCardContext();
 
     return (
         <div className="card-offcanvas-container">
@@ -39,7 +39,7 @@ const ShopCardOffcanvas = () => {
                                         );
                                         return (
                                             total +
-                                            (item?.CENA_S_DPH_EU_HUF || 0) *
+                                            roundToNearestMultiple(item?.CENA_S_DPH_EU_HUF || 0) *
                                             Number(cartItem.quantity)
                                         );
                                     }, 0)

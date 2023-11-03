@@ -20,7 +20,6 @@ const ProductCarousel = () => {
             <div className="slider">
                 <div className="slide-track">
                     {saleProduct.map((saleProduct) => {
-                        console.log(saleProduct);
                         return <Slider key={saleProduct.ID_PRODUC} product={saleProduct} />;
                     })}
                     {newProduct.map((newProduct) => {

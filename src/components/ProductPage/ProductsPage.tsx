@@ -3,20 +3,24 @@ import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useCardContext } from "../../context/CardContext";
 import { useProductsContext } from '../../context/ProductsContext';
 
-import "./ProductsPage.scss"
 import Pagination from './Pagination/Pagination';
+import ProductsHead from "./ProductsHead/ProductsHead";
+
+import "./ProductsPage.scss"
 
 const ProductsPage = () => {
 
     const { roundToNearestMultiple, searchValue } = useCardContext();
-    const { currentPosts, category } = useProductsContext();
+    const { products, category } = useProductsContext();
 
     return (
         <div>
             {/* FilterBar */}
             <div className="pagination-container">
+                <ProductsHead />
                 <div className="product-item-container">
-                    {currentPosts.map((product) => {
+
+                    {products.map((product) => {
                         return (
                             <div className="product-container" key={product.ID_PRODUC + product.EAN}>
                                 <Link className='product-link' to={`/${category}/${product.ID_PRODUC}`}>
@@ -27,7 +31,6 @@ const ProductsPage = () => {
                                     <h3>{product.PRODUCT}</h3>
                                     <h4>{product.ROZMER}</h4>
                                 </Link>
-
                                 <div>
                                     <p className="product-id">cikszám: {product.ID_PRODUC}</p>
                                 </div>
@@ -40,12 +43,12 @@ const ProductsPage = () => {
                                     </p>
                                 </div>
                                 <div className="product-item-by-container">
-                                    <FaHeart className="btn-by-icon" />
+                                    <FaHeart className="btn-love-icon" />
                                     <button
                                         className="by-btn"
                                         onClick={() => { searchValue("1", product.ID_PRODUC, true) }}
                                     >
-                                        <FaCartShopping className="btn-by-icon" onClick={() => { searchValue("1", product.ID_PRODUC, true) }} />
+                                        <FaCartShopping className="btn-by-icon" />
                                         KOSÁRBA
                                     </button>
                                 </div>
