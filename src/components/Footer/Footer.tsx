@@ -17,18 +17,18 @@ import "./Footer.scss";
 const Footer: React.FC = () => {
   return (
     <footer>
-      <div className="footer_main_container">
+      <div className="footer-main-container">
         <div className="my-container">
-          <div className="footer_label_container">
+          <div className="footer-label-container">
             <h3>Iratkozz fel hírlevelünkre!</h3>
             <h4>
               Mindig értesülj akcióinkrol, újdonságainkrol, és tarsd napra
               készre a horgász tudásod.
             </h4>
           </div>
-          <div className="footer_form_container">
+          <div className="footer-form-container">
             <form action="">
-              <div className="input_cont">
+              <div className="input-cont">
                 <div>
                   <input type="text" placeholder="Neved" />
                 </div>
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                 </div>
               </div>
 
-              <div className="afsz_cont">
+              <div className="afsz-cont">
                 <input type="checkbox" />
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="my-container">
-          <div className="footer_logo_container">
+          <div className="footer-logo-container">
             <img src={logo} alt="logo" />
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -62,8 +62,8 @@ const Footer: React.FC = () => {
               debitis, sed dolore dolor accusamus dicta.
             </p>
           </div>
-          <div className="footer_text_container">
-            <div className="info_text">
+          <div className="footer-text-container">
+            <div className="info-text">
               <h4>Általános</h4>
               <ul>
                 <li>Klubb kártya</li>
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 <li>Garanciális javitás</li>
               </ul>
             </div>
-            <div className="info_text">
+            <div className="info-text">
               <h4>Információ</h4>
               <ul>
                 <li>Vásárlási feltételek</li>
@@ -94,8 +94,8 @@ const Footer: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h4 className="media_title">Media</h4>
-              <div className="media_cont">
+              <h4 className="media-title">Media</h4>
+              <div className="media-cont">
                 <div>
                   <FaSquareFacebook className="icon" />
                 </div>
@@ -112,8 +112,8 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="footer_end">
-          <div className="footer_end_container my-container">
+        <div className="footer-end">
+          <div className="footer-end-container my-container">
             <div>
               <FaCcVisa className="icon" />
               <FaCcMastercard className="icon" />

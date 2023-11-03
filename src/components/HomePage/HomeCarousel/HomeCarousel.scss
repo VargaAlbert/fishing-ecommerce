@@ -6,6 +6,10 @@
     width: 90%;
 }
 
+.carousel-control-next,
+.carousel-control-prev {
+    height: 80%;
+}
 .car-item-cont {
     @include variable.flexBox(column, nowrap, center, normal, center);
     height: 100%;
@@ -39,6 +43,7 @@
         .home-car-btn {
             @include ancestor-class.main-button;
             width: 50%;
+            z-index: 9;
         }
     }
 }
