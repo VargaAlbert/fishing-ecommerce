@@ -3,15 +3,17 @@
 
 .roductshead-container {
     margin: 4rem auto 0.5rem;
-    padding: 0 2rem;
-    height: 5rem;
+    padding: 1rem 2rem;
+    height: auto;
     width: calc(100% - 4rem);
     border-radius: 1rem;
     background-color: variable.$color-main-background-product;
 
-    @include variable.flexBox(row, nowrap, center, space-between, center);
+    @include variable.flexBox(row, wrap, center, space-between, center);
+    gap: 0.5rem;
 
     .db-cont {
+        width: calc(50% - 0.5rem);
         @include variable.flexBox(column, nowrap, center, center, flex-start);
         color: variable.$color-font-secondary;
 
@@ -21,6 +23,7 @@
     }
 
     .filt-icon-cont {
+        width: calc(50% - 0.5rem);
         @include variable.flexBox(column, nowrap, center, center, center);
         color: variable.$color-font-primary;
 
@@ -41,6 +44,7 @@
     }
 
     .page-select-cont {
+        width: 100%;
         .label {
             color: variable.$color-font-primary;
             font-size: variable.$size-r10 - 0.2rem;
@@ -49,6 +53,7 @@
     }
 
     .filter-cont {
+        width: 100%;
         .select {
             background-color: variable.$color-main-button-hover;
         }
@@ -58,7 +63,78 @@
             font-size: variable.$size-r10 - 0.2rem;
             margin-bottom: 0.5rem;
         }
-
-        width: 25%;
     }
+}
+
+@include variable.Small {
+    .roductshead-container {
+        margin: 4rem auto 0.5rem;
+        padding: 1rem 2rem;
+        height: auto;
+        width: calc(100% - 4rem);
+        @include variable.flexBox(row, wrap, center, space-between, center);
+        gap: 1rem;
+        .db-cont {
+            width: calc(50% - 2rem);
+        }
+        .filt-icon-cont {
+            width: calc(50% - 2rem);
+        }
+        .page-select-cont {
+            width: calc(50% - 2rem);
+        }
+        .filter-cont {
+            width: calc(50% - 2rem);
+        }
+    }
+}
+@include variable.Medium {
+}
+@include variable.Large {
+    .roductshead-container {
+        margin: 4rem auto 0.5rem;
+        padding: 1rem 2rem;
+        height: auto;
+        width: calc(100% - 4rem);
+        @include variable.flexBox(row, wrap, center, space-between, center);
+        gap: 0.5rem;
+        .db-cont {
+            width: calc(25% - 0.5rem);
+        }
+        .filt-icon-cont {
+            width: calc(10% - 0.5rem);
+        }
+        .page-select-cont {
+            width: calc(25% - 0.5rem);
+        }
+        .filter-cont {
+            width: calc(25% - 0.5rem);
+        }
+    }
+}
+@include variable.Extra-large {
+    .roductshead-container {
+        margin: 4rem auto 0.5rem;
+        padding: 1rem 2rem;
+        height: auto;
+        width: calc(100% - 4rem);
+        @include variable.flexBox(row, wrap, center, space-between, center);
+        gap: 1rem;
+        .db-cont {
+            width: calc(20% - 2rem);
+        }
+        .filt-icon-cont {
+            display: none;
+        }
+        .page-select-cont {
+            width: calc(20% - 2rem);
+        }
+        .filter-cont {
+            width: calc(25% - 2rem);
+        }
+    }
+}
+@include variable.XXL-large {
+}
+@include variable.XXXL-large {
 }

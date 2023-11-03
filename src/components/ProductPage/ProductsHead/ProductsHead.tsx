@@ -18,13 +18,13 @@ const ProductsHead: React.FC = () => {
 
     return (
         <div className="roductshead-container">
-            <div className="db-cont">
-                <span className="title">Találatokszáma:</span>
-                <span className="db">{filteredProductsLength} db termék</span>
-            </div>
             <div className="filt-icon-cont">
                 <FaFilter className="icon" />
                 <span>SZŰRŐ</span>
+            </div>
+            <div className="db-cont">
+                <span className="title">Találatokszáma:</span>
+                <span className="db">{filteredProductsLength} db termék</span>
             </div>
             <div className="page-select-cont">
                 <div className="label">Termékek száma:</div>

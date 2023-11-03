@@ -14,7 +14,7 @@ const ProductsPage: React.FC = () => {
     const { products, category } = useProductsContext();
 
     return (
-        <div>
+        <>
             {/* FilterBar */}
             <div className="pagination-container">
                 <ProductsHead />
@@ -58,7 +58,7 @@ const ProductsPage: React.FC = () => {
                 </div>
                 <Pagination />
             </div>
-        </div >
+        </ >
     )
 }
 export default ProductsPage;

@@ -11,4 +11,5 @@
 
 .main-container {
     @include variable.container-my;
+    padding-top: 5rem;
 }
