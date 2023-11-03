@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import "./scss/App.scss";
 
 const App = () => {
-  const { products, category, menuList } = useProductsContext();
+  const { products, menuList } = useProductsContext();
   return (
     <Router>
       <div className="main-background">
@@ -30,8 +30,6 @@ const App = () => {
             })}
 
             {products.map((product) => {
-              console.log(`/${product.SORTIMENT}/${product.ID_PRODUC}`);
-              console.log(product.ID_PRODUC)
               return (
                 <Route
                   path={`/${product.SORTIMENT}/${product.ID_PRODUC}`}

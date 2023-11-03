@@ -37,8 +37,8 @@ const Slider: React.FC<SliderProps> = ({ product }: SliderProps) => {
                 <div className="slider-product-item-by-container">
                     <FaHeart className="slider-btn-heart-icon" />
                     <button className="slider-by-btn"
-                        onClick={() => { searchValue("1", product.ID_PRODUC, true) }}>
 
+                        onClick={() => { searchValue("1", product.ID_PRODUC, true) }}>
                         <FaCartShopping className="slider-btn-by-icon" />
                         KOSÁRBA
                     </button>
