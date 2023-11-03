@@ -8,7 +8,7 @@ type ProductProfilPageProps = {
     productId: number
 }
 
-const ProductProfilPage = ({ productId }: ProductProfilPageProps) => {
+const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: ProductProfilPageProps) => {
 
     const { products, roundToNearestMultiple, searchValue } = useCardContext();
 

@@ -3,7 +3,7 @@ import { useProductsContext } from "../../context/ProductsContext";
 
 import "./MenuList.scss"
 
-const MenuList = () => {
+const MenuList: React.FC = () => {
     const { setCurrentPage, setCategory, menuList } = useProductsContext();
     return (
         <>

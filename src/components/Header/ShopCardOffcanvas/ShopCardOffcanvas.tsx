@@ -6,7 +6,7 @@ import ShopCardItems from "../ShopCardOffcanvas/ShopCardItems/ShopCardItems";
 
 import "./ShopCardOffcanvas.scss"
 
-const ShopCardOffcanvas = () => {
+const ShopCardOffcanvas: React.FC = () => {
 
     const { products, cartItems, show, handleClose, roundToNearestMultiple } = useCardContext();
 

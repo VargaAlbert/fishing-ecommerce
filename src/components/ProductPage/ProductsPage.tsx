@@ -8,7 +8,7 @@ import ProductsHead from "./ProductsHead/ProductsHead";
 
 import "./ProductsPage.scss"
 
-const ProductsPage = () => {
+const ProductsPage: React.FC = () => {
 
     const { roundToNearestMultiple, searchValue } = useCardContext();
     const { products, category } = useProductsContext();
@@ -43,7 +43,7 @@ const ProductsPage = () => {
                                     </p>
                                 </div>
                                 <div className="product-item-by-container">
-                                    <FaHeart className="btn-love-icon" />
+                                    <FaHeart className="btn-heart-icon" />
                                     <button
                                         className="by-btn"
                                         onClick={() => { searchValue("1", product.ID_PRODUC, true) }}

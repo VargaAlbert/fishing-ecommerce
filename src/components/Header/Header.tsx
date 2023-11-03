@@ -10,7 +10,7 @@ import logo from "../../img/logo.png";
 
 import "./Header.scss";
 
-const Header = () => {
+const Header: React.FC = () => {
 
   const { handleShowMenu } = useProductsContext();
   const { handleShow, cartQuantity } = useCardContext();

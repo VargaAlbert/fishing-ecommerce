@@ -6,19 +6,8 @@ import React, {
   ReactNode,
 } from "react";
 
-import { data } from "../data/Data";
+import { data, ProductDataType } from "../data/Data";
 
-export type ProductData = {
-  ID_PRODUC: number;
-  EAN: number;
-  PRODUCT: string;
-  SKUPINA: number;
-  ROZMER: string;
-  IMGURL_NO_WATER: string;
-  DESCRIPTION: string;
-  CENA_S_DPH_EU_HUF: number;
-  SORTIMENT: string;
-};
 
 type ProductsProviderProps = {
   children: ReactNode;
@@ -49,7 +38,7 @@ export const filterMain: readonly filterMainType[] = [
 ]
 
 type ProductsContextProps = {
-  products: ProductData[];
+  products: ProductDataType[];
 
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   setPostsPerPage: React.Dispatch<React.SetStateAction<number>>;
@@ -83,7 +72,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
 }) => {
 
   /* ----state---- */
-  const [products, setProducts] = useState<ProductData[]>(data);
+  const [products, setProducts] = useState<ProductDataType[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("");
   const [displayStyle, setDisplayStyle] = useState("");
@@ -109,17 +98,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     setPages(Array.from({ length: calculatedPages }, (_, index) => index + 1));
   }, [filteredProductsLength, postsPerPage]);
 
-
-
-
-  /* ----privat var----- */
+  /* ----pagenation var----- */
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  /* --------- */
-
-
-
-  console.log(pages);
+  /* ----------------------- */
 
   useEffect(() => {
     const filteredAndSortedProducts = [...data]
@@ -153,27 +135,15 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
 
     setFilteredProductsLength(filteredAndSortedProducts.length)
 
+    //Lapozo oldall beálitása
     setProducts(filteredAndSortedProducts.slice(firstPostIndex, lastPostIndex));
-
 
     setPages(Array.from(
       { length: Math.ceil(filteredProductsLength / postsPerPage) },
       (_, index) => index + 1
     ))
-    console.log(pages);
-    console.log(filteredAndSortedProducts);
 
   }, [data, category, mainSort, firstPostIndex, lastPostIndex]);
-
-
-
-  //Lapozo oldall beálitása
-
-
-  const currentLenght = data.filter(
-    (data) => data.SORTIMENT === category
-  ).length;
-
 
   /* ----function----- */
   //menu kategoriák beálitása
@@ -189,22 +159,22 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
 
 
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1200) {
-        setResponsiveVisible(false);
-        setDisplayStyle("_visible");
-      } else {
-        setResponsiveVisible(true);
-        setDisplayStyle("");
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  /*   useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth > 1200) {
+          setResponsiveVisible(false);
+          setDisplayStyle("_visible");
+        } else {
+          setResponsiveVisible(true);
+          setDisplayStyle("");
+        }
+      };
+      window.addEventListener("resize", handleResize);
+      handleResize();
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []); */
 
   const contextValue: ProductsContextProps = {
     products,

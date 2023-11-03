@@ -6,7 +6,7 @@ import carousel02 from "../../../img/carousel02.png";
 
 import "./HomeCarousel.scss"
 
-const HomeCarousel = () => {
+const HomeCarousel: React.FC = () => {
     return (
         <div className="carousel-container">
             <Carousel fade>

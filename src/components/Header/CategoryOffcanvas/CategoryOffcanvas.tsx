@@ -6,7 +6,7 @@ import MenuList from "../../MenuList/MenuList";
 
 import "./CategoryOffcanvas.scss"
 
-const CategoryOffcanvas = () => {
+const CategoryOffcanvas: React.FC = () => {
 
     const { showMenu, handleCloseMenu } = useProductsContext();
     return (

@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
-import { ProductData, useCardContext } from '../../../../context/CardContext'
+import { useCardContext } from '../../../../context/CardContext'
+import { ProductDataType } from "../../../../data/Data"
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
 import "./Slider.scss"
 
 type SliderProps = {
-    product: ProductData;
+    product: ProductDataType;
 }
 
-const Slider = ({ product }: SliderProps) => {
+const Slider: React.FC<SliderProps> = ({ product }: SliderProps) => {
 
-    const { roundToNearestMultiple } = useCardContext();
+    const { searchValue, roundToNearestMultiple } = useCardContext();
 
     return (
-        <div className="slide">
-            <div className="product-container" key={product.ID_PRODUC + product.EAN}>
-                <Link to={`/${product.SORTIMENT}/${product.ID_PRODUC}`}>
+        <div className="slide-main-container">
+            <div className="slider-product-container" key={product.ID_PRODUC + product.EAN}>
+                <Link className="slider-link"
+                    to={`/${product.SORTIMENT}/${product.ID_PRODUC}`}>
                     <img
                         src={`${product.IMGURL_NO_WATER}`}
                         alt={`${product.ID_PRODUC}`}
@@ -25,17 +27,19 @@ const Slider = ({ product }: SliderProps) => {
                 </Link>
 
                 <div>
-                    <p className="product-id">cikszám: {product.ID_PRODUC}</p>
+                    <p className="slider-product-id">cikszám: {product.ID_PRODUC}</p>
                 </div>
                 <div>
-                    <p className="price">
+                    <p className="slider-price">
                         {`${roundToNearestMultiple(product.CENA_S_DPH_EU_HUF)}`} Ft
                     </p>
                 </div>
-                <div className="product-item-by-container">
-                    <FaHeart className="btn-by-icon" />
-                    <button className="by-btn" value={1}>
-                        <FaCartShopping className="btn-by-icon" />
+                <div className="slider-product-item-by-container">
+                    <FaHeart className="slider-btn-heart-icon" />
+                    <button className="slider-by-btn"
+                        onClick={() => { searchValue("1", product.ID_PRODUC, true) }}>
+
+                        <FaCartShopping className="slider-btn-by-icon" />
                         KOSÁRBA
                     </button>
                 </div>

@@ -2,7 +2,7 @@ import { useProductsContext } from "../../../context/ProductsContext";
 
 import "./Pagination.scss"
 
-const Pagination = () => {
+const Pagination: React.FC = () => {
 
     const { pages, currentPage, setCurrentPage } = useProductsContext();
 

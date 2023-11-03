@@ -1,4 +1,40 @@
-export const data = [
+export type ProductDataType = {
+    readonly ID_PRODUC: number;
+    readonly EAN: number;
+    readonly PRODUCT: string;
+    readonly SKUPINA: number;
+    readonly ROZMER: string;
+    readonly DESCRIPTION: string;
+    readonly IMGURL_NO_WATER: string;
+    readonly CENA_S_DPH_EU_HUF: number;
+    readonly SORTIMENT: string;
+
+    readonly IMGURL_NO_WATER_2?: string,
+    readonly IMGURL_NO_WATER_3?: string,
+    readonly IMGURL_NO_WATER_4?: string,
+    readonly IMGURL_NO_WATER_5?: string,
+    readonly IMGURL_NO_WATER_6?: string,
+    readonly IMGURL_NO_WATER_7?: string,
+    readonly IMGURL_NO_WATER_8?: string,
+    readonly IMGURL_NO_WATER_9?: string,
+    readonly IMGURL_NO_WATER_10?: string,
+    readonly IMGURL_NO_WATER_11?: string,
+    readonly IMGURL_NO_WATER_12?: string,
+    readonly IMGURL_NO_WATER_13?: string,
+
+    readonly VARIANT?: number;
+    readonly PACKAGING: number;
+    readonly HMOTNOST: number;
+    readonly CENA_S_DPH_EU: number;
+
+    readonly VIDEA?: string;
+    
+    readonly SKLADOM: string;
+    readonly SKLADOVOST: number;
+    readonly PRIJEM: string;
+};
+
+export const data: ProductDataType[] = [
     {
         ID_PRODUC: 101000006,
         VARIANT: 101000000,
@@ -1267,9 +1303,7 @@ export const data = [
         IMGURL_NO_WATER_9: "http://moss.sk/obr/101001311_8.jpg",
         CENA_S_DPH_EU: 49.95,
         CENA_S_DPH_EU_HUF: 21410,
-        VIDEA: {
-            "VIDEO": "OvvANn6WdPE"
-        },
+
         SORTIMENT: "Botok",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1453,9 +1487,7 @@ export const data = [
         IMGURL_NO_WATER_9: "http://moss.sk/obr/101001318_8.jpg",
         CENA_S_DPH_EU: 48.95,
         CENA_S_DPH_EU_HUF: 20982,
-        VIDEA: {
-            "VIDEO": "4jVuToNu7OE"
-        },
+
         SORTIMENT: "Botok",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1536,9 +1568,7 @@ export const data = [
         IMGURL_NO_WATER_10: "http://moss.sk/obr/101001621_9.jpg",
         CENA_S_DPH_EU: 159.95,
         CENA_S_DPH_EU_HUF: 68559,
-        VIDEA: {
-            "VIDEO": "LKCp1mf94Fs"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1563,9 +1593,7 @@ export const data = [
         IMGURL_NO_WATER_8: "http://moss.sk/obr/101001505_7.jpg",
         CENA_S_DPH_EU: 59.95,
         CENA_S_DPH_EU_HUF: 25697,
-        VIDEA: {
-            "VIDEO": "U1Wvo2lxpdA"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1594,9 +1622,7 @@ export const data = [
         IMGURL_NO_WATER_12: "http://moss.sk/obr/101001506_92.jpg",
         CENA_S_DPH_EU: 209.95,
         CENA_S_DPH_EU_HUF: 89990,
-        VIDEA: {
-            "VIDEO": "rCdAoCD_uL0"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1624,9 +1650,7 @@ export const data = [
         IMGURL_NO_WATER_11: "http://moss.sk/obr/101001507_91.jpg",
         CENA_S_DPH_EU: 99.95,
         CENA_S_DPH_EU_HUF: 42842,
-        VIDEA: {
-            "VIDEO": "cE1RgquLwFY"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1680,9 +1704,7 @@ export const data = [
         IMGURL_NO_WATER_8: "http://moss.sk/obr/101001509_7.jpg",
         CENA_S_DPH_EU: 99.95,
         CENA_S_DPH_EU_HUF: 42842,
-        VIDEA: {
-            "VIDEO": "IqVWwSfEDes"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 6,
@@ -1705,9 +1727,7 @@ export const data = [
         IMGURL_NO_WATER_6: "http://moss.sk/obr/101001510_5.jpg",
         CENA_S_DPH_EU: 16.99,
         CENA_S_DPH_EU_HUF: 7283,
-        VIDEA: {
-            "VIDEO": "P2GsnyC_4O8"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1793,9 +1813,7 @@ export const data = [
         IMGURL_NO_WATER_4: "http://moss.sk/obr/101001514_3.jpg",
         CENA_S_DPH_EU: 29.99,
         CENA_S_DPH_EU_HUF: 12855,
-        VIDEA: {
-            "VIDEO": "AcgNtGwtLlI"
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -1842,12 +1860,7 @@ export const data = [
         IMGURL_NO_WATER_7: "http://moss.sk/obr/101001518_6.jpg",
         CENA_S_DPH_EU: 104.95,
         CENA_S_DPH_EU_HUF: 44985,
-        VIDEA: {
-            "VIDEO": [
-                "doJrQkxe3X8",
-                "O84RR4iosew"
-            ]
-        },
+
         SORTIMENT: "Táskák és Camping",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -2573,9 +2586,7 @@ export const data = [
         IMGURL_NO_WATER_4: "http://moss.sk/obr/101001246_3.jpg",
         CENA_S_DPH_EU: 42.95,
         CENA_S_DPH_EU_HUF: 18410,
-        VIDEA: {
-            "VIDEO": "ODuk0k4U9g8"
-        },
+
         SORTIMENT: "Orsók",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -2640,9 +2651,7 @@ export const data = [
         IMGURL_NO_WATER_4: "http://moss.sk/obr/101001249_3.jpg",
         CENA_S_DPH_EU: 53.95,
         CENA_S_DPH_EU_HUF: 23125,
-        VIDEA: {
-            "VIDEO": "kSTt81MRDss"
-        },
+
         SORTIMENT: "Orsók",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -2921,9 +2930,7 @@ export const data = [
         IMGURL_NO_WATER_3: "http://moss.sk/obr/101001219_2.jpg",
         CENA_S_DPH_EU: 58.95,
         CENA_S_DPH_EU_HUF: 25268,
-        VIDEA: {
-            "VIDEO": "I9q9Il5EFBU"
-        },
+
         SORTIMENT: "Orsók",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -2944,9 +2951,7 @@ export const data = [
         IMGURL_NO_WATER_3: "http://moss.sk/obr/101001219_2.jpg",
         CENA_S_DPH_EU: 59.95,
         CENA_S_DPH_EU_HUF: 25697,
-        VIDEA: {
-            "VIDEO": "I9q9Il5EFBU"
-        },
+
         SORTIMENT: "Orsók",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,
@@ -2967,9 +2972,7 @@ export const data = [
         IMGURL_NO_WATER_3: "http://moss.sk/obr/101001219_2.jpg",
         CENA_S_DPH_EU: 61.95,
         CENA_S_DPH_EU_HUF: 26554,
-        VIDEA: {
-            "VIDEO": "I9q9Il5EFBU"
-        },
+
         SORTIMENT: "Orsók",
         SKLADOM: "TRUE",
         SKLADOVOST: 10,

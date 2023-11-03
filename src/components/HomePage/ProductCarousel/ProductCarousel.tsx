@@ -1,32 +1,46 @@
-import { ProductData, useProductsContext } from "../../../context/ProductsContext";
+import { useCardContext } from "../../../context/CardContext";
+import { ProductDataType } from "../../../data/Data"
 
 import Slider from "./Sliber/Slider";
 
 import "./ProductCarousel.scss"
 
-const ProductCarousel = () => {
+const ProductCarousel: React.FC = () => {
 
-    const { products } = useProductsContext();
+    const { products } = useCardContext();
 
-    const saleProduct: ProductData[] = products.slice(15, 25);
-    const newProduct: ProductData[] = products.slice(30, 40);
+    const saleProduct: ProductDataType[] = products.slice(15, 25);
+    const newProduct: ProductDataType[] = products.slice(50, 60);
 
     return (
         <div className="slider-main-container">
+
             <div className="slider-product-label">
                 <h3>Akciós termékeink</h3>
                 <h4>Válogass az akciós kínálatunkból.</h4>
             </div>
+
             <div className="slider">
                 <div className="slide-track">
-                    {saleProduct.map((saleProduct) => {
-                        return <Slider key={saleProduct.ID_PRODUC} product={saleProduct} />;
+                    {saleProduct.map((newProduct) => {
+                        return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
                     })}
+                </div>
+            </div>
+
+            <div className="slider-product-label">
+                <h3>ÚJDONSÁGOK termékeink</h3>
+                <h4>Válogass az akciós kínálatunkból.</h4>
+            </div>
+
+            <div className="slider">
+                <div className="slide-track">
                     {newProduct.map((newProduct) => {
                         return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
                     })}
                 </div>
             </div>
+
         </div>
     )
 }

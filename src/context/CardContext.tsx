@@ -1,5 +1,11 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { data } from "../data/Data";
+import React, {
+    createContext,
+    useContext,
+    useState,
+    ReactNode
+} from "react";
+
+import { data, ProductDataType } from "../data/Data";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 export type ProductData = {
@@ -18,14 +24,13 @@ type CardProviderProps = {
     children: ReactNode;
 };
 
-
 type CartItem = {
     id: number
     quantity: string
 }
 
 type CardContextProps = {
-    products: ProductData[];
+    products: ProductDataType[];
     cartItems: CartItem[];
     roundToNearestMultiple: (number: number) => number;
     getItemQuantity: (id: number) => string;
@@ -46,7 +51,7 @@ export const useCardContext = () => {
 };
 
 export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
-    const [products] = useState<ProductData[]>(data);
+    const [products] = useState<ProductDataType[]>(data);
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
         "shopping-cart",
         [])
@@ -150,7 +155,6 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             }
         });
     };
-
 
     //Árak kerekitése.
     const roundToNearestMultiple = (number: number) => {

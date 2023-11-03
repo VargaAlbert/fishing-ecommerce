@@ -1,5 +1,5 @@
-import React from "react";
 import logo from "../../img/logo.png";
+
 import {
   FaSquareFacebook,
   FaInstagram,
@@ -14,7 +14,7 @@ import {
 
 import "./Footer.scss";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer>
       <div className="footer_main_container">
