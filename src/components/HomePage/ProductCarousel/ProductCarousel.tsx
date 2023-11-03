@@ -25,12 +25,15 @@ const ProductCarousel: React.FC = () => {
                     {saleProduct.map((newProduct) => {
                         return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
                     })}
+                    {saleProduct.map((newProduct) => {
+                        return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
+                    })}
                 </div>
             </div>
 
             <div className="slider-product-label">
-                <h3>ÚJDONSÁGOK termékeink</h3>
-                <h4>Válogass az akciós kínálatunkból.</h4>
+                <h3>Újonnan a kínálatban.</h3>
+                <h4>Válogass az újdonságaink közül.</h4>
             </div>
 
             <div className="slider">
@@ -38,6 +41,10 @@ const ProductCarousel: React.FC = () => {
                     {newProduct.map((newProduct) => {
                         return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
                     })}
+                    {newProduct.map((newProduct) => {
+                        return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
+                    })}
+
                 </div>
             </div>
 

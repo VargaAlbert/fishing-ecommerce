@@ -52,7 +52,6 @@ const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: Prod
         return <div><h2>Nincs ilyen termék!</h2></div>
     }
 
-
     return (
         <>
             <section className="product-page">

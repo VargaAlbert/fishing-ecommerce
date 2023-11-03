@@ -43,11 +43,9 @@ const Footer: React.FC = () => {
               <div className="afsz-cont">
                 <input type="checkbox" />
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Repudiandae doloremque, voluptatem veritatis eveniet dolore
-                  perspiciatis culpa laborum itaque laboriosam assumenda a,
-                  aspernatur tempore odio neque et quidem consequuntur fuga
-                  sint.
+                  A gombra kattintva elfogadom a személyes adatok felhasznál hatóságát,
+                  a rendelés feldolgozásához, a weboldalon történő vásárlási élmény
+                  fenntartásához és más célokra., melyeket az Adatkezelési tájékoztató tartalmaz.
                 </p>
               </div>
             </form>
@@ -57,6 +55,8 @@ const Footer: React.FC = () => {
           <div className="footer-logo-container">
             <img src={logo} alt="logo" />
             <p>
+
+              Albi horgász bolt, kis és nagykerek, horgászegyesület.
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Consectetur alias tempora molestias atque porro quos omnis
               debitis, sed dolore dolor accusamus dicta.

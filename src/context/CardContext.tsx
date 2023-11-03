@@ -8,18 +8,6 @@ import React, {
 import { data, ProductDataType } from "../data/Data";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
-export type ProductData = {
-    ID_PRODUC: number;
-    EAN: number;
-    PRODUCT: string;
-    SKUPINA: number;
-    ROZMER: string;
-    DESCRIPTION: string;
-    IMGURL_NO_WATER: string;
-    CENA_S_DPH_EU_HUF: number;
-    SORTIMENT: string;
-};
-
 type CardProviderProps = {
     children: ReactNode;
 };

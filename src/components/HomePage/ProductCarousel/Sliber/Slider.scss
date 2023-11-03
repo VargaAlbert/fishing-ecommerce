@@ -3,9 +3,9 @@
 
 .slider {
     .slide-main-container {
+        width: 300px;
         margin: 0 20px;
         height: 500px;
-        min-width: 250px;
         @include variable.flexBox(row, nowrap, normal, normal, center);
 
         .slider-product-container {

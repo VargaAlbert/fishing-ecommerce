@@ -38,6 +38,7 @@ export const filterMain: readonly filterMainType[] = [
 ]
 
 type ProductsContextProps = {
+
   products: ProductDataType[];
 
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -47,18 +48,15 @@ type ProductsContextProps = {
 
   handleCloseMenu: () => void;
   handleShowMenu: () => void;
-  toggleDisplayStyle: () => void;
+
   pages: number[],
   menuList: string[];
 
   filteredProductsLength: number;
   currentPage: number;
-  postsPerPage: number;
-
   category: string;
-  displayStyle: string;
-  responsiveVisible: boolean;
   showMenu: boolean;
+
 };
 
 const ProductsContext = createContext({} as ProductsContextProps)
@@ -75,9 +73,6 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const [products, setProducts] = useState<ProductDataType[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("");
-  const [displayStyle, setDisplayStyle] = useState("");
-  const [responsiveVisible, setResponsiveVisible] = useState(false);
-
   const [mainSort, setMainSort] = useState("")
 
   const [showMenu, setShowMenu] = useState(false);
@@ -88,6 +83,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const [postsPerPage, setPostsPerPage] = useState(12);
   const [pages, setPages] = useState<number[]>([]);
 
+  /* ----pagenation var----- */
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+
   useEffect(() => {
     const filteredDataLength = data.filter((data) => data.SORTIMENT === category).length;
     setFilteredProductsLength(filteredDataLength);
@@ -97,11 +96,6 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     const calculatedPages = Math.ceil(filteredProductsLength / postsPerPage);
     setPages(Array.from({ length: calculatedPages }, (_, index) => index + 1));
   }, [filteredProductsLength, postsPerPage]);
-
-  /* ----pagenation var----- */
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  /* ----------------------- */
 
   useEffect(() => {
     const filteredAndSortedProducts = [...data]
@@ -131,7 +125,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
           default:
             return 0;
         }
-      });/*  */
+      });
 
     setFilteredProductsLength(filteredAndSortedProducts.length)
 
@@ -145,55 +139,21 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
 
   }, [data, category, mainSort, firstPostIndex, lastPostIndex]);
 
-  /* ----function----- */
+
   //menu kategoriák beálitása
   const menuList = Array.from(new Set(data.map((item) => item.SORTIMENT))).sort();
 
-
-  /* ---Filter--menü--- */
-  const toggleDisplayStyle = () => {
-    setDisplayStyle((prevStyle) => (prevStyle === "" ? "_visible" : ""));
-    console.log(displayStyle);
-  };
-  /* ----Product-Head----- */
-
-
-
-  /*   useEffect(() => {
-      const handleResize = () => {
-        if (window.innerWidth > 1200) {
-          setResponsiveVisible(false);
-          setDisplayStyle("_visible");
-        } else {
-          setResponsiveVisible(true);
-          setDisplayStyle("");
-        }
-      };
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []); */
-
   const contextValue: ProductsContextProps = {
+
     products,
     currentPage,
     setCurrentPage,
-    postsPerPage,
     setPostsPerPage,
     category,
     setCategory,
     menuList,
-
-    displayStyle,
-    responsiveVisible,
-
-    toggleDisplayStyle,
-
     filteredProductsLength,
     pages,
-
     showMenu,
     handleCloseMenu,
     handleShowMenu,

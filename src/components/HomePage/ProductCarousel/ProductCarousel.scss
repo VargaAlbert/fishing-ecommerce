@@ -2,11 +2,12 @@
 @use "../../../scss/animations.scss";
 
 .slider-product-label {
-    margin: 5rem 0 3rem;
+    margin: 8rem 0 4rem;
     h3 {
         font-size: variable.$size-r35;
         color: variable.$color-font-primary;
         text-align: center;
+        letter-spacing: 0.125rem;
     }
 
     h4 {
@@ -24,12 +25,12 @@
     margin: auto;
     overflow: hidden;
     position: relative;
-    width: 82%;
+    width: 100%;
 
     &::before,
     &::after {
         content: "";
-        height: 100px;
+        height: 500px;
         position: absolute;
         width: 200px;
         z-index: 2;
@@ -49,9 +50,9 @@
 
 .slide-track {
     height: 500px;
-    width: 290px * 20;
     @include animations.slideScroll;
     @include variable.flexBox(row, nowrap, normal, normal, center);
+    width: calc(340px * 20);
 
     &:hover {
         animation-play-state: paused;

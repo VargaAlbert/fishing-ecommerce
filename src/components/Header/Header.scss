@@ -6,7 +6,7 @@
     height: 5rem;
     background-color: variable.$color-main-background-nav;
     border-bottom: 2px solid variable.$color-font-secondary;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 999;
 }

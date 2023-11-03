@@ -48,7 +48,7 @@ $color-font-secondary: #8f9ab3;
 //$color-font-erorr: #faebd7;
 
 //------------------
-$product-carousel-scrool: 0s;
+$product-carousel-scrool: 38s;
 
 //--------------------
 
@@ -107,7 +107,8 @@ $nav-menu: 900px;
     }
 }
 
-/* @include variable.Small {
+/* 
+@include variable.Small {
 }
 @include variable.Medium {
 }
@@ -118,7 +119,8 @@ $nav-menu: 900px;
 @include variable.XXL-large {
 }
 @include variable.XXXL-large {
-} */
+} 
+*/
 
 //@include variable.container-my
 @mixin container-my {
