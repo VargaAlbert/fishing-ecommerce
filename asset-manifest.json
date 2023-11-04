@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/fishing-ecommerce/static/css/main.e0b76d4a.css",
+    "main.js": "/fishing-ecommerce/static/js/main.11cbee6e.js",
+    "static/media/carousel01.png": "/fishing-ecommerce/static/media/carousel01.ee8a040fbecdb94629d9.png",
+    "static/media/carousel00.png": "/fishing-ecommerce/static/media/carousel00.1d87329c18af8d6e7840.png",
+    "static/media/carousel02.png": "/fishing-ecommerce/static/media/carousel02.ddd067b9e566817d4bc8.png",
+    "static/media/logo.png": "/fishing-ecommerce/static/media/logo.014eade7c00b6cfa70e5.png",
+    "index.html": "/fishing-ecommerce/index.html",
+    "main.e0b76d4a.css.map": "/fishing-ecommerce/static/css/main.e0b76d4a.css.map",
+    "main.11cbee6e.js.map": "/fishing-ecommerce/static/js/main.11cbee6e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e0b76d4a.css",
+    "static/js/main.11cbee6e.js"
+  ]
+}
