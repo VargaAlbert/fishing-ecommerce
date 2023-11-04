@@ -20,14 +20,16 @@ type CartItem = {
 type CardContextProps = {
     products: ProductDataType[];
     cartItems: CartItem[];
+
     roundToNearestMultiple: (number: number) => number;
+    searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
     getItemQuantity: (id: number) => string;
     increaseCartQuantity: (id: number) => void;
     decreaseCartQuantity: (id: number) => void;
     removeFromCart: (id: number) => void;
-    searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
     handleClose: () => void;
     handleShow: () => void;
+
     cartQuantity: number
     show: boolean;
 };

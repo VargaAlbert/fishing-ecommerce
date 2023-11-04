@@ -22,7 +22,7 @@ A projektben használt React technologiák:
 
 - npx create-react-app
 - React hooks
-- CONTEXT API
+- Context API
 - React Router V6
 - Components (function)
 - Typescript TSX
