@@ -1,45 +1,57 @@
 # Albi horgászbolt, E-commerce website project
 
-## Egy horgászbolt webshopjának frontend része, React app Funkcionális programozással. Több oldalas alkalmazás, több funkcióval, kategóriákkal szűrési feltételekkel responzive dizájnnal.
+**Albi horgászbolt webshopjának frontend része, React app Funkcionális programozással. Több oldalas alkalmazás, több funkcióval, kategóriákkal szűrési feltételekkel responzive dizájnnal.**
 
-### Technológiák, irányelvek
+## Tech Stack, irányelvek
 
 - React
 - Typescript
 - SASS, SCSS
 - Reactstrap, Bootstrap 5
 - Context API
-- functional programming
-- reszponzív design
-- mobile first design
+- Functional programming
+- Reszponzív design
+- Mobile first design
+- Multi-page application
 
-#### React
+### React
 
 A projektben használt React technologiák:
 
+- npx create-react-app
 - React hooks
 - CONTEXT API
+- React Router V6
 - Components (function)
 - Typescript TSX
 - createContext, useContext, useState, useEffect, ReactNode
 - onClick, onBlur
 
-#### Typescript
+### Typescript
 
 A projektben használt Typescript technologiák:
 
-- Tipusok Egyszerű adattípusok, Összetett adattípusok
-- fugvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String,
-- elágazások if, switch
+- Tipusok: Egyszerű adattípusok, Összetett adattípusok
+- függvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String,
 - Spread operátor, destrukturálás
+- elágazások if, switch
 
-#### SCSS
+### SCSS
 
 A projektben használt SCSS technologiák:
 
 - @use, @mixin, @include, @media, @keyframes
 - Flexbox, Grid, Positioning, Before-After
-- variable, color, font-size, weight, media breakpoints
-- reset
+- variable: color, font-size, weight, media breakpoints
+- css-reset
 
 ![Logo](./src/img/logo.png)
+
+#### Felhasznált kód, elemek:
+
+- https://react-icons.github.io/react-icons
+- https://react-bootstrap.netlify.app/
+- https://getbootstrap.com/
+- https://www.youtube.com/watch?v=lATafp15HWA&t=3103s
+- https://www.canva.com/
+- https://react-select.com/home
