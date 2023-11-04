@@ -1,7 +1,7 @@
 import { useCardContext } from "../../../context/CardContext";
 import { ProductDataType } from "../../../data/Data"
 
-import Slider from "./Sliber/Slider";
+import Slider from "./Slider/Slider";
 
 import "./ProductCarousel.scss"
 
