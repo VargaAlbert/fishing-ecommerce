@@ -4,6 +4,7 @@
 .ShopCardItems-main-container {
     width: 90%;
     height: 200px;
+    min-width: 300px;
     border: 2px solid variable.$color-font-secondary;
     background-color: variable.$color-main-background-product;
     border-radius: 1rem;
