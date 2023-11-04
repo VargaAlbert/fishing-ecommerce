@@ -2,6 +2,8 @@
 
 **Albi horgászbolt webshopjának frontend része, React app Funkcionális programozással. Több oldalas alkalmazás, több funkcióval, kategóriákkal szűrési feltételekkel responzive dizájnnal.**
 
+**https://vargaalbert.github.io/fishing-ecommerce/#/**
+
 ## Tech Stack, irányelvek
 
 - React

@@ -10,6 +10,7 @@
 .carousel-control-prev {
     height: 80%;
 }
+
 .car-item-cont {
     @include variable.flexBox(column, nowrap, center, normal, center);
     height: 100%;
@@ -31,7 +32,7 @@
 
         h2 {
             color: variable.$color-font-primary;
-            font-size: variable.$size-r40;
+            font-size: variable.$size-r30;
             font-weight: variable.$weights-7;
         }
 
@@ -49,6 +50,13 @@
 }
 
 @include variable.Small {
+    .car-item-cont {
+        .car-item-text {
+            h2 {
+                font-size: variable.$size-r40;
+            }
+        }
+    }
 }
 @include variable.Medium {
     .carousel-container {
