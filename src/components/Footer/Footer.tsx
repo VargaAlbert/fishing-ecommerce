@@ -22,8 +22,7 @@ const Footer: React.FC = () => {
           <div className="footer-label-container">
             <h3>Iratkozz fel hírlevelünkre!</h3>
             <h4>
-              Mindig értesülj akcióinkrol, újdonságainkrol, és tarsd napra
-              készre a horgász tudásod.
+              Mindig értesülj akcióinkról, újdonságainkról, és tartsd napra készre a horgász tudásod.
             </h4>
           </div>
           <div className="footer-form-container">
