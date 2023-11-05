@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 import { data, ProductDataType } from "../data/Data";
-
+import { useLocalStorage } from "../hooks/useLocalStorage"
 
 type ProductsProviderProps = {
   children: ReactNode;
@@ -17,6 +17,11 @@ export type productInPageType = {
   readonly value: number;
   readonly label: string;
 };
+
+interface Category {
+  id: number;
+  name: string;
+}
 
 export const productInPage: readonly productInPageType[] = [
   { value: 12, label: '12/oldal' },
@@ -72,8 +77,11 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   /* ----state---- */
   const [products, setProducts] = useState<ProductDataType[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
-  const [category, setCategory] = useState("");
+
   const [mainSort, setMainSort] = useState("")
+
+  //menu kategoriák beálitása
+  const [category, setCategory] = useLocalStorage<string>('category', ''); // A string jelzi, hogy string típusú lesz
 
   const [showMenu, setShowMenu] = useState(false);
   const handleCloseMenu = () => setShowMenu(false);
@@ -87,10 +95,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
 
-  useEffect(() => {
-    const filteredDataLength = data.filter((data) => data.SORTIMENT === category).length;
-    setFilteredProductsLength(filteredDataLength);
-  }, [category, data]);
+  const menuList = Array.from(new Set(data.map((item) => item.SORTIMENT))).sort();
 
   useEffect(() => {
     const calculatedPages = Math.ceil(filteredProductsLength / postsPerPage);
@@ -98,6 +103,9 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   }, [filteredProductsLength, postsPerPage]);
 
   useEffect(() => {
+    const filteredDataLength = data.filter((data) => data.SORTIMENT === category).length;
+    setFilteredProductsLength(filteredDataLength);
+
     const filteredAndSortedProducts = [...data]
       .filter((item) => item.SORTIMENT === category)
       .sort((a, b) => {
@@ -107,21 +115,9 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
           case "expensive":
             return b.CENA_S_DPH_EU_HUF - a.CENA_S_DPH_EU_HUF;
           case "A-Z":
-            if (a.PRODUCT < b.PRODUCT) {
-              return -1;
-            }
-            if (a.PRODUCT > b.PRODUCT) {
-              return 1;
-            }
-            return 0;
+            return b.PRODUCT.localeCompare(a.PRODUCT);
           case "Z-A":
-            if (a.PRODUCT < b.PRODUCT) {
-              return 1;
-            }
-            if (a.PRODUCT > b.PRODUCT) {
-              return -1;
-            }
-            return 0;
+            return a.PRODUCT.localeCompare(b.PRODUCT);
           default:
             return 0;
         }
@@ -139,9 +135,6 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
 
   }, [data, category, mainSort, firstPostIndex, lastPostIndex]);
 
-
-  //menu kategoriák beálitása
-  const menuList = Array.from(new Set(data.map((item) => item.SORTIMENT))).sort();
 
   const contextValue: ProductsContextProps = {
 

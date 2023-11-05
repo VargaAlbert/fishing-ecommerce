@@ -34,7 +34,7 @@ A projektben használt React technologiák:
 A projektben használt Typescript technologiák:
 
 - Tipusok: Egyszerű adattípusok, Összetett adattípusok
-- függvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String, Math.floor,
+- függvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String, Math.floor, localeCompare
 - Spread operátor, destrukturálás
 - elágazások if, switch
 

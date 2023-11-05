@@ -1,5 +1,6 @@
 import { useProductsContext } from "./context/ProductsContext";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { data, ProductDataType } from "./data/Data";
 
 import Header from "./components/Header/Header";
 import HomePage from "./components/HomePage/HomePage";
@@ -10,7 +11,7 @@ import Footer from "./components/Footer/Footer";
 import "./scss/App.scss";
 
 const App = () => {
-  const { products, menuList } = useProductsContext();
+  const { menuList } = useProductsContext();
   return (
     <Router>
       <div className="main-background">
@@ -29,7 +30,8 @@ const App = () => {
               );
             })}
 
-            {products.map((product) => {
+            {data.map((product) => {
+              //console.log(`/${product.SORTIMENT}/${product.ID_PRODUC}`);
               return (
                 <Route
                   path={`/${product.SORTIMENT}/${product.ID_PRODUC}`}

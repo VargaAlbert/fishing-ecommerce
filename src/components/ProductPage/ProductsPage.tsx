@@ -13,14 +13,17 @@ const ProductsPage: React.FC = () => {
     const { roundToNearestMultiple, searchValue } = useCardContext();
     const { products, category } = useProductsContext();
 
+    console.log(products.length);
     return (
         <>
             {/* FilterBar */}
             <div className="pagination-container">
                 <ProductsHead />
+                <Pagination />
                 <div className="product-item-container">
 
                     {products.map((product) => {
+
                         return (
                             <div className="product-container" key={product.ID_PRODUC + product.EAN}>
                                 <Link className='product-link' to={`/${category}/${product.ID_PRODUC}`}>
@@ -55,8 +58,10 @@ const ProductsPage: React.FC = () => {
                             </div>
                         );
                     })}
+
                 </div>
                 <Pagination />
+
             </div>
         </ >
     )

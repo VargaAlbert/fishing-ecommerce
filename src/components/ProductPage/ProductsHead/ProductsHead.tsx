@@ -14,7 +14,7 @@ import "./ProductsHead.scss"
 
 const ProductsHead: React.FC = () => {
 
-    const { setPostsPerPage, filteredProductsLength, setMainSort } = useProductsContext();
+    const { setPostsPerPage, filteredProductsLength, setMainSort, setCurrentPage } = useProductsContext();
 
     return (
         <div className="roductshead-container">
@@ -33,6 +33,7 @@ const ProductsHead: React.FC = () => {
                     defaultValue={productInPage[0]}
                     onChange={(option: productInPageType | null) => {
                         if (option?.value) { setPostsPerPage(option.value) }
+                        setCurrentPage(1);
                     }}
                     theme={(theme) => ({
                         ...theme,
