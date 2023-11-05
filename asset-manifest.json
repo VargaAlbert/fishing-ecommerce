@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/fishing-ecommerce/static/css/main.b379134b.css",
-    "main.js": "/fishing-ecommerce/static/js/main.5f53f0fd.js",
+    "main.css": "/fishing-ecommerce/static/css/main.296fe882.css",
+    "main.js": "/fishing-ecommerce/static/js/main.f1999915.js",
     "static/media/carousel01.png": "/fishing-ecommerce/static/media/carousel01.ee8a040fbecdb94629d9.png",
     "static/media/carousel00.png": "/fishing-ecommerce/static/media/carousel00.1d87329c18af8d6e7840.png",
     "static/media/carousel02.png": "/fishing-ecommerce/static/media/carousel02.ddd067b9e566817d4bc8.png",
     "static/media/logo.png": "/fishing-ecommerce/static/media/logo.014eade7c00b6cfa70e5.png",
     "index.html": "/fishing-ecommerce/index.html",
-    "main.b379134b.css.map": "/fishing-ecommerce/static/css/main.b379134b.css.map",
-    "main.5f53f0fd.js.map": "/fishing-ecommerce/static/js/main.5f53f0fd.js.map"
+    "main.296fe882.css.map": "/fishing-ecommerce/static/css/main.296fe882.css.map",
+    "main.f1999915.js.map": "/fishing-ecommerce/static/js/main.f1999915.js.map"
   },
   "entrypoints": [
-    "static/css/main.b379134b.css",
-    "static/js/main.5f53f0fd.js"
+    "static/css/main.296fe882.css",
+    "static/js/main.f1999915.js"
   ]
 }
