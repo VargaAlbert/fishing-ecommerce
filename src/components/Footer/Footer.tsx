@@ -40,12 +40,13 @@ const Footer: React.FC = () => {
               </div>
 
               <div className="afsz-cont">
-                <label>
-                  <input type="checkbox" />
-                  A gombra kattintva elfogadom a személyes adatok felhasznál hatóságát,
-                  a rendelés feldolgozásához, a weboldalon történő vásárlási élmény
-                  fenntartásához és más célokra., melyeket az Adatkezelési tájékoztató tartalmaz.
-                </label>
+                <label htmlFor="newsletter-form-afsz"></label>
+
+                <input id="newsletter-form-afsz" type="checkbox" />
+                A gombra kattintva elfogadom a személyes adatok felhasznál hatóságát,
+                a rendelés feldolgozásához, a weboldalon történő vásárlási élmény
+                fenntartásához és más célokra., melyeket az Adatkezelési tájékoztató tartalmaz.
+
               </div>
             </form>
           </div>

@@ -81,7 +81,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const [mainSort, setMainSort] = useState("")
 
   //menu kategoriák beálitása
-  const [category, setCategory] = useLocalStorage<string>('category', ''); // A string jelzi, hogy string típusú lesz
+  const [category, setCategory] = useLocalStorage<string>('category', '');
 
   const [showMenu, setShowMenu] = useState(false);
   const handleCloseMenu = () => setShowMenu(false);
