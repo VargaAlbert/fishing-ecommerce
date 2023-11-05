@@ -51,19 +51,21 @@
     font-weight: variable.$weights-6;
     border: 2px solid variable.$color-font-secondary;
     border-radius: 0.5rem;
+    @include variable.flexBox(row, nowrap, center, space-between, center);
 
     button {
         height: 100%;
-        width: 30%;
+        width: 20%;
         background: none;
         border: none;
         outline: none;
         margin: 0;
-        padding: 0;
+        padding: auto;
         font-size: inherit;
         font-family: inherit;
         color: inherit;
         cursor: pointer;
+        @include variable.flexBox(row, nowrap, center, center, center);
     }
 
     input[type="number"] {
@@ -71,7 +73,7 @@
         background: none;
         border: none;
         outline: none;
-        width: 1.8rem;
+        width: 60%;
         text-align: center;
         color: variable.$color-basic-white;
         line-height: 0.5rem;

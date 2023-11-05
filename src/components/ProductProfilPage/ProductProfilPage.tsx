@@ -15,7 +15,7 @@ const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: Prod
     const [value, setValue] = useState<string>("1");
 
     const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
-        e.target.value === "" ? (setValue("")) : (setValue(String(Math.abs(Number(e.target.value)))));
+        e.target.value === "" ? (setValue("")) : (setValue(String(Math.floor(Math.abs(Number(e.target.value))))));
     }
 
     const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,9 @@ const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: Prod
     }
 
     const valueIncrease = () => {
-        setValue(String(Number(value) + 1))
+        if (Number(value) < 999) {
+            setValue(String(Number(value) + 1))
+        }
     }
 
     const valueDecrease = () => {

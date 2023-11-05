@@ -26,15 +26,17 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
     }
 
     const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
-        e.target.value === "" ? (searchValue(" ", id, false)) : (searchValue(String(Math.abs(Number(e.target.value))), id, false));
+
         console.log(e.target.value)
+
+        e.target.value === "" ? (searchValue(" ", id, false)) : (searchValue(String(Math.floor(Math.abs(Number(e.target.value)))), id, false));
     }
 
     const setValue = () => {
         if (cartItems) {
             const foundItem = cartItems.find((item) => item.id === id);
             if (foundItem) {
-                return foundItem.quantity;
+                return foundItem.quantity
             }
         }
         return 0;

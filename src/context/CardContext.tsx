@@ -62,7 +62,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
                 return [...currItems, { id, quantity: "1" }];
             } else {
                 return currItems.map((item) => {
-                    if (item.id === id) {
+                    if (item.id === id && Number(item.quantity) < 999) {
                         return { ...item, quantity: String(Number(item.quantity) + 1) };
                     } else {
                         return item;
@@ -124,7 +124,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
                                 };
                             } else {
                                 return {
-                                    ...item, quantity: String(Number(item.quantity) + value),
+                                    ...item, quantity: String(Math.floor(Number(item.quantity)) + value)  //Math.floor();
                                 };
                             }
                         } else {

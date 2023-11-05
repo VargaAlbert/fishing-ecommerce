@@ -77,8 +77,9 @@ footer {
             color: variable.$color-font-secondary;
             @include variable.flexBox(row, nowrap, normal, space-between, normal);
 
-            p {
-                width: 90%;
+            label {
+                display: block;
+                width: 100%;
                 font-size: variable.$size-r10;
             }
         }
