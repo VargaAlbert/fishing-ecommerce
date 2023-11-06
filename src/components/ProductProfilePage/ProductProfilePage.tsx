@@ -10,12 +10,21 @@ type ProductProfilePageProps = {
 
 const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }: ProductProfilePageProps) => {
 
-    const { products, roundToNearestMultiple, searchValue, formatPrice } = useCardContext();
+    const {
+        products,
+        roundToNearestMultiple,
+        searchValue,
+        formatPrice,
+        limitValue,
+        handleKeyPress
+    } = useCardContext();
 
     const [value, setValue] = useState<string>("1");
 
     const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
-        e.target.value === "" ? (setValue("")) : (setValue(String(Math.floor(Math.abs(Number(e.target.value))))));
+        e.target.value === "" ?
+            (setValue(""))
+            : (setValue(String(Math.floor(Math.abs(limitValue(Number(e.target.value)))))));
     }
 
     const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,11 +50,7 @@ const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }: Pr
     };
 
     const givesValue = () => {
-        if (value === typeof (String)) {
-            searchValue("1", productId, true);
-        } else {
-            searchValue(value, productId, true);
-        }
+        searchValue(value, productId, true);
         setValue("1");
     }
 
@@ -77,6 +82,9 @@ const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }: Pr
                                 <button onClick={valueDecrease}> - </button>
                                 <input
                                     type="number"
+                                    required
+                                    pattern="[0-9\.]+"
+                                    onKeyDown={handleKeyPress}
                                     value={value}
                                     onChange={setNumberValue}
                                     onBlur={handleBlur}

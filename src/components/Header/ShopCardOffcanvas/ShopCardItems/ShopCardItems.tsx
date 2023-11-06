@@ -18,7 +18,8 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
         searchValue,
         removeFromCart,
         roundToNearestMultiple,
-        formatPrice
+        formatPrice,
+        handleKeyPress
     } = useCardContext();
 
     const item = products.find((item) => item.ID_PRODUC === id);
@@ -27,10 +28,11 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
     }
 
     const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
-
         console.log(e.target.value)
 
-        e.target.value === "" ? (searchValue(" ", id, false)) : (searchValue(String(Math.floor(Math.abs(Number(e.target.value)))), id, false));
+        e.target.value === "" ?
+            (searchValue(" ", id, false))
+            : (searchValue(String(Math.floor(Math.abs(Number(e.target.value)))), id, false));
     }
 
     const setValue = () => {
@@ -78,6 +80,7 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
                     </button>
                     <input
                         type="number"
+                        onKeyDown={handleKeyPress}
                         onChange={setNumberValue}
                         value={setValue()}
                         onBlur={handleBlur}

@@ -21,6 +21,9 @@ type CardContextProps = {
     products: ProductDataType[];
     cartItems: CartItem[];
 
+    handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+
+    limitValue: (quantity: number) => number;
     roundToNearestMultiple: (number: number) => number;
     searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
     getItemQuantity: (id: number) => string;
@@ -49,6 +52,9 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
+    const maxLimit = 999;
 
 
     /* --Copyright (c) 2022 WebDevSimplified-- */
@@ -102,13 +108,21 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         0
     );
 
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        const INPUT_REGEXP = /[0-9/]+/;
+        if (e.key === "Backspace" || INPUT_REGEXP.test(e.key)) {
+            return;
+        } else {
+            e.preventDefault();
+        }
+    };
 
+    const limitValue = (quantity: number): number => {
+        return quantity > maxLimit ? maxLimit : quantity;
+    };
 
     const searchValue = (quantity: string, id: number, isSelfIncrease: boolean) => {
 
-        const limitValue = (quantity: number): number => {
-            return quantity > 999 ? 999 : quantity;
-        };
 
         const value = limitValue(Number(quantity));
 
@@ -177,7 +191,9 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         searchValue,
         removeFromCart,
         roundToNearestMultiple,
-        formatPrice
+        formatPrice,
+        limitValue,
+        handleKeyPress
     }
 
     return (
