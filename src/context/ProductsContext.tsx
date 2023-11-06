@@ -52,6 +52,7 @@ type ProductsContextProps = {
   pages: number[],
   menuList: string[];
 
+  postsPerPage: number;
   filteredProductsLength: number;
   currentPage: number;
   category: string;
@@ -82,8 +83,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const handleCloseMenu = () => setShowMenu(false);
   const handleShowMenu = () => setShowMenu(true);
 
+  const [postsPerPage, setPostsPerPage] = useLocalStorage<number>('pageProduct', 12);
+  console.log(postsPerPage)
+
   const [filteredProductsLength, setFilteredProductsLength] = useState(0);
-  const [postsPerPage, setPostsPerPage] = useState(12);
   const [pages, setPages] = useState<number[]>([]);
 
   /* ----pagenation var----- */
@@ -135,6 +138,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     products,
     currentPage,
     setCurrentPage,
+    postsPerPage,
     setPostsPerPage,
     category,
     setCategory,

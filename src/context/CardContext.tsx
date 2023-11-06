@@ -53,9 +53,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     const maxLimit = 999;
-
 
     /* --Copyright (c) 2022 WebDevSimplified-- */
     const getItemQuantity = (id: number) => {
@@ -69,7 +67,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
                 return [...currItems, { id, quantity: "1" }];
             } else {
                 return currItems.map((item) => {
-                    if (item.id === id && Number(item.quantity) < 999) {
+                    if (item.id === id && Number(item.quantity) < maxLimit) {
                         return { ...item, quantity: String(Number(item.quantity) + 1) };
                     } else {
                         return item;
@@ -117,6 +115,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         }
     };
 
+    //max korlát 
     const limitValue = (quantity: number): number => {
         return quantity > maxLimit ? maxLimit : quantity;
     };
@@ -132,30 +131,20 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             } else {
                 return currItems.map((item) => {
                     if (item.id === id) {
-                        if (isSelfIncrease) {
-                            if (value === 0) {
-                                return {
-                                    ...item, quantity: "",
-                                };
-                            } else {
-                                return {
-                                    ...item, quantity: String(Math.floor(Number(item.quantity)) + value)  //Math.floor();
-                                };
-                            }
-                        } else {
-                            if (value === 0) {
-                                return {
-                                    ...item, quantity: "",
-                                };
-                            } else {
-                                return {
-                                    ...item, quantity: String(value),
-                                };
-                            }
-                        }
-                    } else {
-                        return item;
+
+                        const quantityValue = isSelfIncrease
+                            ? String(Math.floor(Number(item.quantity)) + value)
+                            : String(value);
+
+                        // Korlátozás a max ra
+                        const limitedQuantityValue = parseInt(quantityValue) > maxLimit ? String(maxLimit) : quantityValue;
+
+                        return {
+                            ...item,
+                            quantity: value === 0 ? '' : limitedQuantityValue,
+                        };
                     }
+                    return item;
                 });
             }
         });

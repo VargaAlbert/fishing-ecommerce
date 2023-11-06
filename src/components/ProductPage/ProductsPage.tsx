@@ -13,7 +13,6 @@ const ProductsPage: React.FC = () => {
     const { roundToNearestMultiple, searchValue, formatPrice } = useCardContext();
     const { products, category } = useProductsContext();
 
-    console.log(products.length);
     return (
         <>
             {/* FilterBar */}

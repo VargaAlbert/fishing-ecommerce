@@ -14,7 +14,9 @@ import "./ProductsHead.scss"
 
 const ProductsHead: React.FC = () => {
 
-    const { setPostsPerPage, filteredProductsLength, setMainSort, setCurrentPage } = useProductsContext();
+    const { setPostsPerPage, filteredProductsLength, setMainSort, setCurrentPage, postsPerPage } = useProductsContext();
+
+    // const actual
 
     return (
         <div className="roductshead-container">
