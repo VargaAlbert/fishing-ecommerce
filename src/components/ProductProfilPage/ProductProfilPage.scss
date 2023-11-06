@@ -13,7 +13,7 @@
 .product-page-container {
     @include variable.flexBox(column, nowrap, center, center, center);
 
-    img {
+    .Product-profile-img {
         width: 100%;
     }
 

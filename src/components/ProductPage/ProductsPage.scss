@@ -26,7 +26,7 @@
         @include variable.flexBox(column, nowrap, center, space-around, center);
     }
 
-    img {
+    .productsppage-img {
         display: block;
         width: 85%;
         max-height: 300px;

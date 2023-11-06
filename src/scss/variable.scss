@@ -100,28 +100,6 @@ $XXXL-large: 1650px;
     }
 }
 
-$nav-menu: 900px;
-@mixin nav {
-    @media (min-width: $nav-menu) {
-        @content;
-    }
-}
-
-/* 
-@include variable.Small {
-}
-@include variable.Medium {
-}
-@include variable.Large {
-}
-@include variable.Extra-large {
-}
-@include variable.XXL-large {
-}
-@include variable.XXXL-large {
-} 
-*/
-
 //@include variable.container-my
 @mixin container-my {
     max-width: $XXXL-large;

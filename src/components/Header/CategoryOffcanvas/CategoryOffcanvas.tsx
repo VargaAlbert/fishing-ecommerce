@@ -4,8 +4,6 @@ import { FaList } from "react-icons/fa6";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import MenuList from "../../MenuList/MenuList";
 
-import "./CategoryOffcanvas.scss"
-
 const CategoryOffcanvas: React.FC = () => {
 
     const { showMenu, handleCloseMenu } = useProductsContext();

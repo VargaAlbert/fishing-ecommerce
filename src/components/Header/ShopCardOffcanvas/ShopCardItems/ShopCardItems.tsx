@@ -18,6 +18,7 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
         searchValue,
         removeFromCart,
         roundToNearestMultiple,
+        formatPrice
     } = useCardContext();
 
     const item = products.find((item) => item.ID_PRODUC === id);
@@ -86,9 +87,7 @@ const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
                     </button>
                 </div>
                 <p className="price">
-                    {`${(Number(quantity) * roundToNearestMultiple(item.CENA_S_DPH_EU_HUF))
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} `}
+                    {`${formatPrice((Number(quantity) * roundToNearestMultiple(item.CENA_S_DPH_EU_HUF)))} `}
                     Ft
                 </p>
             </div>

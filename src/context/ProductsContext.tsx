@@ -9,7 +9,7 @@ import React, {
 import { data, ProductDataType } from "../data/Data";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
-type ProductsProviderProps = {
+interface ProductsProviderProps {
   children: ReactNode;
 };
 
@@ -17,11 +17,6 @@ export type productInPageType = {
   readonly value: number;
   readonly label: string;
 };
-
-interface Category {
-  id: number;
-  name: string;
-}
 
 export const productInPage: readonly productInPageType[] = [
   { value: 12, label: '12/oldal' },
@@ -134,7 +129,6 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     ))
 
   }, [data, category, mainSort, firstPostIndex, lastPostIndex]);
-
 
   const contextValue: ProductsContextProps = {
 

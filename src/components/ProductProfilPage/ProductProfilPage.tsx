@@ -10,7 +10,7 @@ type ProductProfilPageProps = {
 
 const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: ProductProfilPageProps) => {
 
-    const { products, roundToNearestMultiple, searchValue } = useCardContext();
+    const { products, roundToNearestMultiple, searchValue, formatPrice } = useCardContext();
 
     const [value, setValue] = useState<string>("1");
 
@@ -60,6 +60,7 @@ const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: Prod
                 <div className="product-page-container">
                     <div className="product-page-img-container">
                         <img
+                            className="Product-profile-img"
                             src={`${product.IMGURL_NO_WATER}`}
                             alt={`${product.ID_PRODUC}`}
                         />
@@ -68,8 +69,7 @@ const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: Prod
                         <h2>{product.PRODUCT}</h2>
                         <h3>{product.ROZMER}</h3>
                         <div className="price-container">
-                            <p>{`${roundToNearestMultiple(product.CENA_S_DPH_EU_HUF).toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} `} Ft</p>
+                            <p>{`${formatPrice(roundToNearestMultiple(product.CENA_S_DPH_EU_HUF))} `} Ft</p>
                         </div>
                         <div className="descript-container"></div>
                         <div className="btn-container">

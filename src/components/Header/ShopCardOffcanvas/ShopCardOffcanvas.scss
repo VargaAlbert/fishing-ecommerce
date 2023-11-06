@@ -31,7 +31,6 @@
     bottom: 0;
     background-color: variable.$color-main-background-product;
     border-top: 2px solid variable.$color-font-secondary;
-
     @include variable.flexBox(column, nowrap, center, space-between, center);
 
     div {

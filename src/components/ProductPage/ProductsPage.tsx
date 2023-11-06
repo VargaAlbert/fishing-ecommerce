@@ -10,7 +10,7 @@ import "./ProductsPage.scss"
 
 const ProductsPage: React.FC = () => {
 
-    const { roundToNearestMultiple, searchValue } = useCardContext();
+    const { roundToNearestMultiple, searchValue, formatPrice } = useCardContext();
     const { products, category } = useProductsContext();
 
     console.log(products.length);
@@ -28,6 +28,7 @@ const ProductsPage: React.FC = () => {
                             <div className="product-container" key={product.ID_PRODUC + product.EAN}>
                                 <Link className='product-link' to={`/${category}/${product.ID_PRODUC}`}>
                                     <img
+                                        className="productsppage-img"
                                         src={`${product.IMGURL_NO_WATER}`}
                                         alt={`${product.ID_PRODUC}`}
                                     />
@@ -39,9 +40,7 @@ const ProductsPage: React.FC = () => {
                                 </div>
                                 <div>
                                     <p className="price">
-                                        {`${roundToNearestMultiple(product.CENA_S_DPH_EU_HUF)
-                                            .toString()
-                                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} `}
+                                        {`${formatPrice(roundToNearestMultiple(product.CENA_S_DPH_EU_HUF))} `}
                                         Ft
                                     </p>
                                 </div>

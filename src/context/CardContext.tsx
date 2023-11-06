@@ -24,6 +24,7 @@ type CardContextProps = {
     roundToNearestMultiple: (number: number) => number;
     searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
     getItemQuantity: (id: number) => string;
+    formatPrice: (price: number) => string;
     increaseCartQuantity: (id: number) => void;
     decreaseCartQuantity: (id: number) => void;
     removeFromCart: (id: number) => void;
@@ -149,13 +150,20 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
     //Árak kerekitése.
     const roundToNearestMultiple = (number: number) => {
         if (number >= 1000) {
-            return Math.ceil(number / 100) * 100 - 10;
+            return (Math.ceil(number / 100) * 100 - 10);
         } else if (number >= 100) {
             return Math.ceil(number / 10) * 10;
         } else {
             return number;
         }
     };
+
+    //Árak formázása
+    const formatPrice = (price: number) => {
+        return price.toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+
 
     const contextValue: CardContextProps = {
         products,
@@ -170,6 +178,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         searchValue,
         removeFromCart,
         roundToNearestMultiple,
+        formatPrice
     }
 
     return (

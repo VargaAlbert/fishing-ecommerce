@@ -24,7 +24,7 @@ A projektben használt React technologiák:
 - React hooks
 - Context API
 - React Router V6
-- Components (function)
+- Components (functional)
 - Typescript TSX
 - createContext, useContext, useState, useEffect, ReactNode
 - onClick, onBlur
@@ -34,9 +34,10 @@ A projektben használt React technologiák:
 A projektben használt Typescript technologiák:
 
 - Tipusok: Egyszerű adattípusok, Összetett adattípusok
+- type, interface
 - függvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String, Math.floor, localeCompare
 - Spread operátor, destrukturálás
-- elágazások if, switch
+- elágazások if, switch, Conditional operator
 
 ### SCSS
 

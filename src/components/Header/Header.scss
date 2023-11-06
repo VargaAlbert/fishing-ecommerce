@@ -12,7 +12,7 @@
 }
 
 .nav-container {
-    padding: 0.3rem 0.5rem;
+    padding: 0.3rem 1.8rem 0.3rem 0.5rem;
     @extend %nav-icon;
     @include variable.container-my;
     height: 100%;
@@ -30,7 +30,6 @@
         @include variable.flexBox(column, nowrap, center, center, center);
         font-size: variable.$size-r05;
         font-weight: variable.$weights-9;
-
         position: relative;
 
         .sum {
@@ -55,7 +54,7 @@
         height: 100%;
         @include variable.flexBox(column, nowrap, center, center, center);
         .logo-link {
-            height: 70%;
+            height: 60%;
             img {
                 height: 100%;
             }
@@ -73,7 +72,7 @@
 
 @include variable.Small {
     .nav-container {
-        padding: 0.3rem 1rem;
+        padding: 0.3rem 2rem 0.3rem 1rem;
         .icon-container {
             font-size: variable.$size-r05 + 0.2;
         }
@@ -84,7 +83,7 @@
 }
 @include variable.Medium {
     .nav-container {
-        padding: 0.3rem 1.5rem;
+        padding: 0.3rem 2.3rem 0.3rem 1.5rem;
         .logo-container {
             .logo-link {
                 height: 100%;
@@ -94,7 +93,7 @@
 }
 @include variable.Large {
     .nav-container {
-        padding: 0.3rem 2rem;
+        padding: 0.3rem 2.5rem 0.3rem 2rem;
         .nav-icon-container {
             gap: 1.2rem;
         }

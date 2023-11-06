@@ -68,7 +68,7 @@
         @include variable.flexBox(row, nowrap, center, center, center);
     }
 
-    input[type="number"] {
+    [type="number"] {
         height: 100%;
         background: none;
         border: none;
