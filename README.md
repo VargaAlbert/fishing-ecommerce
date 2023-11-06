@@ -12,6 +12,7 @@
 - Reactstrap, Bootstrap 5
 - Context API
 - Functional programming
+- useLocalStorage
 - Reszponzív design
 - Mobile first design
 - Multi-page application
@@ -35,6 +36,7 @@ A projektben használt Typescript technologiák:
 
 - Tipusok: Egyszerű adattípusok, Összetett adattípusok
 - type, interface
+- localStorage
 - függvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String, Math.floor, localeCompare
 - Spread operátor, destrukturálás
 - elágazások if, switch, ternary operator

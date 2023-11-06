@@ -28,7 +28,7 @@ const ShopCardOffcanvas: React.FC = () => {
         return formatPrice(value);
     }
 
-    const cartItemsContent =
+    const cartItemsContentTSX =
         cartItems.length === 0 ? (
             <div className="car-zero">Még nincsenek termékek a kosaradban!</div>
         ) : (
@@ -45,7 +45,7 @@ const ShopCardOffcanvas: React.FC = () => {
                     </div>
                 </Offcanvas.Header>
                 <Offcanvas.Body className="position-relative p-0">
-                    {cartItemsContent}
+                    {cartItemsContentTSX}
                     <div className="car-sum-cont">
                         <div>
                             <p className="car-sum-text">ÖSSZESEN:</p>

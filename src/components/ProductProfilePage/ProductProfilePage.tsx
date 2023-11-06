@@ -4,11 +4,11 @@ import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
 import "./ProductProfilPage.scss"
 
-type ProductProfilPageProps = {
+type ProductProfilePageProps = {
     productId: number
 }
 
-const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: ProductProfilPageProps) => {
+const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }: ProductProfilePageProps) => {
 
     const { products, roundToNearestMultiple, searchValue, formatPrice } = useCardContext();
 
@@ -107,4 +107,4 @@ const ProductProfilPage: React.FC<ProductProfilPageProps> = ({ productId }: Prod
     );
 }
 
-export default ProductProfilPage;
+export default ProductProfilePage;

@@ -15,6 +15,12 @@ const Header: React.FC = () => {
   const { handleShowMenu } = useProductsContext();
   const { handleShow, cartQuantity } = useCardContext();
 
+  const cartItemsIconSumContentTSX = cartQuantity === 0 ? (
+    <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>
+  ) : (
+    <span className="sum">{cartQuantity}</span>
+  )
+
   return (
     <section className="nav-background">
       <CategoryOffcanvas />
@@ -48,11 +54,7 @@ const Header: React.FC = () => {
           </span>
           <span className="icon-container">
             <FaCartShopping className="icon" onClick={handleShow} />
-            {cartQuantity === 0 ? (
-              <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>
-            ) : (
-              <span className="sum">{cartQuantity}</span>
-            )}
+            {cartItemsIconSumContentTSX}
             KOSÁR
           </span>
         </div>

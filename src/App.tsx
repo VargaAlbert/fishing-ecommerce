@@ -1,11 +1,11 @@
 import { useProductsContext } from "./context/ProductsContext";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { data, ProductDataType } from "./data/Data";
+import { data } from "./data/Data";
 
 import Header from "./components/Header/Header";
 import HomePage from "./components/HomePage/HomePage";
 import ProductsPage from "./components/ProductPage/ProductsPage";
-import ProductProfilPage from "./components/ProductProfilPage/ProductProfilPage"
+import ProductProfilePage from "./components/ProductProfilePage/ProductProfilePage"
 import Footer from "./components/Footer/Footer";
 
 import "./scss/App.scss";
@@ -31,12 +31,11 @@ const App = () => {
             })}
 
             {data.map((product) => {
-              //console.log(`/${product.SORTIMENT}/${product.ID_PRODUC}`);
               return (
                 <Route
                   path={`/${product.SORTIMENT}/${product.ID_PRODUC}`}
                   key={product.ID_PRODUC}
-                  element={<ProductProfilPage productId={product.ID_PRODUC} />}
+                  element={<ProductProfilePage productId={product.ID_PRODUC} />}
                 />
               );
             })}
