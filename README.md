@@ -37,7 +37,7 @@ A projektben használt Typescript technologiák:
 - type, interface
 - függvények, map, filter, find, reduct, sort, Array.from, replace, toString, reverse, Number, String, Math.floor, localeCompare
 - Spread operátor, destrukturálás
-- elágazások if, switch, Conditional operator
+- elágazások if, switch, ternary operator
 
 ### SCSS
 

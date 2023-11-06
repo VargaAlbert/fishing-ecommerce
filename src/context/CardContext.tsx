@@ -164,7 +164,6 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
-
     const contextValue: CardContextProps = {
         products,
         cartItems,

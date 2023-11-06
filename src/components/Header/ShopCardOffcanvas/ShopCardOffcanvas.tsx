@@ -8,7 +8,32 @@ import "./ShopCardOffcanvas.scss"
 
 const ShopCardOffcanvas: React.FC = () => {
 
-    const { products, cartItems, show, handleClose, roundToNearestMultiple } = useCardContext();
+    const { products, cartItems, show, handleClose, roundToNearestMultiple, formatPrice } = useCardContext();
+
+
+
+    const cardSum = () => {
+        const value = cartItems
+            .reduce((total, cartItem) => {
+                const item = products.find(
+                    (i) => i.ID_PRODUC === cartItem.id
+                );
+                return (
+                    total +
+                    roundToNearestMultiple(item?.CENA_S_DPH_EU_HUF || 0) *
+                    Number(cartItem.quantity)
+                );
+            }, 0)
+
+        return formatPrice(value);
+    }
+
+    const cartItemsContent =
+        cartItems.length === 0 ? (
+            <div className="car-zero">Még nincsenek termékek a kosaradban!</div>
+        ) : (
+            cartItems.map((item) => <ShopCardItems key={item.id} {...item} />).reverse()
+        );
 
     return (
         <div className="card-offcanvas-container">
@@ -20,32 +45,12 @@ const ShopCardOffcanvas: React.FC = () => {
                     </div>
                 </Offcanvas.Header>
                 <Offcanvas.Body className="position-relative p-0">
-                    {cartItems.length === 0 ? (
-                        <div className="car-zero">
-                            Még nincsenek termékek a kosaradban!
-                        </div>
-                    ) : (
-                        cartItems
-                            .map((item) => <ShopCardItems key={item.id} {...item} />).reverse()
-                    )}
+                    {cartItemsContent}
                     <div className="car-sum-cont">
                         <div>
                             <p className="car-sum-text">ÖSSZESEN:</p>
                             <p className="car-sum-price">
-                                {`${cartItems
-                                    .reduce((total, cartItem) => {
-                                        const item = products.find(
-                                            (i) => i.ID_PRODUC === cartItem.id
-                                        );
-                                        return (
-                                            total +
-                                            roundToNearestMultiple(item?.CENA_S_DPH_EU_HUF || 0) *
-                                            Number(cartItem.quantity)
-                                        );
-                                    }, 0)
-                                    .toString()
-                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} `}
-                                Ft
+                                {cardSum()} Ft
                             </p>
                         </div>
                         <button>TOVÁBB A PÉNZTÁRHOZ</button>
