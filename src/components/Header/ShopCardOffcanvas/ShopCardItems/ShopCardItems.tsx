@@ -8,7 +8,7 @@ type ShopCardItemsProps = {
     quantity: string
 }
 
-const ShopCardItems = ({ id, quantity }: ShopCardItemsProps) => {
+const ShopCardItems: React.FC<ShopCardItemsProps> = ({ id, quantity }) => {
 
     const {
         products,

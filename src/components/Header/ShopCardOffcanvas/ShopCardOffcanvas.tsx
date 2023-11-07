@@ -8,9 +8,14 @@ import "./ShopCardOffcanvas.scss"
 
 const ShopCardOffcanvas: React.FC = () => {
 
-    const { products, cartItems, show, handleClose, roundToNearestMultiple, formatPrice } = useCardContext();
-
-
+    const {
+        products,
+        cartItems,
+        show,
+        handleClose,
+        roundToNearestMultiple,
+        formatPrice
+    } = useCardContext();
 
     const cardSum = () => {
         const value = cartItems

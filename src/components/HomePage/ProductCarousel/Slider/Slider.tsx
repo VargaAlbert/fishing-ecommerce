@@ -9,7 +9,7 @@ type SliderProps = {
     product: ProductDataType;
 }
 
-const Slider: React.FC<SliderProps> = ({ product }: SliderProps) => {
+const Slider: React.FC<SliderProps> = ({ product }) => {
 
     const { searchValue, roundToNearestMultiple } = useCardContext();
 
