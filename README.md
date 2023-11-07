@@ -16,6 +16,7 @@
 - Reszponzív design
 - Mobile first design
 - Multi-page application
+- Clean Code elvek, camelCase konvergencia
 
 ### React
 

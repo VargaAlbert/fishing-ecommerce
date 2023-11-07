@@ -124,7 +124,6 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
 
     const searchValue = (quantity: string, id: number, isSelfIncrease: boolean) => {
 
-
         const value = limitValue(Number(quantity));
 
         setCartItems((currItems) => {
