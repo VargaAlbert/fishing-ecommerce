@@ -110,7 +110,10 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const INPUT_REGEXP = /[0-9/]+/;
-        if (e.key === "Backspace" || INPUT_REGEXP.test(e.key)) {
+        if (INPUT_REGEXP.test(e.key) ||
+            e.key === "Backspace" ||
+            e.key === "ArrowRight" ||
+            e.key === "ArrowLeft") {
             return;
         } else {
             e.preventDefault();
