@@ -45,6 +45,7 @@ export const useCardContext = () => {
 };
 
 export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
+
     const [products] = useState<ProductDataType[]>([...data]);
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
         "shopping-cart",
@@ -93,6 +94,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             }
         });
     };
+
     /* --Copyright (c) 2022 WebDevSimplified-- */
     const removeFromCart = (id: number) => {
         setCartItems((currItems) => {

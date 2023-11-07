@@ -8,7 +8,7 @@ type ProductProfilePageProps = {
     productId: number
 }
 
-const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }: ProductProfilePageProps) => {
+const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }) => {
 
     const {
         products,

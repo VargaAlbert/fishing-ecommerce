@@ -25,6 +25,10 @@ export const productInPage: readonly productInPageType[] = [
   { value: 92, label: '92/oldal' },
 ];
 
+const findProductInPageIndex = (selectedValue: number): number => {
+  return productInPage.findIndex((item) => item.value === selectedValue);
+};
+
 export type filterMainType = {
   readonly value: string;
   readonly label: string;
@@ -36,6 +40,10 @@ export const filterMain: readonly filterMainType[] = [
   { value: 'A-Z', label: 'ABC szerint csökkenő' },
   { value: 'Z-A', label: 'ABC szerint növekvő' },
 ]
+
+const findFilterMainIndex = (selectedValue: string): number => {
+  return filterMain.findIndex((item) => item.value === selectedValue);
+};
 
 type ProductsContextProps = {
 
@@ -52,6 +60,8 @@ type ProductsContextProps = {
   pages: number[],
   menuList: string[];
 
+  selectedIndexFilterMain: number;
+  selectedIndexProductInPage: number;
   postsPerPage: number;
   filteredProductsLength: number;
   currentPage: number;
@@ -74,20 +84,27 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const [products, setProducts] = useState<ProductDataType[]>(data);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [mainSort, setMainSort] = useState("")
-
   //menu kategoriák beálitása
-  const [category, setCategory] = useLocalStorage<string>('category', '');
+  const [category, setCategory] = useLocalStorage<string>('category', "");
 
+  //offcanvas beálitása
   const [showMenu, setShowMenu] = useState(false);
   const handleCloseMenu = () => setShowMenu(false);
   const handleShowMenu = () => setShowMenu(true);
 
-  const [postsPerPage, setPostsPerPage] = useLocalStorage<number>('pageProduct', 12);
-  console.log(postsPerPage)
-
-  const [filteredProductsLength, setFilteredProductsLength] = useState(0);
+  //pagnatinon beálitása
   const [pages, setPages] = useState<number[]>([]);
+
+  //product head filter
+  const [postsPerPage, setPostsPerPage] = useLocalStorage<number>('pageProduct', 12);
+  const [mainSort, setMainSort] = useLocalStorage<string>('mainSort', "");
+  const [filteredProductsLength, setFilteredProductsLength] = useState(0);
+
+  // Megkeressük a kiválasztott értékhez tartozó elemet a filterMain tömbben
+  const selectedIndexFilterMain = findFilterMainIndex(mainSort);
+
+  // Megkeressük a kiválasztott értékhez tartozó elemet a productInPage tömbben
+  const selectedIndexProductInPage = findProductInPageIndex(postsPerPage);
 
   /* ----pagenation var----- */
   const lastPostIndex = currentPage * postsPerPage;
@@ -131,7 +148,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
       (_, index) => index + 1
     ))
 
-  }, [data, category, mainSort, firstPostIndex, lastPostIndex]);
+  }, [category, mainSort, firstPostIndex, lastPostIndex, filteredProductsLength, postsPerPage]);
 
   const contextValue: ProductsContextProps = {
 
@@ -148,7 +165,9 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     showMenu,
     handleCloseMenu,
     handleShowMenu,
-    setMainSort
+    setMainSort,
+    selectedIndexProductInPage,
+    selectedIndexFilterMain
 
   };
 

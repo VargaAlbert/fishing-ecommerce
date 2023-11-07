@@ -14,9 +14,14 @@ import "./ProductsHead.scss"
 
 const ProductsHead: React.FC = () => {
 
-    const { setPostsPerPage, filteredProductsLength, setMainSort, setCurrentPage, postsPerPage } = useProductsContext();
-
-    // const actual
+    const {
+        setPostsPerPage,
+        filteredProductsLength,
+        setMainSort,
+        setCurrentPage,
+        selectedIndexProductInPage,
+        selectedIndexFilterMain
+    } = useProductsContext();
 
     return (
         <div className="roductshead-container">
@@ -30,9 +35,10 @@ const ProductsHead: React.FC = () => {
             </div>
             <div className="page-select-cont">
                 <div className="label">Termékek száma:</div>
+
                 <Select
                     options={productInPage}
-                    defaultValue={productInPage[0]}
+                    defaultValue={productInPage[selectedIndexProductInPage]}
                     onChange={(option: productInPageType | null) => {
                         if (option?.value) { setPostsPerPage(option.value) }
                         setCurrentPage(1);
@@ -57,6 +63,7 @@ const ProductsHead: React.FC = () => {
                 <Select
                     placeholder="Rendezés..."
                     options={filterMain}
+                    defaultValue={filterMain[selectedIndexFilterMain]}
                     onChange={(option: filterMainType | null) => {
                         if (option?.value) { setMainSort(option.value) }
                     }}
