@@ -13,8 +13,8 @@ const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }) =>
     const {
         products,
         roundToNearestMultiple,
-        searchValue,
         formatPrice,
+        searchValue,
         limitValue,
         handleKeyPress
     } = useCardContext();
