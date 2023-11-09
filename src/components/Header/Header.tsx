@@ -5,7 +5,7 @@ import { FaCartShopping, FaHeart, FaUser, FaList } from "react-icons/fa6";
 
 import MenuList from "../MenuList/MenuList";
 import CategoryOffcanvas from "../Header/CategoryOffcanvas/CategoryOffcanvas";
-import ShopCardOffcanvas from "./ShopCardOffcanvas/ShopCardOffcanvas";
+import ShopCardOffcanvas from "./ShopCardOffcanvas/ShopCartOffcanvas";
 import logo from "../../img/logo.png";
 
 import "./Header.scss";

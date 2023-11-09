@@ -1,14 +1,14 @@
 import React, { ChangeEvent } from "react";
 import { useCardContext } from "../../../../context/CardContext";
 import { FaTrash } from "react-icons/fa6";
-import "./ShopCardItems.scss";
+import "./ShopCartItems.scss";
 
-type ShopCardItemsProps = {
+type ShopCartItemsProps = {
     id: number
     quantity: string
 }
 
-const ShopCardItems: React.FC<ShopCardItemsProps> = ({ id, quantity }) => {
+const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
 
     const {
         products,
@@ -23,12 +23,12 @@ const ShopCardItems: React.FC<ShopCardItemsProps> = ({ id, quantity }) => {
     } = useCardContext();
 
     const item = products.find((item) => item.ID_PRODUC === id);
+
     if (item == null) {
         return null;
     }
 
     const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
 
         e.target.value === "" ?
             (searchValue(" ", id, false))
@@ -98,4 +98,4 @@ const ShopCardItems: React.FC<ShopCardItemsProps> = ({ id, quantity }) => {
     );
 }
 
-export default ShopCardItems;
+export default ShopCartItems;

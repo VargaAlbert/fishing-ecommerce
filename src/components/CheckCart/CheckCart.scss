@@ -1,0 +1,75 @@
+@use "../../scss/variable.scss";
+@use "../../scss/ancestor-class.scss";
+
+.check-cart-main-container {
+    position: relative;
+}
+
+.check-cart-container {
+    width: 100%;
+}
+
+.cart-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: variable.$weights-7;
+    color: variable.$color-font-primary;
+}
+
+.check-sum {
+    padding: 1rem;
+    margin: auto;
+    min-width: 300px;
+    width: 60%;
+    height: 400px;
+    @include variable.flexBox(column, nowrap, normal, space-between, normal);
+    border-radius: 0.5rem;
+    background-color: variable.$color-main-background-nav;
+    color: variable.$color-font-primary;
+
+    .text {
+        @include variable.flexBox(row, nowrap, normal, space-between, normal);
+    }
+
+    .btn {
+        @include ancestor-class.main-button;
+        margin: auto;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        height: 3.5rem;
+    }
+}
+
+@include variable.Small {
+}
+@include variable.Medium {
+}
+@include variable.Large {
+    .check-cart-main-container {
+        @include variable.flexBox(row, nowrap, normal, normal, normal);
+    }
+
+    .check-cart-container {
+        width: 65%;
+    }
+
+    .check-sum-container {
+        width: 35%;
+    }
+    .check-sum {
+        top: 120px;
+        position: sticky;
+    }
+
+    .check-sum {
+        margin: 2rem;
+        width: 70%;
+    }
+}
+@include variable.Extra-large {
+}
+@include variable.XXL-large {
+}
+@include variable.XXXL-large {
+}

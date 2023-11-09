@@ -1,12 +1,14 @@
 import { FaCartShopping } from "react-icons/fa6";
 import { useCardContext } from "../../../context/CardContext";
+import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa6";
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import ShopCardItems from "../ShopCardOffcanvas/ShopCardItems/ShopCardItems";
+import ShopCartItems from "./ShopCartItems/ShopCartItems";
 
-import "./ShopCardOffcanvas.scss"
+import "./ShopCartOffcanvas.scss"
 
-const ShopCardOffcanvas: React.FC = () => {
+const ShopCartOffcanvas: React.FC = () => {
 
     const {
         products,
@@ -37,7 +39,7 @@ const ShopCardOffcanvas: React.FC = () => {
         cartItems.length === 0 ? (
             <div className="car-zero">Még nincsenek termékek a kosaradban!</div>
         ) : (
-            cartItems.map((item) => <ShopCardItems key={item.id} {...item} />).reverse()
+            cartItems.map((item) => <ShopCartItems key={item.id} {...item} />).reverse()
         );
 
     return (
@@ -58,7 +60,9 @@ const ShopCardOffcanvas: React.FC = () => {
                                 {cardSum()} Ft
                             </p>
                         </div>
-                        <button>TOVÁBB A PÉNZTÁRHOZ</button>
+                        <Link className="cart-link" to="/check-cart">
+                            <button>TOVÁBB A PÉNZTÁRHOZ</button>
+                        </Link>
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>
@@ -66,4 +70,4 @@ const ShopCardOffcanvas: React.FC = () => {
     );
 }
 
-export default ShopCardOffcanvas;
+export default ShopCartOffcanvas;
