@@ -139,6 +139,7 @@ footer {
             &:hover {
                 color: variable.$color-main-button;
                 transform: scale(1.3);
+                cursor: pointer;
             }
         }
     }
