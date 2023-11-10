@@ -41,7 +41,7 @@ const ShopCartOffcanvas: React.FC = () => {
                         <div>
                             <p className="car-sum-text">ÖSSZESEN:</p>
                             <p className="car-sum-price">
-                                {cardSum()} Ft
+                                {cardSum(false)} Ft
                             </p>
                         </div>
                         <Link className="cart-link" to="/check-cart">

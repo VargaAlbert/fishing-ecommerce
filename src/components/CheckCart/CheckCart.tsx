@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import { useCardContext } from "../../context/CardContext";
 
 import "./CheckCart.scss"
@@ -11,8 +11,9 @@ const CheckCart = () => {
     const {
         cartItems,
         cardSum,
+        shippingFee,
+        formatPrice,
     } = useCardContext();
-
 
     const cartItemsContentTSX =
         cartItems.length === 0 ? (
@@ -20,8 +21,6 @@ const CheckCart = () => {
         ) : (
             cartItems.map((item) => <CheckShopCartItems key={item.id} {...item} />).reverse()
         );
-
-
 
     return (
         <div className="check-cart-main-container">
@@ -32,22 +31,24 @@ const CheckCart = () => {
             <div className="check-sum-container" >
                 <div className="check-sum">
                     <h3>Összegzés:</h3>
-                    <div>
+                    <div className="check-sum-content">
                         <div className="text">
-                            <div>Kosár részösszeg:</div><div>{cardSum()} Ft</div>
+                            <div className="format-font">Kosár részösszeg:</div><div className="format-font">{cardSum(false)} Ft</div>
                         </div>
                         <div className="text">
-                            <div>Szállítási díj:</div><div>1 290 Ft</div>
+                            <div className="format-font">Szállítási díj:</div><div className="format-font">{formatPrice(shippingFee)} Ft</div>
                         </div>
                         <div className="text">
-                            <div>Kedvezmény:</div><div>-5.000 Ft</div>
+                            <div className="format-font">Kedvezmény:</div><div className="format-font">0 Ft</div>
                         </div>
                         <div className="text">
-                            <div>Összesen:</div><div>15.4444 Ft</div>
+                            <div className="format-font">Összesen:</div><div className="format-font">{cardSum(true)} Ft</div>
                         </div>
                     </div>
-                    <button className="btn">TOVÁBB A KASSZÁHOZ</button>
-                    <span>Tovább vásárolok.</span>
+                    <button>TOVÁBB A KASSZÁHOZ</button>
+                    <Link className="check-sum-link" to="/" >
+                        Tovább vásárolok
+                    </Link>
                 </div>
             </div>
         </div >

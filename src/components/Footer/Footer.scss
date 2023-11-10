@@ -116,6 +116,7 @@ footer {
     .info-text {
         li:hover {
             color: variable.$color-font-secondary;
+            transition: transform 0.2s;
         }
     }
 

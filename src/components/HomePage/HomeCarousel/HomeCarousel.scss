@@ -32,7 +32,7 @@
 
         h2 {
             color: variable.$color-font-primary;
-            font-size: variable.$size-r30;
+            font-size: variable.$size-r25;
             font-weight: variable.$weights-7;
         }
 
@@ -43,8 +43,9 @@
         }
         .home-car-btn {
             @include ancestor-class.main-button;
-            width: 50%;
+            width: 38%;
             z-index: 9;
+            margin-bottom: 3rem;
         }
     }
 }
@@ -53,7 +54,7 @@
     .car-item-cont {
         .car-item-text {
             h2 {
-                font-size: variable.$size-r40;
+                font-size: variable.$size-r25;
             }
         }
     }

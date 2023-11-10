@@ -33,17 +33,41 @@
     background-color: variable.$color-main-background-nav;
     color: variable.$color-font-primary;
 
-    .text {
-        @include variable.flexBox(row, nowrap, normal, space-between, normal);
+    h3 {
+        padding-bottom: 1.5rem;
     }
 
-    .btn {
+    .check-sum-content {
+        padding-bottom: 3rem;
+        .text {
+            @include variable.flexBox(row, nowrap, normal, space-between, normal);
+            .format-font {
+                margin: 0.25rem 0;
+                font-size: variable.$size-r10 + 0.1rem;
+            }
+        }
+    }
+
+    button {
         @include ancestor-class.main-button;
         margin: auto;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
         width: 100%;
         height: 3.5rem;
+    }
+
+    .check-sum-link {
+        text-align: center;
+        cursor: pointer;
+        font-weight: variable.$weights-6;
+        font-size: variable.$size-r15;
+        color: variable.$color-font-primary;
+
+        &:hover {
+            color: variable.$color-font-secondary;
+            transition: transform 0.2s;
+        }
     }
 }
 

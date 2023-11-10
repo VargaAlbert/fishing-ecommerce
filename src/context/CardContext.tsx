@@ -35,11 +35,14 @@ type CardContextProps = {
     increaseCartQuantity: (id: number) => void;
     decreaseCartQuantity: (id: number) => void;
     removeFromCart: (id: number) => void;
-    cardSum: () => string;
+
+    cardSum: (shippingFeeBool: boolean) => string;
+
     handleClose: () => void;
     handleShow: () => void;
 
-    cartQuantity: number
+    shippingFee: number;
+    cartQuantity: number;
     show: boolean;
 };
 
@@ -60,6 +63,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
     const handleShow = () => setShow(true);
 
     const maxLimit = 999;
+    const shippingFee = 1290;
 
     /* --Copyright (c) 2022 WebDevSimplified-- */
     const getItemQuantity = (id: number) => {
@@ -200,7 +204,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
-    const cardSum = () => {
+    const cardSum = (shippingFeeBool: Boolean) => {
         const value = cartItems
             .reduce((total, cartItem) => {
                 const item = products.find(
@@ -213,7 +217,11 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
                 );
             }, 0)
 
-        return formatPrice(value);
+        if (shippingFeeBool) {
+            return formatPrice(value + shippingFee);
+        } else {
+            return formatPrice(value);
+        }
     }
 
 
@@ -237,6 +245,7 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         handleBlur,
         setNumberValue,
         setValue,
+        shippingFee,
     }
 
     return (
