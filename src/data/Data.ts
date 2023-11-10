@@ -3336,24 +3336,6 @@ export const data: ProductDataType[] = [
         PRIJEM: ""
     },
     {
-        ID_PRODUC: 6520,
-        EAN: 5999095326520,
-        PRODUCT: "CZ Satellite 301 elektromos kapásjelző",
-        SKUPINA: 101001456,
-        ROZMER: "szett 3+1",
-        PACKAGING: 1,
-        DESCRIPTION: "Stílusos formatervezésű, ütésálló ABS-ből készült háza nem csak elegáns, hanem a mehanikus sérülések ellen is védelmet nyújt. Hatótávolsága tereptől függően a 200 métert is elérheti. Széles skálán állítható a hangerő, hangszín, érzékenység. A vevő rezgő funkcióval ellátva. A szabvány jack dugós bemeneten keresztül bármilyen swinger csatlakoztatható hozzá. Kapásnál a beépített LED-ek azonnal müködésbe lépnek jelzőnként különböző színnel. Kiegészítő funkció az energiatakarékos éjszakai fény, illetve a menetes snag bar készlet, ami megakadályozza, hogy hirtelen, vehemens kapásnál botunkat lerántsa a hal az állványról. A szett bekapcsolásakor automatikusan hangolja magát. A kapásjelzők 1db 9V-os elemmel, a vevő pedig 3 db AAA-s elemmel működik (nem tartozék).",
-        HMOTNOST: 14.75,
-        IMGURL_NO_WATER: "",
-        CENA_S_DPH_EU: 45.49,
-        CENA_S_DPH_EU_HUF: 31488.19,
-        VIDEA: "",
-        SORTIMENT: "Kiegészítők",
-        SKLADOM: "TRUE",
-        SKLADOVOST: 1,
-        PRIJEM: ""
-    },
-    {
     
         ID_PRODUC: 101001363,
         VARIANT: 101001362,
@@ -3381,5 +3363,4 @@ export const data: ProductDataType[] = [
         SKLADOVOST: 10,
         PRIJEM: ""
       },
-
 ];
