@@ -5,6 +5,7 @@ import carousel01 from "../../../img/carousel01.png";
 import carousel02 from "../../../img/carousel02.png";
 
 import "./HomeCarousel.scss"
+import { Link } from 'react-router-dom';
 
 const HomeCarousel: React.FC = () => {
     return (
@@ -19,7 +20,9 @@ const HomeCarousel: React.FC = () => {
                             <h4>
                                 Válogs több 100 akciós Delphin nyeletőfékes orsóink közül.
                             </h4>
-                            <button className="home-car-btn">MEGNÉZEM</button>
+                            <Link to="/Orsók/101001219">
+                                <button className="home-car-btn">MEGNÉZEM</button>
+                            </Link>
                         </div>
                     </div>
                 </Carousel.Item>
@@ -33,7 +36,9 @@ const HomeCarousel: React.FC = () => {
                                 Megérkezett az új CARP ZOOM Satellite 301 3+1 kapásjelző szett,
                                 mely akár bővíthető 4+1-ig.
                             </h4>
-                            <button className="home-car-btn">MEGNÉZEM</button>
+                            <Link to="/Kiegészítők/101001363">
+                                <button className="home-car-btn">MEGNÉZEM</button>
+                            </Link>
                         </div>
                     </div>
                 </Carousel.Item>
@@ -47,7 +52,9 @@ const HomeCarousel: React.FC = () => {
                                 Akciós az egyik legjobb pontyozó horog. Több méretben
                                 rendelhető.
                             </h4>
-                            <button className="home-car-btn">MEGNÉZEM</button>
+                            <Link to="/kiegészítők/101001456">
+                                <button className="home-car-btn">MEGNÉZEM</button>
+                            </Link>
                         </div>
                     </div>
                 </Carousel.Item>
