@@ -11,29 +11,13 @@ import "./ShopCartOffcanvas.scss"
 const ShopCartOffcanvas: React.FC = () => {
 
     const {
-        products,
         cartItems,
         show,
         handleClose,
-        roundToNearestMultiple,
-        formatPrice
+        cardSum,
     } = useCardContext();
 
-    const cardSum = () => {
-        const value = cartItems
-            .reduce((total, cartItem) => {
-                const item = products.find(
-                    (i) => i.ID_PRODUC === cartItem.id
-                );
-                return (
-                    total +
-                    roundToNearestMultiple(item?.CENA_S_DPH_EU_HUF || 0) *
-                    Number(cartItem.quantity)
-                );
-            }, 0)
 
-        return formatPrice(value);
-    }
 
     const cartItemsContentTSX =
         cartItems.length === 0 ? (

@@ -12,45 +12,21 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
 
     const {
         products,
-        cartItems,
         increaseCartQuantity,
         decreaseCartQuantity,
-        searchValue,
         removeFromCart,
         roundToNearestMultiple,
         formatPrice,
-        handleKeyPress
+        handleKeyPress,
+        handleBlur,
+        setNumberValue,
+        setValue,
     } = useCardContext();
 
     const item = products.find((item) => item.ID_PRODUC === id);
 
     if (item == null) {
         return null;
-    }
-
-    const setNumberValue = (e: ChangeEvent<HTMLInputElement>) => {
-
-        e.target.value === "" ?
-            (searchValue(" ", id, false))
-            : (searchValue(String(Math.floor(Math.abs(Number(e.target.value)))), id, false));
-    }
-
-    const setValue = () => {
-        if (cartItems) {
-            const foundItem = cartItems.find((item) => item.id === id);
-            if (foundItem) {
-                return foundItem.quantity
-            }
-        }
-        return 0;
-    };
-
-    const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.target.value) < 1) {
-            searchValue("1", id, false);
-        } else {
-            searchValue(String(Math.abs(Number(e.target.value))), id, false);
-        }
     }
 
     return (
@@ -81,9 +57,9 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
                     <input
                         type="number"
                         onKeyDown={handleKeyPress}
-                        onChange={setNumberValue}
-                        value={setValue()}
-                        onBlur={handleBlur}
+                        onChange={(e) => setNumberValue(e, id)}
+                        value={setValue(id)}
+                        onBlur={(e) => handleBlur(e, id)}
                     />
                     <button onClick={() => increaseCartQuantity(item.ID_PRODUC)}>
                         +

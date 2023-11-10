@@ -2,7 +2,8 @@ import React, {
     createContext,
     useContext,
     useState,
-    ReactNode
+    ReactNode,
+    ChangeEvent,
 } from "react";
 
 import { data, ProductDataType } from "../data/Data";
@@ -21,8 +22,11 @@ type CardContextProps = {
     products: ProductDataType[];
     cartItems: CartItem[];
 
+    setNumberValue: (e: ChangeEvent<HTMLInputElement>, id: number) => void
+    handleBlur: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
     handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 
+    setValue: (id: number) => string;
     limitValue: (quantity: number) => number;
     roundToNearestMultiple: (number: number) => number;
     searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
@@ -31,6 +35,7 @@ type CardContextProps = {
     increaseCartQuantity: (id: number) => void;
     decreaseCartQuantity: (id: number) => void;
     removeFromCart: (id: number) => void;
+    cardSum: () => string;
     handleClose: () => void;
     handleShow: () => void;
 
@@ -154,6 +159,30 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         });
     };
 
+    const handleBlur = (e: ChangeEvent<HTMLInputElement>, id: number) => {
+        if (Number(e.target.value) < 1) {
+            searchValue("1", id, false);
+        } else {
+            searchValue(String(Math.abs(Number(e.target.value))), id, false);
+        }
+    }
+
+    const setNumberValue = (e: ChangeEvent<HTMLInputElement>, id: number) => {
+        e.target.value === "" ?
+            (searchValue(" ", id, false))
+            : (searchValue(String(Math.floor(Math.abs(Number(e.target.value)))), id, false));
+    }
+
+    const setValue = (id: number) => {
+        if (cartItems) {
+            const foundItem = cartItems.find((item) => item.id === id);
+            if (foundItem) {
+                return foundItem.quantity
+            }
+        }
+        return "0";
+    }
+
     //Árak kerekitése.
     const roundToNearestMultiple = (number: number) => {
         if (number >= 1000) {
@@ -171,6 +200,23 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
+    const cardSum = () => {
+        const value = cartItems
+            .reduce((total, cartItem) => {
+                const item = products.find(
+                    (i) => i.ID_PRODUC === cartItem.id
+                );
+                return (
+                    total +
+                    roundToNearestMultiple(item?.CENA_S_DPH_EU_HUF || 0) *
+                    Number(cartItem.quantity)
+                );
+            }, 0)
+
+        return formatPrice(value);
+    }
+
+
     const contextValue: CardContextProps = {
         products,
         cartItems,
@@ -186,7 +232,11 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
         roundToNearestMultiple,
         formatPrice,
         limitValue,
-        handleKeyPress
+        handleKeyPress,
+        cardSum,
+        handleBlur,
+        setNumberValue,
+        setValue,
     }
 
     return (

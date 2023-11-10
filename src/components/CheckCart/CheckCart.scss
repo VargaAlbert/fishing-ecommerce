@@ -1,6 +1,12 @@
 @use "../../scss/variable.scss";
 @use "../../scss/ancestor-class.scss";
 
+.check-car-zero {
+    font-size: variable.$size-r20;
+    color: variable.$color-font-primary;
+    text-align: center;
+}
+
 .check-cart-main-container {
     position: relative;
 }
