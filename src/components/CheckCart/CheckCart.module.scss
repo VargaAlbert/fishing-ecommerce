@@ -1,28 +1,28 @@
 @use "../../scss/variable.scss";
 @use "../../scss/ancestor-class.scss";
 
-.check-car-zero {
+.carZero {
     font-size: variable.$size-r20;
     color: variable.$color-font-primary;
     text-align: center;
 }
 
-.check-cart-main-container {
+.mainContainer {
     position: relative;
 }
 
-.check-cart-container {
+.cartContainer {
     width: 100%;
 }
 
-.cart-title {
+.cartTitle {
     text-align: center;
     margin-bottom: 3rem;
     font-weight: variable.$weights-7;
     color: variable.$color-font-primary;
 }
 
-.check-sum {
+.checkSum {
     padding: 1rem;
     margin: auto;
     min-width: 300px;
@@ -37,11 +37,11 @@
         padding-bottom: 1.5rem;
     }
 
-    .check-sum-content {
+    .sumContent {
         padding-bottom: 3rem;
         .text {
             @include variable.flexBox(row, nowrap, normal, space-between, normal);
-            .format-font {
+            .formatFont {
                 margin: 0.25rem 0;
                 font-size: variable.$size-r10 + 0.1rem;
             }
@@ -57,7 +57,7 @@
         height: 3.5rem;
     }
 
-    .check-sum-link {
+    .link {
         text-align: center;
         cursor: pointer;
         font-weight: variable.$weights-6;
@@ -76,23 +76,21 @@
 @include variable.Medium {
 }
 @include variable.Large {
-    .check-cart-main-container {
+    .mainContainer {
         @include variable.flexBox(row, nowrap, normal, normal, normal);
     }
 
-    .check-cart-container {
+    .cartContainer {
         width: 65%;
     }
 
-    .check-sum-container {
+    .sumContainer {
         width: 35%;
     }
-    .check-sum {
+
+    .checkSum {
         top: 120px;
         position: sticky;
-    }
-
-    .check-sum {
         margin: 2rem;
         width: 70%;
     }
