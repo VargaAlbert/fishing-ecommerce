@@ -3,17 +3,18 @@
 
 footer {
     background-color: variable.$color-main-background-footer;
-    .my-container {
-        @include variable.container-my;
-    }
 }
 
-.footer-main-container {
+.mainContainer {
     border-top: 2px solid variable.$color-font-secondary;
     margin-top: 5rem;
 }
 
-.footer-label-container {
+.borderContainer {
+    @include variable.container-my;
+}
+
+.labelContainer {
     text-align: center;
 
     h3 {
@@ -30,7 +31,7 @@ footer {
     }
 }
 
-.footer-form-container {
+.formContainer {
     width: 100%;
     height: auto;
     @include variable.flexBox(row, nowrap, normal, center, normal);
@@ -72,7 +73,7 @@ footer {
             }
         }
 
-        .afsz-cont {
+        .afszCont {
             margin: 1.5rem 0;
             color: variable.$color-font-secondary;
             @include variable.flexBox(row, nowrap, normal, space-between, normal);
@@ -86,7 +87,7 @@ footer {
     }
 }
 
-.footer-logo-container {
+.logoContainer {
     img {
         width: 220px;
         height: auto;
@@ -98,7 +99,7 @@ footer {
     }
 }
 
-.footer-text-container {
+.textContainer {
     padding: 1rem;
     @include variable.flexBox(column, nowrap, normal, space-between, normal);
     color: variable.$color-font-primary;
@@ -113,14 +114,14 @@ footer {
         white-space: nowrap;
     }
 
-    .info-text {
+    .infoText {
         li:hover {
             color: variable.$color-font-secondary;
             transition: transform 0.2s;
         }
     }
 
-    .media-title {
+    .mediaTitle {
         text-align: center;
         margin-bottom: 1rem;
     }
@@ -131,7 +132,7 @@ footer {
         }
     }
 
-    .media-cont {
+    .mediaCont {
         @include variable.flexBox(row, nowrap, normal, space-around, normal);
         text-align: center;
         .icon {
@@ -146,10 +147,11 @@ footer {
     }
 }
 
-.footer-end {
+.footerEnd {
     background-color: variable.$color-main-background;
     color: variable.$color-font-primary;
-    .footer-end-container {
+    .footerEndContainer {
+        @include variable.container-my;
         div {
             width: 100%;
             padding: 0.5rem 1rem;
@@ -166,29 +168,29 @@ footer {
 }
 
 @include variable.Small {
-    .footer-text-container {
+    .textContainer {
         padding: 1rem 1rem 1rem 3rem;
     }
 }
 @include variable.Medium {
-    .footer-form-container {
+    .formContainer {
         form {
             width: 90%;
-            .input-cont {
+            .inputCont {
                 @include variable.flexBox(row, nowrap, center, flex-end, center);
                 gap: 2rem;
             }
         }
     }
 
-    .footer-text-container {
+    .textContainer {
         @include variable.flexBox(row, wrap, normal, space-between, normal);
 
         div {
             width: 50%;
         }
 
-        .media-cont {
+        .mediaCont {
             width: 100%;
         }
     }
@@ -197,7 +199,7 @@ footer {
 @include variable.Large {
 }
 @include variable.Extra-large {
-    .footer-label-container {
+    .labelContainer {
         h3 {
             font-size: variable.$size-r35;
         }
@@ -207,24 +209,24 @@ footer {
         }
     }
 
-    .footer-form-container {
+    .formContainer {
         form {
             width: 90%;
-            .input-cont {
+            .inputCont {
                 @include variable.flexBox(row, nowrap, center, flex-end, center);
                 gap: 2rem;
             }
         }
     }
 
-    .footer-text-container {
+    .textContainer {
         @include variable.flexBox(row, wrap, normal, space-between, normal);
 
         div {
             width: 20%;
         }
 
-        .media-cont {
+        .mediaCont {
             width: 100%;
         }
     }
@@ -232,7 +234,7 @@ footer {
 @include variable.XXL-large {
 }
 @include variable.XXXL-large {
-    .footer-label-container {
+    .labelContainer {
         h3 {
             font-size: variable.$size-r40;
         }

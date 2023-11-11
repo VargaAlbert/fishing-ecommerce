@@ -12,22 +12,22 @@ import {
   FaCcMastercard,
 } from "react-icons/fa6";
 
-import "./Footer.scss";
+import Style from "./Footer.module.scss";
 
 const Footer: React.FC = () => {
   return (
     <footer>
-      <div className="footer-main-container">
-        <div className="my-container">
-          <div className="footer-label-container">
+      <div className={Style.mainContainer}>
+        <div className={Style.borderContainer}>
+          <div className={Style.labelContainer}>
             <h3>Iratkozz fel hírlevelünkre!</h3>
             <h4>
               Mindig értesülj akcióinkról, újdonságainkról, és tartsd napra készre a horgász tudásod.
             </h4>
           </div>
-          <div className="footer-form-container">
+          <div className={Style.formContainer}>
             <form action="">
-              <div className="input-cont">
+              <div className={Style.inputCont}>
                 <div>
                   <input type="text" placeholder="Neved" />
                 </div>
@@ -39,18 +39,16 @@ const Footer: React.FC = () => {
                 </div>
               </div>
 
-              <div className="afsz-cont">
-                <input id="newsletter-form-afsz" type="checkbox" />
-                <label htmlFor="newsletter-form-afsz">
+              <div className={Style.afszCont}>
+                <input id="newsletterFormAfsz" type="checkbox" />
+                <label htmlFor="newsletterFormAfsz">
                   A gombra kattintva elfogadom a személyes adatok felhasznál hatóságát,
                   a rendelés feldolgozásához, a weboldalon történő vásárlási élmény
                   fenntartásához és más célokra., melyeket az Adatkezelési tájékoztató tartalmaz.</label>
               </div>
             </form>
           </div>
-        </div>
-        <div className="my-container">
-          <div className="footer-logo-container">
+          <div className={Style.logoContainer}>
             <img src={logo} alt="logo" />
             <p>
               Albi horgász bolt, kis és nagykerek, horgászegyesület.
@@ -59,8 +57,8 @@ const Footer: React.FC = () => {
               debitis, sed dolore dolor accusamus dicta.
             </p>
           </div>
-          <div className="footer-text-container">
-            <div className="info-text">
+          <div className={Style.textContainer}>
+            <div className={Style.infoText}>
               <h4>Általános</h4>
               <ul>
                 <li>Klubb kártya</li>
@@ -68,7 +66,7 @@ const Footer: React.FC = () => {
                 <li>Garanciális javitás</li>
               </ul>
             </div>
-            <div className="info-text">
+            <div className={Style.infoText}>
               <h4>Információ</h4>
               <ul>
                 <li>Vásárlási feltételek</li>
@@ -76,44 +74,44 @@ const Footer: React.FC = () => {
                 <li>Viszonteladóknak</li>
               </ul>
             </div>
-            <div className="contact">
+            <div className={Style.contact}>
               <h4>Kapcsolat</h4>
               <ul>
                 <li>
-                  <FaLocationDot className="icon" /> Debrecen
+                  <FaLocationDot className={Style.icon} /> Debrecen
                 </li>
                 <li>
-                  <FaPhoneFlip className="icon" /> +36 55 555 5555
+                  <FaPhoneFlip className={Style.icon} /> +36 55 555 5555
                 </li>
                 <li>
-                  <FaRegEnvelope className="icon" /> horgaszbolt@gmail.com
+                  <FaRegEnvelope className={Style.icon} /> horgaszbolt@gmail.com
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="media-title">Media</h4>
-              <div className="media-cont">
+              <h4 className={Style.mediaTitle}>Media</h4>
+              <div className={Style.mediaCont}>
                 <div>
-                  <FaSquareFacebook className="icon" />
+                  <FaSquareFacebook className={Style.icon} />
                 </div>
                 <div>
-                  <FaInstagram className="icon" />
+                  <FaInstagram className={Style.icon} />
                 </div>
                 <div>
-                  <FaYoutube className="icon" />
+                  <FaYoutube className={Style.icon} />
                 </div>
                 <div>
-                  <FaTiktok className="icon" />
+                  <FaTiktok className={Style.icon} />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="footer-end">
-          <div className="footer-end-container my-container">
+        <div className={Style.footerEnd}>
+          <div className={Style.footerEndContainer}>
             <div>
-              <FaCcVisa className="icon" />
-              <FaCcMastercard className="icon" />
+              <FaCcVisa className={Style.icon} />
+              <FaCcMastercard className={Style.icon} />
             </div>
             <p>© Varga Albert</p>
           </div>
