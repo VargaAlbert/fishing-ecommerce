@@ -1,7 +1,7 @@
 @use "../../../scss/variable.scss";
 @use "../../../scss/ancestor-class.scss";
 
-.CheckShopCartItems-main-container {
+.mainContainer {
     width: 95%;
     min-width: 300px;
     height: 200px;
@@ -22,7 +22,7 @@
     gap: 0.4rem;
 }
 
-.check-description-container {
+.descriptionContainer {
     grid-area: a;
     width: 100%;
     @include variable.flexBox(row, nowrap, normal, space-between, normal);
@@ -35,14 +35,10 @@
         width: 100%;
     }
 
-    h4 {
-        font-size: 1.2rem;
-    }
-
-    .check-delete-icon-con {
+    .deleteIconCont {
         @include variable.flexBox(row, nowrap, normal, space-between, normal);
 
-        .check-icon {
+        .icon {
             font-size: variable.$size-r10 + 0.3rem;
 
             &:hover {
@@ -53,7 +49,7 @@
     }
 }
 
-.check-img-container {
+.imgContainer {
     grid-area: b;
     width: auto;
     img {
@@ -64,12 +60,12 @@
     }
 }
 
-.check-price-container {
+.priceContainer {
     grid-area: c;
     height: 100%;
     @include variable.flexBox(row, nowrap, normal, space-between, center);
 
-    .check-price-btn-cont {
+    .btnCont {
         height: 100%;
         @include variable.flexBox(column, nowrap, normal, space-around, center);
 
@@ -77,13 +73,13 @@
             text-align: end;
         }
 
-        .check-INC-DEC-btn-container {
+        .IncDecBtnContainer {
             @include ancestor-class.INC-DEC-btn-container;
             height: 50px;
         }
     }
 
-    .check-price {
+    .checkPrice {
         padding: 0.5rem 0 0.5rem 0.5rem;
         font-size: variable.$size-r10 + 0.3rem;
         font-weight: variable.$weights-5;
@@ -92,8 +88,8 @@
 }
 
 @include variable.Small {
-    .check-price-container {
-        .check-price-btn-cont {
+    .priceContainer {
+        .btnCont {
             width: 100%;
             gap: 0.5rem;
 
@@ -102,12 +98,12 @@
                 white-space: nowrap;
             }
 
-            .check-INC-DEC-btn-container {
+            .IncDecBtnContainer {
                 order: 2;
             }
         }
 
-        .check-price {
+        .checkPrice {
             width: 180px;
             padding: 0.5rem 0 0.5rem 0.5rem;
             font-size: variable.$size-r10 + 0.3rem;
@@ -117,8 +113,8 @@
     }
 }
 @include variable.Medium {
-    .check-price-container {
-        .check-price-btn-cont {
+    .priceContainer {
+        .btnCont {
             @include variable.flexBox(row, nowrap, normal, space-around, center);
             .price {
                 width: 120px;
@@ -126,18 +122,18 @@
                 white-space: nowrap;
             }
 
-            .check-INC-DEC-btn-container {
+            .IncDecBtnContainer {
                 order: 1;
             }
         }
-        .check-price {
+        .checkPrice {
             padding: 0.5rem;
             white-space: nowrap;
         }
     }
 }
 @include variable.Large {
-    .CheckShopCartItems-main-container {
+    .mainContainer {
         grid-template-columns: auto 2fr;
         grid-template-rows: 25% 75%;
         grid-template-areas:
@@ -147,7 +143,7 @@
         gap: 0.8rem;
     }
 
-    .check-img-container {
+    .imgContainer {
         grid-area: b;
         width: auto;
         img {

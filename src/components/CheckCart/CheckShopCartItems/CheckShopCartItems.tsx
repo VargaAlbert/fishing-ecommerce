@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from "react";
 import { useCardContext } from "../../../context/CardContext";
 import { FaTrash } from "react-icons/fa6";
-import "./CheckShopCartItems.scss";
+//import styles from './MyComponent.module.scss';
+import styles from "./CheckShopCartItems.module.scss";
 
 type CheckShopCartItemsProps = {
     id: number
@@ -30,31 +31,32 @@ const CheckShopCartItems: React.FC<CheckShopCartItemsProps> = ({ id, quantity })
     }
 
     return (
-        <section className="CheckShopCartItems-main-container">
+        <section className={styles.mainContainer}>
 
-            <div className="check-img-container">
+            <div className={styles.imgContainer}>
                 <img src={`${item.IMGURL_NO_WATER}`} alt={`${item.ID_PRODUC}`} />
             </div>
 
-
-            <div className="check-description-container">
+            <div className={styles.descriptionContainer}>
 
                 <h3>{item.PRODUCT} {item.ROZMER}</h3>
 
-                <div className="check-delete-icon-con">
+                <div className={styles.deleteIconCont}>
                     <FaTrash
-                        className="check-icon"
+                        className={styles.icon}
                         onClick={() => removeFromCart(item.ID_PRODUC)}
                     />
                 </div>
             </div>
 
-            <div className="check-price-container">
-                <div className="check-price-btn-cont">
-                    <div className="price">
+            <div className={styles.priceContainer}>
+                <div className={styles.btnCont}>
+                    <div className={styles.price}>
                         {`${formatPrice(roundToNearestMultiple(item.CENA_S_DPH_EU_HUF))} `} Ft/db
                     </div>
-                    <div className="check-INC-DEC-btn-container">
+
+                    <div className={styles.IncDecBtnContainer}>
+
                         <button onClick={() => decreaseCartQuantity(item.ID_PRODUC)}>
                             -
                         </button>
@@ -70,7 +72,8 @@ const CheckShopCartItems: React.FC<CheckShopCartItemsProps> = ({ id, quantity })
                         </button>
                     </div>
                 </div>
-                <p className="check-price">
+
+                <p className={styles.checkPrice}>
                     {`${formatPrice((Number(quantity) * roundToNearestMultiple(item.CENA_S_DPH_EU_HUF)))} `}
                     Ft
                 </p>
