@@ -57,7 +57,7 @@ type ProductsContextProps = {
   handleCloseMenu: () => void;
   handleShowMenu: () => void;
 
-  pages: number[],
+  pages: number[];
   menuList: string[];
 
   selectedIndexFilterMain: number;

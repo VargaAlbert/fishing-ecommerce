@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../../context/ProductsContext";
 import { useCardContext } from "../../context/CardContext";
@@ -7,13 +8,19 @@ import MenuList from "../MenuList/MenuList";
 import CategoryOffcanvas from "../Header/CategoryOffcanvas/CategoryOffcanvas";
 import ShopCardOffcanvas from "./ShopCardOffcanvas/ShopCartOffcanvas";
 import logo from "../../img/logo.png";
+import LoginModal from "./Login/LoginModal";
 
 import "./Header.scss";
 
 const Header: React.FC = () => {
 
+  const [showLogin, setShowLogin] = useState<boolean>(false);
+
   const { handleShowMenu } = useProductsContext();
   const { handleShow, cartQuantity } = useCardContext();
+
+  const toggle = () => setShowLogin(!showLogin)
+
 
   const cartItemsIconSumContentTSX = cartQuantity === 0 ? (
     <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>
@@ -44,10 +51,12 @@ const Header: React.FC = () => {
         </div>
 
         <div className="nav-icon-container">
+
           <span className="icon-container">
-            <FaUser className="icon" />
+            <FaUser className="icon" onClick={toggle} />
             BEJELENTKEZÉS
           </span>
+
           <span className="icon-container">
             <FaHeart className="icon" />
             KEDVENCEIM
@@ -60,7 +69,7 @@ const Header: React.FC = () => {
         </div>
 
       </nav>
-
+      <LoginModal toggle={toggle} show={showLogin} />
       <ShopCardOffcanvas />
     </section>
   );

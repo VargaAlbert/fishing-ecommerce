@@ -1,7 +1,6 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { useCardContext } from "../../../context/CardContext";
 import { FaTrash } from "react-icons/fa6";
-//import styles from './MyComponent.module.scss';
 import styles from "./CheckShopCartItems.module.scss";
 
 type CheckShopCartItemsProps = {

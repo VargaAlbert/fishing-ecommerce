@@ -7,9 +7,10 @@ import HomePage from "./components/HomePage/HomePage";
 import ProductsPage from "./components/ProductPage/ProductsPage";
 import ProductProfilePage from "./components/ProductProfilePage/ProductProfilePage"
 import Footer from "./components/Footer/Footer";
+import CheckCart from "./components/CheckCart/CheckCart";
+import Registration from "./components/Registration/Registration";
 
 import "./scss/App.scss";
-import CheckCart from "./components/CheckCart/CheckCart";
 
 const App = () => {
   const { menuList } = useProductsContext();
@@ -42,6 +43,7 @@ const App = () => {
             })}
 
             <Route path="/check-cart" element={<CheckCart />} />
+            <Route path="/registration" element={<Registration />} />
           </Routes>
         </div>
         <Footer />
