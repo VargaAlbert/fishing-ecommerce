@@ -18,7 +18,7 @@ type CartItem = {
     quantity: string
 }
 
-type CardContextProps = {
+interface CardContextProps {
     products: ProductDataType[];
     cartItems: CartItem[];
 

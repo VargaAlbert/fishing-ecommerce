@@ -1,8 +1,7 @@
-// app.js vagy server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
+const dbConfig = require('./dbConfig');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,8 +16,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://albi:Ais6A45SJpDP3n5r@fishing-ecommerce.n8amumh.mongodb.net/?retryWrites=true&w=majority', {
-}).then(() => {
+mongoose.connect(dbConfig.mongoURI).then(() => {
     console.log('Sikeresen csatlakozva az adatbázishoz.');
 }).catch((err) => {
     console.error('Hiba történt az adatbázishoz való csatlakozás közben:', err);
@@ -29,3 +27,4 @@ app.use('/auth', authRoutes);
 app.listen(PORT, () => {
     console.log(`A szerver fut a ${PORT}-es porton.`);
 });
+
