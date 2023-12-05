@@ -68,6 +68,21 @@
             color: variable.$color-main-button-hover;
         }
     }
+
+    .loginIcon {
+        position: relative;
+    }
+
+    .dropdown-content {
+        position: absolute;
+        top: 85px;
+        left: 0;
+        width: 100%;
+        height: 240px;
+        background-color: variable.$color-main-background-nav;
+        border-radius: 0.5rem;
+        @include variable.flexBox(column, nowrap, center, space-evenly, center);
+    }
 }
 
 @include variable.Small {
@@ -88,6 +103,17 @@
             .logo-link {
                 height: 100%;
             }
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 85px;
+            left: initial;
+            width: 250px;
+            height: 240px;
+            background-color: variable.$color-main-background-nav;
+            border-radius: 0.5rem;
+            @include variable.flexBox(column, nowrap, center, space-evenly, center);
         }
     }
 }

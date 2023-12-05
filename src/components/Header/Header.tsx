@@ -16,13 +16,13 @@ import "./Header.scss";
 const Header: React.FC = () => {
 
   const [showLogin, setShowLogin] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const { token } = useAuthContext();
+  const { token, handleLogout } = useAuthContext();
   const { handleShowMenu } = useProductsContext();
   const { handleShow, cartQuantity } = useCardContext();
 
   const toggle = () => setShowLogin(!showLogin)
-
 
   const cartItemsIconSumContentTSX = cartQuantity === 0 ? (
     <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>
@@ -30,11 +30,15 @@ const Header: React.FC = () => {
     <span className="sum">{cartQuantity}</span>
   )
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen); // A menü megnyitása vagy bezárása
+  };
+
   const handleProfile = () => {
     if (token) {
-
+      toggleDropdown()
     } else {
-      toggle
+      toggle()
     }
   }
 
@@ -62,10 +66,17 @@ const Header: React.FC = () => {
 
         <div className="nav-icon-container">
 
-          <span className="icon-container">
+          <span className="icon-container loginIcon">
             <FaUser className="icon" onClick={handleProfile} />
             BEJELENTKEZÉS
           </span>
+          {isOpen && (
+            <div className="dropdown-content">
+              <div className="fixed-size-div">Üdvözöljük:</div>
+              <div className="fixed-size-div">{ }</div>
+              <div onClick={handleLogout} className="fixed-size-div">Kijelentkezés</div>
+            </div>
+          )}
 
           <span className="icon-container">
             <FaHeart className="icon" />

@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { useAuthContext } from "../../../../context/AuthContext";
 
-type props = {
-    toggle: () => void;
-    show: boolean;
-    id: string;
-}
+const LoginInfoModal: React.FC = () => {
 
-const LoginInfoModal: React.FC<props> = ({ toggle, show, id }) => {
+    const { loginMessage, modalInfo, toggleInfoModal } = useAuthContext();
 
     const textTSX = () => {
-        switch (id) {
+        switch (loginMessage) {
             case "successful": {
                 return ["Sikeres Bejelentkezés!", "Jó vásárlást", "Rendben"]
             }
@@ -28,7 +25,7 @@ const LoginInfoModal: React.FC<props> = ({ toggle, show, id }) => {
 
     return (
         <div>
-            <Modal show={show} onHide={toggle}>
+            <Modal show={modalInfo} onHide={toggleInfoModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {text[0]}
@@ -38,7 +35,7 @@ const LoginInfoModal: React.FC<props> = ({ toggle, show, id }) => {
                     {text[1]}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={toggle}>
+                    <Button variant="secondary" onClick={toggleInfoModal}>
                         {text[2]}
                     </Button>
                 </Modal.Footer>

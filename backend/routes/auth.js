@@ -36,9 +36,16 @@ router.post('/login', async (req, res) => {
             return res.status(401).send('Hibás jelszó!');
         }
 
+        const userWithName = {
+            ...user.toObject(),
+            firstName: user.firstName,// Itt az adatbázisban tárolt telefonszám mező
+            lastName: user.lastName // Itt az adatbázisban tárolt telefonszám mező
+        };
+
+
         const token = jwt.sign({ userId: user._id }, 'titkoskulcs');
 
-        res.status(200).json({ token });
+        res.status(200).json({ token, user: userWithName });
 
     } catch (error) {
         console.error(error);

@@ -16,12 +16,15 @@ type AuthProviderProps = {
 interface AuthContextProps {
 
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-
+    toggleInfoModal: () => void;
+    handleLogout: () => void;
     getEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
     getPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
     email: string;
     password: string;
     token: string;
+    loginMessage: string;
+    modalInfo: boolean;
 };
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -42,24 +45,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const toggleInfoModal = () => setModalInfo(!modalInfo);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("LEFUTOTTAM")
-        try {
-            const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+        if (email !== "" && password !== "") {
+            e.preventDefault();
+            console.log("LEFUTOTTAM")
+            try {
+                const response = await axios.post('http://localhost:5000/auth/login', { email, password });
 
-            const token = response.data.token;
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                const token = response.data.token;
+                //const userName = response.data.firstName;
+                const firstName: string[0] = response.data.user.firstName;
+                const lastName: string[0] = response.data.user.lastName;
+                //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            setToken(token);
+                setToken(token);
 
-            setLoginMessage("successful");
+                setLoginMessage("successful");
+                toggleInfoModal();
+
+                console.log('Sikeres bejelentkezés, kapott token:', firstName, lastName);
+
+            } catch (error) {
+                console.error('Hiba történt a bejelentkezés közben:', error);
+                setLoginMessage("error");
+                toggleInfoModal();
+            }
+        } else {
+            //alert("tölsd ki a mezöt")
             toggleInfoModal();
-            console.log('Sikeres bejelentkezés, kapott token:', token);
-
-        } catch (error) {
-            console.error('Hiba történt a bejelentkezés közben:', error);
-            setLoginMessage("error");
-            toggleInfoModal();
+            console.log(modalInfo)
         }
     };
 
@@ -71,13 +84,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setPassword(e.target.value);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        window.location.reload();
+        console.log("lefutottam")
+    };
+
     const contextValue: AuthContextProps = {
         handleSubmit,
         getEmail,
         getPassword,
         email,
         password,
-        token
+        token,
+        handleLogout,
+        loginMessage,
+        toggleInfoModal,
+        modalInfo
     }
 
     return (

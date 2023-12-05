@@ -86,7 +86,7 @@ const LoginModal: React.FC<props> = ({ toggle, show }) => {
                     </Link>
                 </Modal.Footer>
             </Modal>
-            {/* <LoginInfoModal toggle={toggleInfoModal} show={modalInfo} id={loginMessage} /> */}
+            <LoginInfoModal />
         </div>
     );
 
