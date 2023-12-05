@@ -22,7 +22,7 @@ interface CardContextProps {
     products: ProductDataType[];
     cartItems: CartItem[];
 
-    setNumberValue: (e: ChangeEvent<HTMLInputElement>, id: number) => void
+    setNumberValue: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
     handleBlur: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
     handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 

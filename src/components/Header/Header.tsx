@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../../context/ProductsContext";
 import { useCardContext } from "../../context/CardContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { FaCartShopping, FaHeart, FaUser, FaList } from "react-icons/fa6";
 
 import MenuList from "../MenuList/MenuList";
@@ -16,6 +17,7 @@ const Header: React.FC = () => {
 
   const [showLogin, setShowLogin] = useState<boolean>(false);
 
+  const { token } = useAuthContext();
   const { handleShowMenu } = useProductsContext();
   const { handleShow, cartQuantity } = useCardContext();
 
@@ -27,6 +29,14 @@ const Header: React.FC = () => {
   ) : (
     <span className="sum">{cartQuantity}</span>
   )
+
+  const handleProfile = () => {
+    if (token) {
+
+    } else {
+      toggle
+    }
+  }
 
   return (
     <section className="nav-background">
@@ -53,7 +63,7 @@ const Header: React.FC = () => {
         <div className="nav-icon-container">
 
           <span className="icon-container">
-            <FaUser className="icon" onClick={toggle} />
+            <FaUser className="icon" onClick={handleProfile} />
             BEJELENTKEZÉS
           </span>
 

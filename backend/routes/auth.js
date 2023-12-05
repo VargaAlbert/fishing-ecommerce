@@ -37,7 +37,9 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user._id }, 'titkoskulcs');
+
         res.status(200).json({ token });
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Hiba történt a bejelentkezés közben.');

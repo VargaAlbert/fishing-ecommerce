@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
+import { useAuthContext } from "../../../context/AuthContext";
 
+import Modal from 'react-bootstrap/Modal';
 import Style from "./LoginModal.module.scss";
 import LoginInfoModal from './LoginInfoModal/LoginInfoModal';
 
@@ -13,27 +13,13 @@ type props = {
 
 const LoginModal: React.FC<props> = ({ toggle, show }) => {
 
-    const [email, setUsername] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [loginMessage, setLoginMessage] = useState<string>('');
-
-    const [modalInfo, setModalInfo] = useState(false);
-    const toggleInfoModal = () => setModalInfo(!modalInfo);
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('http://localhost:5000/auth/login', { email, password });
-            //const token = response.data.token;
-            setLoginMessage("successful");
-            toggleInfoModal();
-        } catch (error) {
-            // console.error('Hiba történt a bejelentkezés közben:', error);
-            setLoginMessage("error");
-            toggleInfoModal();
-        }
-    };
+    const {
+        handleSubmit,
+        getEmail,
+        getPassword,
+        email,
+        password,
+    } = useAuthContext();
 
     return (
         <div className={Style.mainContainer}>
@@ -59,14 +45,14 @@ const LoginModal: React.FC<props> = ({ toggle, show }) => {
                             type="email"
                             value={email}
                             placeholder="E-mail címed:"
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={getEmail}
                         />
 
                         <input
                             type="password"
                             value={password}
                             placeholder="Jelszavad:"
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={getPassword}
 
                         />
 
@@ -100,7 +86,7 @@ const LoginModal: React.FC<props> = ({ toggle, show }) => {
                     </Link>
                 </Modal.Footer>
             </Modal>
-            <LoginInfoModal toggle={toggleInfoModal} show={modalInfo} id={loginMessage} />
+            {/* <LoginInfoModal toggle={toggleInfoModal} show={modalInfo} id={loginMessage} /> */}
         </div>
     );
 
