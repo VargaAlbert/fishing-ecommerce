@@ -31,7 +31,7 @@ const Registration: React.FC = () => {
             try {
                 const response = await axios.post('http://localhost:5000/auth/register', { firstName, lastName, password, email, phone });
                 console.log('Sikeres regisztráció:', response.data);
-                // Itt lehet további műveleteket végezni a sikeres regisztráció esetén
+
             } catch (error) {
                 console.error('Hiba történt a regisztráció közben:', error);
             }
