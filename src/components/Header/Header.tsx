@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useProductsContext } from "../../context/ProductsContext";
 import { useCardContext } from "../../context/CardContext";
 import { useAuthContext } from "../../context/AuthContext";
-import { FaCartShopping, FaHeart, FaUser, FaList } from "react-icons/fa6";
+import { FaCartShopping, FaHeart, FaUser, FaList, FaRightToBracket } from "react-icons/fa6";
 
 import MenuList from "../MenuList/MenuList";
 import CategoryOffcanvas from "../Header/CategoryOffcanvas/CategoryOffcanvas";
@@ -15,14 +15,18 @@ import "./Header.scss";
 
 const Header: React.FC = () => {
 
-  const [showLogin, setShowLogin] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { token, handleLogout } = useAuthContext();
   const { handleShowMenu } = useProductsContext();
   const { handleShow, cartQuantity } = useCardContext();
+  const {
+    token,
+    handleLogout,
+    userName,
+    toggleDropdownLogin
+  } = useAuthContext();
 
-  const toggle = () => setShowLogin(!showLogin)
+
 
   const cartItemsIconSumContentTSX = cartQuantity === 0 ? (
     <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>
@@ -30,15 +34,13 @@ const Header: React.FC = () => {
     <span className="sum">{cartQuantity}</span>
   )
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen); // A menü megnyitása vagy bezárása
-  };
+  const toggleDropdown = () => setIsOpen(!isOpen)
 
   const handleProfile = () => {
     if (token) {
       toggleDropdown()
     } else {
-      toggle()
+      toggleDropdownLogin()
     }
   }
 
@@ -72,9 +74,17 @@ const Header: React.FC = () => {
           </span>
           {isOpen && (
             <div className="dropdown-content">
-              <div className="fixed-size-div">Üdvözöljük:</div>
-              <div className="fixed-size-div">{ }</div>
-              <div onClick={handleLogout} className="fixed-size-div">Kijelentkezés</div>
+              <div className="fixed-size-div">
+                <div>Üdvözöljük:</div>
+                <div>{userName}</div>
+              </div>
+              <div className="dropdownCategory">Rendeléseim</div>
+              <div className="dropdownCategory">Adatmodositás</div>
+              <div className="dropdownCategory">Vevöi kedvezmény</div>
+              <div onClick={handleLogout} className="dropdownCategory">
+                <FaRightToBracket />
+                <span className="exit">Kijelentkezés</span>
+              </div>
             </div>
           )}
 
@@ -90,7 +100,7 @@ const Header: React.FC = () => {
         </div>
 
       </nav>
-      <LoginModal toggle={toggle} show={showLogin} />
+      <LoginModal />
       <ShopCardOffcanvas />
     </section>
   );

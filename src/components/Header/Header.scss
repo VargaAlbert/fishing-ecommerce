@@ -114,6 +114,17 @@
             background-color: variable.$color-main-background-nav;
             border-radius: 0.5rem;
             @include variable.flexBox(column, nowrap, center, space-evenly, center);
+
+            .dropdownCategory {
+                padding-top: 0.75rem;
+                width: 100%;
+                border-top: 1px solid white;
+                cursor: pointer;
+
+                .exit {
+                    padding-left: 1rem;
+                }
+            }
         }
     }
 }

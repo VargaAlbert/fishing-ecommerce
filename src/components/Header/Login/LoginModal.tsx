@@ -6,12 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import Style from "./LoginModal.module.scss";
 import LoginInfoModal from './LoginInfoModal/LoginInfoModal';
 
-type props = {
-    toggle: () => void;
-    show: boolean;
-}
 
-const LoginModal: React.FC<props> = ({ toggle, show }) => {
+const LoginModal: React.FC = () => {
 
     const {
         handleSubmit,
@@ -19,13 +15,17 @@ const LoginModal: React.FC<props> = ({ toggle, show }) => {
         getPassword,
         email,
         password,
+        isOpenLogin,
+        toggleDropdownLogin,
+        handleCheckboxChange,
+        isChecked
     } = useAuthContext();
 
     return (
         <div className={Style.mainContainer}>
             <Modal
-                show={show}
-                onHide={toggle}
+                show={isOpenLogin}
+                onHide={toggleDropdownLogin}
                 backdrop="static"
                 keyboard={false}
                 data-bs-theme="dark"
@@ -59,7 +59,11 @@ const LoginModal: React.FC<props> = ({ toggle, show }) => {
                         <div className={Style.loginAssed}>
 
                             <label>Megjegyzés!
-                                <input type="checkbox" />
+                                <input
+                                    checked={isChecked}
+                                    onChange={handleCheckboxChange}
+                                    type="checkbox"
+                                />
                             </label>
 
                             <a>Elfelejtett jelszó</a>
@@ -79,7 +83,7 @@ const LoginModal: React.FC<props> = ({ toggle, show }) => {
                     >
                         <button
                             className={Style.reg}
-                            onClick={toggle}
+                            onClick={toggleDropdownLogin}
                         >
                             REGISZTRÁCIÓ
                         </button>

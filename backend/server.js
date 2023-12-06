@@ -14,6 +14,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 mongoose.connect(dbConfig.mongoURI).then(() => {

@@ -15,16 +15,21 @@ type AuthProviderProps = {
 
 interface AuthContextProps {
 
+    handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     toggleInfoModal: () => void;
     handleLogout: () => void;
+    toggleDropdownLogin: () => void;
     getEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
     getPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    userName: string;
     email: string;
     password: string;
     token: string;
     loginMessage: string;
     modalInfo: boolean;
+    isOpenLogin: boolean;
+    isChecked: boolean;
 };
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -35,19 +40,28 @@ export const useAuthContext = () => {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
-    const [email, setEmail] = useState<string>("");
+    const [email, setEmail] = useLocalStorage<string>("email", "");
     const [password, setPassword] = useState<string>("");
+    const [isChecked, setIsChecked] = useLocalStorage<boolean>("isChecked", false);
+
     const [loginMessage, setLoginMessage] = useState<string>("");
 
     const [token, setToken] = useLocalStorage<string>("token", "")
 
     const [modalInfo, setModalInfo] = useState(false);
+
+    const [userName, setUserName] = useState<string>("");
+
+    const [isOpenLogin, setIsOpenLogin] = useState<boolean>(false);
+
+    const toggleDropdownLogin = () => setIsOpenLogin(!isOpenLogin);
+
     const toggleInfoModal = () => setModalInfo(!modalInfo);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         if (email !== "" && password !== "") {
             e.preventDefault();
-            console.log("LEFUTOTTAM")
+
             try {
                 const response = await axios.post('http://localhost:5000/auth/login', { email, password });
 
@@ -57,12 +71,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 const lastName: string[0] = response.data.user.lastName;
                 //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+                setUserName(response.data.user.firstName + " " + response.data.user.lastName)
+
                 setToken(token);
 
                 setLoginMessage("successful");
                 toggleInfoModal();
+                toggleDropdownLogin();
 
-                console.log('Sikeres bejelentkezés, kapott token:', firstName, lastName);
+                if (!isChecked) {
+                    localStorage.removeItem('email');
+                }
 
             } catch (error) {
                 console.error('Hiba történt a bejelentkezés közben:', error);
@@ -70,7 +89,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 toggleInfoModal();
             }
         } else {
-            //alert("tölsd ki a mezöt")
+            setLoginMessage("incomplete");
             toggleInfoModal();
             console.log(modalInfo)
         }
@@ -84,10 +103,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setPassword(e.target.value);
     };
 
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(e.target.checked);
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.reload();
-        console.log("lefutottam")
     };
 
     const contextValue: AuthContextProps = {
@@ -100,7 +122,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         handleLogout,
         loginMessage,
         toggleInfoModal,
-        modalInfo
+        modalInfo,
+        userName,
+        isOpenLogin,
+        toggleDropdownLogin,
+        handleCheckboxChange,
+        isChecked,
     }
 
     return (

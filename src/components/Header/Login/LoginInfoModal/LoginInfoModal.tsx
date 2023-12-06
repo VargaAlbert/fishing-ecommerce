@@ -13,7 +13,10 @@ const LoginInfoModal: React.FC = () => {
                 return ["Sikeres Bejelentkezés!", "Jó vásárlást", "Rendben"]
             }
             case "error": {
-                return ["Sikerestelen Bejelentkezés!", "valami nincs rendben", "értettem"]
+                return ["Sikerestelen Bejelentkezés!", "Hibás felhasználónév vagy jelszó.", "Értettem"]
+            }
+            case "incomplete": {
+                return ["Sikerestelen Bejelentkezés!", "Töltsön ki a felhasználónevet és a jelszót.", "Értettem"]
             }
             default: {
                 return []
