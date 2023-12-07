@@ -5,6 +5,8 @@ import React, {
     ReactNode,
     useEffect,
 } from "react";
+
+
 import axios from 'axios';
 
 import { useLocalStorage } from "../hooks/useLocalStorage"
@@ -15,6 +17,7 @@ type AuthProviderProps = {
 
 interface AuthContextProps {
 
+    setLoginRegModalInfo: (code: string, value?: string) => void;
     handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     toggleInfoModal: () => void;
@@ -26,9 +29,9 @@ interface AuthContextProps {
     email: string;
     password: string;
     token: string;
-    loginMessage: string;
+    loginMessage: string[];
     modalInfo: boolean;
-    isOpenLogin: boolean;
+    isOpenLoginDropdown: boolean;
     isChecked: boolean;
 };
 
@@ -44,17 +47,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [password, setPassword] = useState<string>("");
     const [isChecked, setIsChecked] = useLocalStorage<boolean>("isChecked", false);
 
-    const [loginMessage, setLoginMessage] = useState<string>("");
+    const [loginMessage, setLoginMessage] = useState<string[]>(["", ""]);
 
     const [token, setToken] = useLocalStorage<string>("token", "")
 
     const [modalInfo, setModalInfo] = useState(false);
 
-    const [userName, setUserName] = useState<string>("");
+    const [userName, setUserName] = useLocalStorage<string>("userName", "");
 
-    const [isOpenLogin, setIsOpenLogin] = useState<boolean>(false);
+    const [isOpenLoginDropdown, setisOpenLoginDropdown] = useState<boolean>(false);
 
-    const toggleDropdownLogin = () => setIsOpenLogin(!isOpenLogin);
+    const toggleDropdownLogin = () => setisOpenLoginDropdown(!isOpenLoginDropdown);
 
     const toggleInfoModal = () => setModalInfo(!modalInfo);
 
@@ -64,34 +67,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
             try {
                 const response = await axios.post('http://localhost:5000/auth/login', { email, password });
-
                 const token = response.data.token;
-                //const userName = response.data.firstName;
-                const firstName: string[0] = response.data.user.firstName;
-                const lastName: string[0] = response.data.user.lastName;
-                //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
                 setUserName(response.data.user.firstName + " " + response.data.user.lastName)
 
                 setToken(token);
 
-                setLoginMessage("successful");
-                toggleInfoModal();
+                setLoginRegModalInfo("successful")
                 toggleDropdownLogin();
+
 
                 if (!isChecked) {
                     localStorage.removeItem('email');
                 }
 
             } catch (error) {
-                console.error('Hiba történt a bejelentkezés közben:', error);
-                setLoginMessage("error");
-                toggleInfoModal();
+                //console.error('Hiba történt a bejelentkezés közben:', error);
+                setLoginRegModalInfo("error")
             }
         } else {
-            setLoginMessage("incomplete");
-            toggleInfoModal();
-            console.log(modalInfo)
+            setLoginRegModalInfo("incomplete")
         }
     };
 
@@ -112,6 +107,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         window.location.reload();
     };
 
+    const setLoginRegModalInfo = (code: string, value?: string) => {
+        const vale = value ?? ""; // Ha a value undefined vagy null, akkor használjuk az üres stringet
+        console.log([code, vale])
+        setLoginMessage([code, vale]);
+        toggleInfoModal();
+    };
+
+    const myFunction = () => {
+        window.location.reload();
+        // Átnavigálás a '/home' oldalra
+
+    };
+
+
     const contextValue: AuthContextProps = {
         handleSubmit,
         getEmail,
@@ -124,10 +133,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         toggleInfoModal,
         modalInfo,
         userName,
-        isOpenLogin,
+        isOpenLoginDropdown,
         toggleDropdownLogin,
         handleCheckboxChange,
         isChecked,
+        setLoginRegModalInfo
     }
 
     return (

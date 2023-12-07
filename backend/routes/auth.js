@@ -11,6 +11,12 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
     try {
         const { firstName, lastName, password, email, phone } = req.body;
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ email });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ firstName, lastName, email, phone, password: hashedPassword });
         await user.save();

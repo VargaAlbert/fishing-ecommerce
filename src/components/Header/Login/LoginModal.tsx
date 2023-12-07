@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../context/AuthContext";
-
-import Modal from 'react-bootstrap/Modal';
-import Style from "./LoginModal.module.scss";
+import { useLocation, useNavigate } from 'react-router-dom';
 import LoginInfoModal from './LoginInfoModal/LoginInfoModal';
+import Modal from 'react-bootstrap/Modal';
 
+import Style from "./LoginModal.module.scss";
+import "../../../scss/ancestor-class.scss"
 
 const LoginModal: React.FC = () => {
 
@@ -15,16 +16,25 @@ const LoginModal: React.FC = () => {
         getPassword,
         email,
         password,
-        isOpenLogin,
+        isOpenLoginDropdown,
         toggleDropdownLogin,
         handleCheckboxChange,
-        isChecked
+        isChecked,
+        token
     } = useAuthContext();
+
+    const currentLocation = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (currentLocation.pathname === '/registration') {
+            navigate('/');
+        }
+    }, [token]);
 
     return (
         <div className={Style.mainContainer}>
             <Modal
-                show={isOpenLogin}
+                show={isOpenLoginDropdown}
                 onHide={toggleDropdownLogin}
                 backdrop="static"
                 keyboard={false}

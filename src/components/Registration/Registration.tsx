@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 import axios from 'axios';
+
 import Style from "./Registration.module.scss"
 
 const Registration: React.FC = () => {
@@ -10,7 +12,10 @@ const Registration: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
 
-
+    const {
+        setLoginRegModalInfo,
+        toggleDropdownLogin,
+    } = useAuthContext();
 
     const handlePasswordChange = (index: number, value: string) => {
         const updatedPasswords = [...passwords];
@@ -23,17 +28,24 @@ const Registration: React.FC = () => {
         e.preventDefault();
 
         if (firstName === "" || lastName === "" || email === "" || passwords[0] === "" || passwords[1] === "") {
-            alert("Tölts ki minden * jelölt mezöt.");
+            setLoginRegModalInfo("reg-incomplete")
         } else if (passwords[0] !== passwords[1]) {
-            alert("A két jelszó nem egyezik!");
+            setLoginRegModalInfo("reg-error-password");
         } else {
             const password = passwords[0];
             try {
                 const response = await axios.post('http://localhost:5000/auth/register', { firstName, lastName, password, email, phone });
-                console.log('Sikeres regisztráció:', response.data);
-
-            } catch (error) {
-                console.error('Hiba történt a regisztráció közben:', error);
+                //console.log('Sikeres regisztráció:', response.data);
+                setLoginRegModalInfo("reg-successful");
+            } catch (error: any) {
+                if (error.response && error.response.data && error.response.data.email) {
+                    const existingEmail: string = error.response.data.email;
+                    console.error('Hiba történt a regisztráció közben:', existingEmail, "már foglalt");
+                    setLoginRegModalInfo("reg-error-existingEmail", existingEmail);
+                } else {
+                    console.error('Hiba történt a regisztráció közben:', error);
+                    setLoginRegModalInfo("reg-error");
+                }
             }
         }
     };
