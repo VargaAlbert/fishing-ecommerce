@@ -6,7 +6,6 @@ import React, {
     useEffect,
 } from "react";
 
-
 import axios from 'axios';
 
 import { useLocalStorage } from "../hooks/useLocalStorage"
@@ -35,7 +34,7 @@ interface AuthContextProps {
     isChecked: boolean;
 };
 
-const AuthContext = createContext({} as AuthContextProps)
+export const AuthContext = createContext({} as AuthContextProps)
 
 export const useAuthContext = () => {
     return useContext(AuthContext);
@@ -120,6 +119,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     };
 
+    console.log(token)
 
     const contextValue: AuthContextProps = {
         handleSubmit,

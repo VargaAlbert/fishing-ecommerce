@@ -4,7 +4,11 @@ import React, {
     useState,
     ReactNode,
     ChangeEvent,
+    useEffect,
 } from "react";
+import axios from 'axios';
+
+import { useAuthContext } from "./AuthContext";
 
 import { ProductDataType, fetchData } from "../data/dataType";
 import { useLocalStorage } from "../hooks/useLocalStorage"
@@ -59,6 +63,10 @@ const getData = async () => {
 getData();
 
 export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
+
+    /*     const {
+            token
+        } = useAuthContext(); */
 
     const [products] = useState<ProductDataType[]>([...data]);
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
@@ -229,6 +237,33 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             return formatPrice(value);
         }
     }
+
+    const token: string | null = localStorage.getItem("token");
+
+    console.log("lényeg", token)
+    // A useEffect figyeli a cartItems változást
+    useEffect(() => {
+        //const userId = getUserId(); // Felhasználó azonosítójának megszerzése
+
+        // A kosár frissítése az adatbázisban
+        const updateCart = async (token: string, cartItems: CartItem[]) => {
+            try {
+                // API-hívás az adatok frissítéséhez
+                await axios.post('http://localhost:5000/update-cart', { token, cartItems });
+                console.log('A kosár sikeresen frissült az adatbázisban.');
+            } catch (error) {
+                console.error('Hiba történt a kosár frissítése közben:', error);
+            }
+        };
+
+        // A változás kezelése, és a kosár frissítése
+        if (token !== null) {
+            const modifiedToken = token.substring(1, token.length - 1);
+            updateCart(modifiedToken, cartItems);
+        } else {
+            updateCart("", cartItems);
+        }
+    }, [cartItems]);
 
 
     const contextValue: CardContextProps = {

@@ -4,6 +4,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const ShopCard = require('../models/ShopCard');
 
 const router = express.Router();
 
@@ -20,6 +21,13 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ firstName, lastName, email, phone, password: hashedPassword });
         await user.save();
+
+        // A shopCard rekord létrehozása
+        const shopCard = new ShopCard({
+            userId: user._id,
+        });
+        await shopCard.save();
+
         res.status(201).send('Regisztráció sikeres!');
     } catch (error) {
         console.error(error);
@@ -50,6 +58,8 @@ router.post('/login', async (req, res) => {
 
 
         const token = jwt.sign({ userId: user._id }, 'titkoskulcs');
+
+        console.log("token egy 1111111111111", token)
 
         res.status(200).json({ token, user: userWithName });
 
