@@ -5,8 +5,9 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import axios from 'axios';
 
-import { data, ProductDataType } from "../data/Data";
+import { ProductDataType, fetchData } from "../data/dataType";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 interface ProductsProviderProps {
@@ -48,6 +49,7 @@ const findFilterMainIndex = (selectedValue: string): number => {
 type ProductsContextProps = {
 
   products: ProductDataType[];
+  productsNoFilter: ProductDataType[];
 
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   setPostsPerPage: React.Dispatch<React.SetStateAction<number>>;
@@ -76,12 +78,33 @@ export const useProductsContext = () => {
   return useContext(ProductsContext);
 };
 
+let data: ProductDataType[] = []
+const getData = async () => {
+  data = await fetchData();
+};
+getData();
+
 export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   children
 }) => {
 
   /* ----state---- */
-  const [products, setProducts] = useState<ProductDataType[]>(data);
+  const [products, setProducts] = useState<ProductDataType[]>([]);
+  const [productsNoFilter, setProductsNoFilter] = useState<ProductDataType[]>(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/products');
+        setProducts(response.data);
+        setProductsNoFilter(response.data)
+      } catch (error) {
+        console.error('Hiba történt:', error);
+        setProducts([]);
+      }
+    };
+
+    fetchData();
+  }, []);
   const [currentPage, setCurrentPage] = useState(1);
 
   //menu kategoriák beálitása
@@ -110,7 +133,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
 
-  const menuList = Array.from(new Set(data.map((item) => item.SORTIMENT))).sort();
+  const menuList = Array.from(new Set(productsNoFilter.map((item) => item.SORTIMENT))).sort();
 
   useEffect(() => {
     const calculatedPages = Math.ceil(filteredProductsLength / postsPerPage);
@@ -118,10 +141,10 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   }, [filteredProductsLength, postsPerPage]);
 
   useEffect(() => {
-    const filteredDataLength = data.filter((data) => data.SORTIMENT === category).length;
+    const filteredDataLength = productsNoFilter.filter((data) => data.SORTIMENT === category).length;
     setFilteredProductsLength(filteredDataLength);
 
-    const filteredAndSortedProducts = [...data]
+    const filteredAndSortedProducts = [...productsNoFilter]
       .filter((item) => item.SORTIMENT === category)
       .sort((a, b) => {
         switch (mainSort) {
@@ -148,7 +171,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
       (_, index) => index + 1
     ))
 
-  }, [category, mainSort, firstPostIndex, lastPostIndex, filteredProductsLength, postsPerPage]);
+  }, [category, mainSort, firstPostIndex, lastPostIndex, filteredProductsLength, postsPerPage, productsNoFilter]);
 
   const contextValue: ProductsContextProps = {
 
@@ -167,8 +190,8 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
     handleShowMenu,
     setMainSort,
     selectedIndexProductInPage,
-    selectedIndexFilterMain
-
+    selectedIndexFilterMain,
+    productsNoFilter,
   };
 
   return (

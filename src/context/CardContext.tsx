@@ -6,7 +6,7 @@ import React, {
     ChangeEvent,
 } from "react";
 
-import { data, ProductDataType } from "../data/Data";
+import { ProductDataType, fetchData } from "../data/dataType";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 type CardProviderProps = {
@@ -51,6 +51,12 @@ const CardContext = createContext({} as CardContextProps)
 export const useCardContext = () => {
     return useContext(CardContext);
 };
+
+let data: ProductDataType[] = []
+const getData = async () => {
+    data = await fetchData();
+};
+getData();
 
 export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
 

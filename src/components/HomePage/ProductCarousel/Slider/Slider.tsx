@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCardContext } from '../../../../context/CardContext'
-import { ProductDataType } from "../../../../data/Data"
+import { ProductDataType } from "../../../../data/dataType"
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
 import "./Slider.scss"

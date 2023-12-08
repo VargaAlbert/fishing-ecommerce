@@ -1,5 +1,5 @@
 import { useCardContext } from "../../../context/CardContext";
-import { ProductDataType } from "../../../data/Data"
+import { ProductDataType } from "../../../data/dataType"
 
 import Slider from "./Slider/Slider";
 

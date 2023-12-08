@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const dbConfig = require('./dbConfig');
+const productsRoutes = require('./routes/products');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,7 @@ mongoose.connect(dbConfig.mongoURI).then(() => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/products', productsRoutes);
 
 app.listen(PORT, () => {
     console.log(`A szerver fut a ${PORT}-es porton.`);

@@ -1,6 +1,5 @@
 import { useProductsContext } from "./context/ProductsContext";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { data } from "./data/Data";
 
 import Header from "./components/Header/Header";
 import HomePage from "./components/HomePage/HomePage";
@@ -13,7 +12,7 @@ import Registration from "./components/Registration/Registration";
 import "./scss/App.scss";
 
 const App = () => {
-  const { menuList } = useProductsContext();
+  const { menuList, productsNoFilter } = useProductsContext();
   return (
     <Router>
       <div className="main-background">
@@ -22,7 +21,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
 
-            {menuList.map((category) => {
+            {menuList.length > 0 && menuList.map((category) => {
               return (
                 <Route
                   path={`/${category}`}
@@ -32,7 +31,8 @@ const App = () => {
               );
             })}
 
-            {data.map((product) => {
+            {productsNoFilter.length > 0 && productsNoFilter.map((product) => {
+
               return (
                 <Route
                   path={`/${product.SORTIMENT}/${product.ID_PRODUC}`}
