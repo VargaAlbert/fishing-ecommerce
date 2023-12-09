@@ -8,8 +8,6 @@ import React, {
 } from "react";
 import axios from 'axios';
 
-import { useAuthContext } from "./AuthContext";
-
 import { ProductDataType, fetchData } from "../data/dataType";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 

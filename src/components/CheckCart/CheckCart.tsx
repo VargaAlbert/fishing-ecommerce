@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCardContext } from "../../context/CardContext";
+import { useShopContext } from "../../context/ShopContext";
 
 import CheckShopCartItems from "./CheckShopCartItems/CheckShopCartItems";
 
@@ -12,7 +12,7 @@ const CheckCart = () => {
         cardSum,
         shippingFee,
         formatPrice,
-    } = useCardContext();
+    } = useShopContext();
 
     const cartItemsContentTSX =
         cartItems.length === 0 ? (

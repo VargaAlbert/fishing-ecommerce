@@ -1,7 +1,6 @@
 import { FaCartShopping } from "react-icons/fa6";
-import { useCardContext } from "../../../context/CardContext";
+import { useShopContext } from "../../../context/ShopContext";
 import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa6";
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import ShopCartItems from "./ShopCartItems/ShopCartItems";
@@ -15,9 +14,7 @@ const ShopCartOffcanvas: React.FC = () => {
         show,
         handleClose,
         cardSum,
-    } = useCardContext();
-
-
+    } = useShopContext();
 
     const cartItemsContentTSX =
         cartItems.length === 0 ? (

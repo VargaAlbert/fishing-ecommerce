@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthContext } from "../../context/AuthContext";
+import { useShopContext } from "../../context/ShopContext";
 import axios from 'axios';
 
 import Style from "./Registration.module.scss"
@@ -15,14 +15,13 @@ const Registration: React.FC = () => {
     const {
         setLoginRegModalInfo,
         toggleDropdownLogin,
-    } = useAuthContext();
+    } = useShopContext();
 
     const handlePasswordChange = (index: number, value: string) => {
         const updatedPasswords = [...passwords];
         updatedPasswords[index] = value;
         setPasswords(updatedPasswords);
     };
-
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

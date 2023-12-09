@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
-import { useProductsContext } from "../../context/ProductsContext";
+import { useShopContext } from "../../context/ShopContext";
 
 import "./MenuList.scss"
 
 const MenuList: React.FC = () => {
-    const { setCurrentPage, setCategory, menuList } = useProductsContext();
+    const {
+        setCurrentPage,
+        setCategory,
+        menuList
+    } = useShopContext();
+
     return (
         <>
             {menuList.map((category) => {

@@ -1,5 +1,4 @@
-import React, { ChangeEvent } from "react";
-import { useCardContext } from "../../../../context/CardContext";
+import { useShopContext } from "../../../../context/ShopContext";
 import { FaTrash } from "react-icons/fa6";
 import "./ShopCartItems.scss";
 
@@ -21,7 +20,7 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
         handleBlur,
         setNumberValue,
         setValue,
-    } = useCardContext();
+    } = useShopContext();
 
     const item = products.find((item) => item.ID_PRODUC === id);
 

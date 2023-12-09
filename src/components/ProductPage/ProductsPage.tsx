@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
-import { useCardContext } from "../../context/CardContext";
-import { useProductsContext } from '../../context/ProductsContext';
+import { useShopContext } from "../../context/ShopContext";
 
 import Pagination from './Pagination/Pagination';
 import ProductsHead from "./ProductsHead/ProductsHead";
@@ -10,8 +9,13 @@ import "./ProductsPage.scss"
 
 const ProductsPage: React.FC = () => {
 
-    const { roundToNearestMultiple, searchValue, formatPrice } = useCardContext();
-    const { products, category } = useProductsContext();
+    const {
+        roundToNearestMultiple,
+        searchValue,
+        formatPrice,
+        products,
+        category
+    } = useShopContext();
 
     return (
         <>

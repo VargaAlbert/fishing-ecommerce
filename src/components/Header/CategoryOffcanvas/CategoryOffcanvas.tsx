@@ -1,4 +1,4 @@
-import { useProductsContext } from "../../../context/ProductsContext";
+import { useShopContext } from "../../../context/ShopContext";
 import { FaList } from "react-icons/fa6";
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -6,7 +6,7 @@ import MenuList from "../../MenuList/MenuList";
 
 const CategoryOffcanvas: React.FC = () => {
 
-    const { showMenu, handleCloseMenu } = useProductsContext();
+    const { showMenu, handleCloseMenu } = useShopContext();
     return (
         <div className="menu-canvas-container">
             <Offcanvas show={showMenu} onHide={handleCloseMenu} className="d-xl-none">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCardContext } from '../../../../context/CardContext'
+import { useShopContext } from '../../../../context/ShopContext'
 import { ProductDataType } from "../../../../data/dataType"
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
@@ -11,7 +11,10 @@ type SliderProps = {
 
 const Slider: React.FC<SliderProps> = ({ product }) => {
 
-    const { searchValue, roundToNearestMultiple } = useCardContext();
+    const {
+        searchValue,
+        roundToNearestMultiple
+    } = useShopContext();
 
     return (
         <div className="slide-main-container">

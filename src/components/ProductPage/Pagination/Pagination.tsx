@@ -1,10 +1,10 @@
-import { useProductsContext } from "../../../context/ProductsContext";
+import { useShopContext } from "../../../context/ShopContext";
 
 import "./Pagination.scss"
 
 const Pagination: React.FC = () => {
 
-    const { pages, currentPage, setCurrentPage } = useProductsContext();
+    const { pages, currentPage, setCurrentPage } = useShopContext();
 
     return (
         <div className="pagenation-container">

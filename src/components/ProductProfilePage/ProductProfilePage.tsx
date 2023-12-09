@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import { useCardContext } from "../../context/CardContext";
+import { useShopContext } from "../../context/ShopContext";
+
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
 import "./ProductProfilPage.scss"
@@ -11,13 +12,13 @@ type ProductProfilePageProps = {
 const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }) => {
 
     const {
-        products,
         roundToNearestMultiple,
         searchValue,
         formatPrice,
         limitValue,
-        handleKeyPress
-    } = useCardContext();
+        handleKeyPress,
+        productsNoFilter,
+    } = useShopContext();
 
     const [value, setValue] = useState<string>("1");
 
@@ -54,7 +55,7 @@ const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }) =>
         setValue("1");
     }
 
-    const product = products.find((product) => product.ID_PRODUC === productId);
+    const product = productsNoFilter.find((product) => product.ID_PRODUC === productId);
     if (!product) {
         return <div><h2>Nincs ilyen termék!</h2></div>
     }

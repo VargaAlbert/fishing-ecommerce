@@ -1,11 +1,15 @@
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import { useAuthContext } from "../../../../context/AuthContext";
+import { useShopContext } from "../../../../context/ShopContext";
 import style from "./LoginInfoModal.module.scss";
 import "../../../../scss/ancestor-class.scss"
 const LoginInfoModal: React.FC = () => {
 
-    const { loginMessage, modalInfo, toggleInfoModal, toggleDropdownLogin } = useAuthContext();
+    const {
+        loginMessage,
+        modalInfo,
+        toggleInfoModal,
+        toggleDropdownLogin
+    } = useShopContext();
 
     const textTSX = () => {
         switch (loginMessage[0]) {

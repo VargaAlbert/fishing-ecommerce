@@ -1,4 +1,4 @@
-import { useCardContext } from "../../../context/CardContext";
+import { useShopContext } from "../../../context/ShopContext";
 import { ProductDataType } from "../../../data/dataType"
 
 import Slider from "./Slider/Slider";
@@ -7,7 +7,7 @@ import "./ProductCarousel.scss"
 
 const ProductCarousel: React.FC = () => {
 
-    const { products } = useCardContext();
+    const { products } = useShopContext();
 
     const saleProduct: ProductDataType[] = products.slice(15, 25);
     const newProduct: ProductDataType[] = products.slice(50, 60);

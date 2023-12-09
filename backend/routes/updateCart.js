@@ -3,31 +3,6 @@ const ShopCard = require('../models/ShopCard');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-/* router.post('/', async (req, res) => {
-    try {
-        const { token, cartItems } = req.body;
-        console.log("token kettö: 2222222222:", token)
-
-        // Felhasználó azonosítója
-        const userId = await getUserIdFromToken(token); // Itt be kell helyettesítened a tokenből való azonosító kinyerését
-
-
-        const shopCardItems = cartItems.map(item => ({
-            userId: userId,
-            productId: item.id, // Itt feltételezzük, hogy az item.id stringként érkezik
-            quantity: item.quantity
-        }));
-
-        // Mentsük el a több rekordot egyszerre
-        await ShopCard.insertMany(shopCardItems);
-
-        res.status(200).send('A kosár frissítése sikeres volt.');
-    } catch (error) {
-        console.error('Hiba történt a kosár frissítése során:', error);
-        res.status(500).send('Hiba történt a kosár frissítése során.');
-    }
-}); */
-
 router.post('/', async (req, res) => {
     try {
         const { token, cartItems } = req.body;
@@ -35,28 +10,12 @@ router.post('/', async (req, res) => {
         // Felhasználó azonosítója
         const userId = await getUserIdFromToken(token); // Tokenből azonosító kinyerése
 
-        // Megkeressük a felhasználóhoz tartozó kosarat
-        let shopCard = await ShopCard.findOne({ userId });
-        console.log(shopCard)
-
-        // Ha nincs kosár a felhasználóhoz, létrehozzuk
-        if (!shopCard) {
-            shopCard = new ShopCard({
-                userId: userId,
-                items: [],
-            });
-        }
-
-        console.log(shopCard)
-        // Hozzáadjuk az új elemeket a kosárhoz
-        const newItems = cartItems.map(item => ({
-            productId: item.id,
-            quantity: item.quantity
-        }));
-
-        shopCard.items.push(...newItems);
-        // Kosár mentése az adatbázisba
-        await shopCard.save();
+        // Töröljük az előző 'items' tartalmat az adatbázisból és frissítjük az újjal
+        await ShopCard.findOneAndUpdate(
+            { userId },
+            { $set: { items: cartItems } },
+            { upsert: true }
+        );
 
         res.status(200).send('A kosár frissítése sikeres volt.');
     } catch (error) {
@@ -64,6 +23,7 @@ router.post('/', async (req, res) => {
         res.status(500).send('Hiba történt a kosár frissítése során.');
     }
 });
+
 
 
 async function getUserIdFromToken(token) {

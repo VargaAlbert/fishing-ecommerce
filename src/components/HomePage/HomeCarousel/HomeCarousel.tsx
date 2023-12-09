@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import Carousel from "react-bootstrap/Carousel";
 import carousel00 from "../../../img/carousel00.png";
 import carousel01 from "../../../img/carousel01.png";
 import carousel02 from "../../../img/carousel02.png";
 
 import "./HomeCarousel.scss"
-import { Link } from 'react-router-dom';
 
 const HomeCarousel: React.FC = () => {
     return (

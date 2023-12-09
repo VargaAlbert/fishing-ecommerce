@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useProductsContext } from "../../context/ProductsContext";
-import { useCardContext } from "../../context/CardContext";
-import { useAuthContext } from "../../context/AuthContext";
+import { useShopContext } from "../../context/ShopContext";
 import { FaCartShopping, FaHeart, FaUser, FaList, FaRightToBracket } from "react-icons/fa6";
 
 import MenuList from "../MenuList/MenuList";
@@ -17,16 +15,15 @@ const Header: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { handleShowMenu } = useProductsContext();
-  const { handleShow, cartQuantity } = useCardContext();
   const {
     token,
     handleLogout,
     userName,
-    toggleDropdownLogin
-  } = useAuthContext();
-
-
+    toggleDropdownLogin,
+    handleShowMenu,
+    handleShow,
+    cartQuantity
+  } = useShopContext();
 
   const cartItemsIconSumContentTSX = cartQuantity === 0 ? (
     <span className="sum" style={{ display: 'none' }}>{cartQuantity}</span>

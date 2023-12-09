@@ -1,12 +1,12 @@
 import React from "react";
 import { FaFilter } from "react-icons/fa6";
 import {
-    useProductsContext,
+    useShopContext,
     productInPageType,
     productInPage,
     filterMainType,
     filterMain
-} from "../../../context/ProductsContext";
+} from "../../../context/ShopContext";
 
 import Select from 'react-select'
 
@@ -21,7 +21,7 @@ const ProductsHead: React.FC = () => {
         setCurrentPage,
         selectedIndexProductInPage,
         selectedIndexFilterMain
-    } = useProductsContext();
+    } = useShopContext();
 
     return (
         <div className="roductshead-container">

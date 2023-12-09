@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../../context/AuthContext";
+import { useShopContext } from "../../../context/ShopContext";
 import { useLocation, useNavigate } from 'react-router-dom';
 import LoginInfoModal from './LoginInfoModal/LoginInfoModal';
 import Modal from 'react-bootstrap/Modal';
@@ -21,7 +21,7 @@ const LoginModal: React.FC = () => {
         handleCheckboxChange,
         isChecked,
         token
-    } = useAuthContext();
+    } = useShopContext();
 
     const currentLocation = useLocation();
     const navigate = useNavigate();

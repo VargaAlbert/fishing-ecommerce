@@ -1,4 +1,4 @@
-import { useProductsContext } from "./context/ProductsContext";
+import { useShopContext } from "./context/ShopContext";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
@@ -12,7 +12,12 @@ import Registration from "./components/Registration/Registration";
 import "./scss/App.scss";
 
 const App = () => {
-  const { menuList, productsNoFilter } = useProductsContext();
+
+  const {
+    menuList,
+    productsNoFilter
+  } = useShopContext();
+
   return (
     <Router>
       <div className="main-background">

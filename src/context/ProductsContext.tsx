@@ -10,6 +10,7 @@ import axios from 'axios';
 import { ProductDataType, fetchData } from "../data/dataType";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
+
 interface ProductsProviderProps {
   children: ReactNode;
 };
@@ -90,22 +91,22 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
 
   //console.log(data)
   /* ----state---- */
-  const [products, setProducts] = useState<ProductDataType[]>([]);
+  const [products, setProducts] = useState<ProductDataType[]>(data);
   const [productsNoFilter, setProductsNoFilter] = useState<ProductDataType[]>(data);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/products');
-        setProducts(response.data);
-        setProductsNoFilter(response.data)
-      } catch (error) {
-        console.error('Hiba történt:', error);
-        setProducts([]);
-      }
-    };
-
-    fetchData();
-  }, []);
+  /*   useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:5000/products');
+          setProducts(response.data);
+          setProductsNoFilter(response.data)
+        } catch (error) {
+          console.error('Hiba történt:', error);
+          setProducts([]);
+        }
+      };
+  
+      fetchData();
+    }, []); */
   const [currentPage, setCurrentPage] = useState(1);
 
   //menu kategoriák beálitása
