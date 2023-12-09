@@ -56,9 +56,9 @@ export const useCardContext = () => {
     return useContext(CardContext);
 };
 
-let data: ProductDataType[] = []
+let dataa: ProductDataType[] = []
 const getData = async () => {
-    data = await fetchData();
+    dataa = await fetchData();
 };
 getData();
 
@@ -68,7 +68,8 @@ export const CardProvider: React.FC<CardProviderProps> = ({ children }) => {
             token
         } = useAuthContext(); */
 
-    const [products] = useState<ProductDataType[]>([...data]);
+    console.log(dataa)
+    const [products] = useState<ProductDataType[]>(dataa);
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
         "shopping-cart",
         [])

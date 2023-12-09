@@ -88,6 +88,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({
   children
 }) => {
 
+  //console.log(data)
   /* ----state---- */
   const [products, setProducts] = useState<ProductDataType[]>([]);
   const [productsNoFilter, setProductsNoFilter] = useState<ProductDataType[]>(data);

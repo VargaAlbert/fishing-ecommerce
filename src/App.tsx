@@ -21,7 +21,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
 
-            {menuList.length > 0 && menuList.map((category) => {
+            {menuList.map((category) => {
               return (
                 <Route
                   path={`/${category}`}
@@ -31,7 +31,7 @@ const App = () => {
               );
             })}
 
-            {productsNoFilter.length > 0 && productsNoFilter.map((product) => {
+            {productsNoFilter.map((product) => {
 
               return (
                 <Route
