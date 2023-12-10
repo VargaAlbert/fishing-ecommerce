@@ -10,7 +10,7 @@ type ShopCartItemsProps = {
 const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
 
     const {
-        products,
+        productsNoFilter,
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
@@ -22,7 +22,7 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
         setValue,
     } = useShopContext();
 
-    const item = products.find((item) => item.ID_PRODUC === id);
+    const item = productsNoFilter.find((item) => item.ID_PRODUC === id);
 
     if (item == null) {
         return null;

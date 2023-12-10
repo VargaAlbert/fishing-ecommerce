@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
         // Felhasználó azonosítója
         const userId = await getUserIdFromToken(token); // Tokenből azonosító kinyerése
 
-        // Töröljük az előző 'items' tartalmat az adatbázisból és frissítjük az újjal
+        //Törlés az előző 'items' tartalmat az adatbázisból és frissítjük az újjal.
         await ShopCard.findOneAndUpdate(
             { userId },
             { $set: { items: cartItems } },
@@ -24,16 +24,13 @@ router.post('/', async (req, res) => {
     }
 });
 
-
-
 async function getUserIdFromToken(token) {
     try {
         const decoded = jwt.verify(token, 'titkoskulcs');
         console.log("ez a dekodolt", decoded);
-        // A `decoded` objektumban az eredeti adatok lesznek elérhetőek
+
         const userId = decoded.userId
 
-        // Itt például lekérdezheted az adatbázisból a felhasználót
         const user = await User.findOne({ _id: userId });
 
         if (!user) {
@@ -46,6 +43,5 @@ async function getUserIdFromToken(token) {
         throw error;
     }
 }
-
 
 module.exports = router;

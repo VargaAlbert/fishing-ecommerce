@@ -8,7 +8,7 @@ const shopCardSchema = new mongoose.Schema({
     },
     items: {
         type: Array,
-        default: [] // Alapértelmezett érték, üres tömb
+        default: []
     }
 });
 

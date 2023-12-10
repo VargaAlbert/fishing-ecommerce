@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useShopContext } from "../../context/ShopContext";
 import { FaCartShopping, FaHeart, FaUser, FaList, FaRightToBracket } from "react-icons/fa6";
 
@@ -41,6 +41,13 @@ const Header: React.FC = () => {
     }
   }
 
+  const navigate = useNavigate();
+  const handleLogoutAndNav = () => {
+    handleLogout();
+    toggleDropdown()
+    navigate('/');
+  }
+
   return (
     <section className="nav-background">
       <CategoryOffcanvas />
@@ -78,7 +85,7 @@ const Header: React.FC = () => {
               <div className="dropdownCategory">Rendeléseim</div>
               <div className="dropdownCategory">Adatmodositás</div>
               <div className="dropdownCategory">Vevöi kedvezmény</div>
-              <div onClick={handleLogout} className="dropdownCategory">
+              <div onClick={handleLogoutAndNav} className="dropdownCategory">
                 <FaRightToBracket />
                 <span className="exit">Kijelentkezés</span>
               </div>

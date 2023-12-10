@@ -47,8 +47,6 @@ const LoginModal: React.FC = () => {
 
                 <Modal.Body className={Style.background}>
 
-                    <h3></h3>
-
                     <form className={Style.login} onSubmit={handleSubmit}>
 
                         <input

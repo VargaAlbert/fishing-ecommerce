@@ -10,19 +10,21 @@ const CheckCart = () => {
     const {
         cartItems,
         cardSum,
-        shippingFee,
+        SHIPPING_FREE,
         formatPrice,
     } = useShopContext();
+
+    console.log("ez a lényegf", cartItems);
 
     const cartItemsContentTSX =
         cartItems.length === 0 ? (
             <div className={Style.carZero}>Még nincsenek termékek a kosaradban!</div>
         ) : (
+
             cartItems.map((item) => <CheckShopCartItems key={item.id} {...item} />).reverse()
         );
 
     return (
-
         <div className={Style.mainContainer}>
             <div className={Style.cartContainer}>
                 <h2 className={Style.cartTitle}>KOSARAM</h2>
@@ -36,7 +38,7 @@ const CheckCart = () => {
                             <div className={Style.formatFont}>Kosár részösszeg:</div><div className="format-font">{cardSum(false)} Ft</div>
                         </div>
                         <div className={Style.text}>
-                            <div className={Style.formatFont}>Szállítási díj:</div><div className="format-font">{formatPrice(shippingFee)} Ft</div>
+                            <div className={Style.formatFont}>Szállítási díj:</div><div className="format-font">{formatPrice(SHIPPING_FREE)} Ft</div>
                         </div>
                         <div className={Style.text}>
                             <div className={Style.formatFont}>Kedvezmény:</div><div className="format-font">0 Ft</div>

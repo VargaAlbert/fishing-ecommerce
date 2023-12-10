@@ -7,10 +7,10 @@ import "./ProductCarousel.scss"
 
 const ProductCarousel: React.FC = () => {
 
-    const { products } = useShopContext();
+    const { productsNoFilter } = useShopContext();
 
-    const saleProduct: ProductDataType[] = products.slice(15, 25);
-    const newProduct: ProductDataType[] = products.slice(50, 60);
+    const saleProduct: ProductDataType[] = productsNoFilter.slice(15, 25);
+    const newProduct: ProductDataType[] = productsNoFilter.slice(50, 60);
 
     return (
         <div className="slider-main-container">

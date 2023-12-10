@@ -1,5 +1,3 @@
-// routes/auth.js
-
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -52,16 +50,22 @@ router.post('/login', async (req, res) => {
 
         const userWithName = {
             ...user.toObject(),
-            firstName: user.firstName,// Itt az adatbázisban tárolt telefonszám mező
-            lastName: user.lastName // Itt az adatbázisban tárolt telefonszám mező
+            firstName: user.firstName,
+            lastName: user.lastName
         };
-
 
         const token = jwt.sign({ userId: user._id }, 'titkoskulcs');
 
-        console.log("token egy 1111111111111", token)
+        //megkeresés a felhasználóhoz tartozó kosár
+        const shopCard = await ShopCard.findOne({ userId: user._id }, { items: 1, _id: 0 });
 
-        res.status(200).json({ token, user: userWithName });
+        console.log("token egy 1", token)
+
+        res.status(200).json({
+            token,
+            user: userWithName,
+            shopCard: shopCard ? shopCard.items : []
+        });
 
     } catch (error) {
         console.error(error);
@@ -70,4 +74,3 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
-

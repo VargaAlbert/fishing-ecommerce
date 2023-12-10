@@ -57,71 +57,65 @@ type ShopContextProps = {
 
     products: ProductDataType[];
     productsNoFilter: ProductDataType[];
+    cartItems: CartItem[];
 
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setPostsPerPage: React.Dispatch<React.SetStateAction<number>>;
     setCategory: React.Dispatch<React.SetStateAction<string>>;
     setMainSort: React.Dispatch<React.SetStateAction<string>>;
 
+    setValue: (id: number) => string;
+    cardSum: (SHIPPING_FREEBool: boolean) => string;
+    limitValue: (quantity: number) => number;
+    roundToNearestMultiple: (number: number) => number;
+    getItemQuantity: (id: number) => string;
+    formatPrice: (price: number) => string;
+
+    setNumberValue: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
+    handleBlur: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
+    handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    getEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    getPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
+    searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
+    setLoginRegModalInfo: (code: string, value?: string) => void;
+    increaseCartQuantity: (id: number) => void;
+    decreaseCartQuantity: (id: number) => void;
+    removeFromCart: (id: number) => void;
+
+    handleClose: () => void;
+    handleShow: () => void;
     handleCloseMenu: () => void;
     handleShowMenu: () => void;
+    toggleInfoModal: () => void;
+    handleLogout: () => void;
+    toggleDropdownLogin: () => void;
 
     pages: number[];
     menuList: string[];
+    loginMessage: string[];
 
     selectedIndexFilterMain: number;
     selectedIndexProductInPage: number;
     postsPerPage: number;
     filteredProductsLength: number;
     currentPage: number;
-    category: string;
-    showMenu: boolean;
-
-    /* -------------- */
-
-    cartItems: CartItem[];
-
-    setNumberValue: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
-    handleBlur: (e: ChangeEvent<HTMLInputElement>, id: number) => void;
-    handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-
-    setValue: (id: number) => string;
-    limitValue: (quantity: number) => number;
-    roundToNearestMultiple: (number: number) => number;
-    searchValue: (quantity: string, id: number, isSelfIncrease: boolean) => void;
-    getItemQuantity: (id: number) => string;
-    formatPrice: (price: number) => string;
-    increaseCartQuantity: (id: number) => void;
-    decreaseCartQuantity: (id: number) => void;
-    removeFromCart: (id: number) => void;
-
-    cardSum: (shippingFeeBool: boolean) => string;
-
-    handleClose: () => void;
-    handleShow: () => void;
-
-    shippingFee: number;
+    SHIPPING_FREE: number;
     cartQuantity: number;
-    show: boolean;
 
-    /* ---------- */
-
-    setLoginRegModalInfo: (code: string, value?: string) => void;
-    handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-    toggleInfoModal: () => void;
-    handleLogout: () => void;
-    toggleDropdownLogin: () => void;
-    getEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    getPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    category: string;
     userName: string;
     email: string;
     password: string;
     token: string;
-    loginMessage: string[];
+
+    showMenu: boolean;
+    isChecked: boolean;
+    show: boolean;
     modalInfo: boolean;
     isOpenLoginDropdown: boolean;
-    isChecked: boolean;
 
 };
 
@@ -137,13 +131,15 @@ const getData = async () => {
 };
 getData();
 
+const MAX_LIMIT = 999;
+
 export const ShopProvider: React.FC<ShopProviderProps> = ({
     children
 }) => {
 
     /* ----state---- */
     const [products, setProducts] = useState<ProductDataType[]>(data);
-    const [productsNoFilter, setProductsNoFilter] = useState<ProductDataType[]>(data);
+    const [productsNoFilter] = useState<ProductDataType[]>(data);
     const [currentPage, setCurrentPage] = useState(1);
 
     //menu kategoriák beálitása
@@ -162,6 +158,26 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
     const [mainSort, setMainSort] = useLocalStorage<string>('mainSort', "");
     const [filteredProductsLength, setFilteredProductsLength] = useState(0);
 
+    //kosár tartalma
+    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+        "shopping-cart",
+        [])
+    const [show, setShow] = useState(false);
+
+    //bejelentkezés
+    const [email, setEmail] = useLocalStorage<string>("email", "");
+    const [password, setPassword] = useState<string>("");
+    const [isChecked, setIsChecked] = useLocalStorage<boolean>("isChecked", false);
+    const [token, setToken] = useLocalStorage<string>("token", "")
+    const [loginMessage, setLoginMessage] = useState<string[]>(["", ""]);
+    const [userName, setUserName] = useLocalStorage<string>("userName", "");
+
+    const [modalInfo, setModalInfo] = useState(false);
+    const [isOpenLoginDropdown, setisOpenLoginDropdown] = useState<boolean>(false);
+
+    const toggleDropdownLogin = () => setisOpenLoginDropdown(!isOpenLoginDropdown);
+
+    const toggleInfoModal = () => setModalInfo(!modalInfo);
     // Megkeressük a kiválasztott értékhez tartozó elemet a filterMain tömbben
     const selectedIndexFilterMain = findFilterMainIndex(mainSort);
 
@@ -171,6 +187,8 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
     /* ----pagenation var----- */
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
+
+    const SHIPPING_FREE = 1_290;
 
     const menuList = Array.from(new Set(productsNoFilter.map((item) => item.SORTIMENT))).sort();
 
@@ -212,23 +230,12 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
 
     }, [category, mainSort, firstPostIndex, lastPostIndex, filteredProductsLength, postsPerPage, productsNoFilter]);
 
-    /* -------------------------------------------------------------------------------------------------------------------------- */
-
-    const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
-        "shopping-cart",
-        [])
-    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const maxLimit = 999;
-    const shippingFee = 1290;
-
 
     const getItemQuantity = (id: number) => {
         return cartItems.find((item) => item.id === id)?.quantity || "0";
     };
-
 
     const increaseCartQuantity = (id: number) => {
         setCartItems((currItems) => {
@@ -236,7 +243,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
                 return [...currItems, { id, quantity: "1" }];
             } else {
                 return currItems.map((item) => {
-                    if (item.id === id && Number(item.quantity) < maxLimit) {
+                    if (item.id === id && Number(item.quantity) < MAX_LIMIT) {
                         return { ...item, quantity: String(Number(item.quantity) + 1) };
                     } else {
                         return item;
@@ -245,7 +252,6 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
             }
         });
     };
-
 
     const decreaseCartQuantity = (id: number) => {
         setCartItems((currItems) => {
@@ -263,13 +269,11 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
         });
     };
 
-
     const removeFromCart = (id: number) => {
         setCartItems((currItems) => {
             return currItems.filter((item) => item.id !== id);
         });
     };
-
 
     const cartQuantity = cartItems.reduce(
         (quantity, item) => Number(item.quantity) + Number(quantity),
@@ -290,7 +294,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
 
     //max korlát 
     const limitValue = (quantity: number): number => {
-        return quantity > maxLimit ? maxLimit : quantity;
+        return quantity > MAX_LIMIT ? MAX_LIMIT : quantity;
     };
 
     const searchValue = (quantity: string, id: number, isSelfIncrease: boolean) => {
@@ -309,7 +313,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
                             : String(value);
 
                         // Korlátozás a max ra
-                        const limitedQuantityValue = parseInt(quantityValue) > maxLimit ? String(maxLimit) : quantityValue;
+                        const limitedQuantityValue = parseInt(quantityValue) > MAX_LIMIT ? String(MAX_LIMIT) : quantityValue;
 
                         return {
                             ...item,
@@ -363,10 +367,10 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
             .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
-    const cardSum = (shippingFeeBool: Boolean) => {
+    const cardSum = (shoppingFreebool: Boolean) => {
         const value = cartItems
             .reduce((total, cartItem) => {
-                const item = products.find(
+                const item = productsNoFilter.find(
                     (i) => i.ID_PRODUC === cartItem.id
                 );
                 return (
@@ -376,59 +380,37 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
                 );
             }, 0)
 
-        if (shippingFeeBool) {
-            return formatPrice(value + shippingFee);
+        if (shoppingFreebool) {
+            return formatPrice(value + SHIPPING_FREE);
         } else {
             return formatPrice(value);
         }
     }
-    const [token, setToken] = useLocalStorage<string>("token", "")
 
-    //const token: string | null = localStorage.getItem("token");
-
-    console.log("lényeg", token)
-    // A useEffect figyeli a cartItems változást
     useEffect(() => {
-        //const userId = getUserId(); // Felhasználó azonosítójának megszerzése
+        console.log("tokennnn", token)
+        if (token) {
+            // A kosár frissítése az adatbázisban
+            const updateCart = async (token: string, cartItems: CartItem[]) => {
+                try {
+                    // API-hívás az adatok frissítéséhez
+                    await axios.post('http://localhost:5000/update-cart', { token, cartItems });
+                    console.log('A kosár sikeresen frissült az adatbázisban.');
+                } catch (error) {
+                    console.error('Hiba történt a kosár frissítése közben:', error);
+                }
+            };
 
-        // A kosár frissítése az adatbázisban
-        const updateCart = async (token: string, cartItems: CartItem[]) => {
-            try {
-                // API-hívás az adatok frissítéséhez
-                await axios.post('http://localhost:5000/update-cart', { token, cartItems });
-                console.log('A kosár sikeresen frissült az adatbázisban.');
-            } catch (error) {
-                console.error('Hiba történt a kosár frissítése közben:', error);
+            // A változás kezelése, és a kosár frissítése
+            if (token !== null) {
+                updateCart(token, cartItems);
+            } else {
+                updateCart("", cartItems);
             }
-        };
-
-        // A változás kezelése, és a kosár frissítése
-        if (token !== null) {
-            //const modifiedToken = token.substring(1, token.length - 1);
-            updateCart(token, cartItems);
-        } else {
-            updateCart("", cartItems);
         }
-    }, [cartItems]);
+    }, [cartItems, token]);
 
-    /* ------------------------------------------------------------------------------------------------------------------------------------- */
-    const [email, setEmail] = useLocalStorage<string>("email", "");
-    const [password, setPassword] = useState<string>("");
-    const [isChecked, setIsChecked] = useLocalStorage<boolean>("isChecked", false);
-
-    const [loginMessage, setLoginMessage] = useState<string[]>(["", ""]);
-
-
-    const [modalInfo, setModalInfo] = useState(false);
-
-    const [userName, setUserName] = useLocalStorage<string>("userName", "");
-
-    const [isOpenLoginDropdown, setisOpenLoginDropdown] = useState<boolean>(false);
-
-    const toggleDropdownLogin = () => setisOpenLoginDropdown(!isOpenLoginDropdown);
-
-    const toggleInfoModal = () => setModalInfo(!modalInfo);
-
+    // bejelentkezés
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         if (email !== "" && password !== "") {
             e.preventDefault();
@@ -444,9 +426,15 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
                 setLoginRegModalInfo("successful")
                 toggleDropdownLogin();
 
-
                 if (!isChecked) {
                     localStorage.removeItem('email');
+                }
+
+                console.log("bejelentkezett adat:", response.data.shopCard)
+
+                const loginShopCard = response.data.shopCard
+                if (Array.isArray(loginShopCard) && loginShopCard.length > 0) {
+                    setCartItems(loginShopCard)
                 }
 
             } catch (error) {
@@ -470,18 +458,22 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
         setIsChecked(e.target.checked);
     };
 
+    //kijelentkezés
     const handleLogout = () => {
+        setToken("")
         localStorage.removeItem('token');
-        window.location.reload();
+        //window.location.reload();
+        setCartItems([])
     };
 
     const setLoginRegModalInfo = (code: string, value?: string) => {
-        const vale = value ?? ""; // Ha a value undefined vagy null, akkor használjuk az üres stringet
+        const vale = value ?? "";
         console.log([code, vale])
         setLoginMessage([code, vale]);
         toggleInfoModal();
     };
 
+    console.log(cartItems);
 
     const contextValue: ShopContextProps = {
 
@@ -502,7 +494,6 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
         selectedIndexProductInPage,
         selectedIndexFilterMain,
         productsNoFilter,
-
         cartItems,
         show,
         handleClose,
@@ -521,8 +512,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
         handleBlur,
         setNumberValue,
         setValue,
-        shippingFee,
-
+        SHIPPING_FREE,
         handleSubmit,
         getEmail,
         getPassword,
@@ -539,6 +529,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
         handleCheckboxChange,
         isChecked,
         setLoginRegModalInfo
+
     };
 
     return (
