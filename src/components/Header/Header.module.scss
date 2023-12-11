@@ -1,7 +1,7 @@
 @use "../../scss/variable.scss";
 @use "../../scss/ancestor-class.scss";
 
-.nav-background {
+.navBackground {
     width: 100%;
     height: 5rem;
     background-color: variable.$color-main-background-nav;
@@ -11,7 +11,11 @@
     z-index: 999;
 }
 
-.nav-container {
+.noneDis {
+    display: none;
+}
+
+.navContainer {
     padding: 0.3rem 1.8rem 0.3rem 0.5rem;
     @extend %nav-icon;
     @include variable.container-my;
@@ -21,12 +25,12 @@
     @include variable.flexBox(row, nowrap, center, space-between, center);
     gap: 0.5rem;
 
-    .nav-icon-container {
+    .navIconContainer {
         @include variable.flexBox(row, nowrap, normal, normal, normal);
         gap: 0.5rem;
     }
 
-    .icon-container {
+    .iconContainer {
         @include variable.flexBox(column, nowrap, center, center, center);
         font-size: variable.$size-r05;
         font-weight: variable.$weights-9;
@@ -46,14 +50,14 @@
         }
     }
 
-    .nav-menu-container {
+    .navMenuContainer {
         display: none;
     }
 
-    .logo-container {
+    .logoContainer {
         height: 100%;
         @include variable.flexBox(column, nowrap, center, center, center);
-        .logo-link {
+        .logoLink {
             height: 60%;
             img {
                 height: 100%;
@@ -73,7 +77,7 @@
         position: relative;
     }
 
-    .dropdown-content {
+    .dropdownContent {
         position: absolute;
         top: 85px;
         left: 0;
@@ -86,9 +90,9 @@
 }
 
 @include variable.Small {
-    .nav-container {
+    .navContainer {
         padding: 0.3rem 2rem 0.3rem 1rem;
-        .icon-container {
+        .iconContainer {
             font-size: variable.$size-r05 + 0.2;
         }
         .icon {
@@ -97,15 +101,15 @@
     }
 }
 @include variable.Medium {
-    .nav-container {
+    .navContainer {
         padding: 0.3rem 2.3rem 0.3rem 1.5rem;
-        .logo-container {
-            .logo-link {
+        .logoContainer {
+            .logoLink {
                 height: 100%;
             }
         }
 
-        .dropdown-content {
+        .dropdownContent {
             position: absolute;
             top: 85px;
             left: initial;
@@ -129,16 +133,16 @@
     }
 }
 @include variable.Large {
-    .nav-container {
+    .navContainer {
         padding: 0.3rem 2.5rem 0.3rem 2rem;
-        .nav-icon-container {
+        .nav-iconContainer {
             gap: 1.2rem;
         }
     }
 }
 @include variable.Extra-large {
-    .nav-container {
-        .nav-menu-container {
+    .navContainer {
+        .navMenuContainer {
             height: 100%;
             width: 50%;
             @include variable.flexBox(row, nowrap, center, space-evenly, center);
@@ -150,13 +154,13 @@
         }
     }
 
-    .nav-menu-btn-container {
+    .navMenuBtnContainer {
         display: none;
     }
 }
 @include variable.XXL-large {
-    .nav-container {
-        .nav-icon-container {
+    .navContainer {
+        .nav-iconContainer {
             gap: 1.8rem;
         }
     }
