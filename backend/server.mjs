@@ -1,9 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const authRoutes = require('./routes/auth');
-const dbConfig = require('./dbConfig');
-const productsRoutes = require('./routes/products');
-const updateCartRouter = require('./routes/updateCart');
+import express from 'express';
+import mongoose from 'mongoose';
+import authRoutes from './routes/auth.mjs';
+import dbConfig from './dbConfig.mjs';
+import productsRoutes from './routes/products.mjs';
+import updateCartRouter from './routes/updateCart.mjs';
 
 const app = express();
 const PORT = process.env.PORT || 5000;

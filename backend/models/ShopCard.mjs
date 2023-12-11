@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const shopCardSchema = new mongoose.Schema({
     userId: {
@@ -14,4 +14,5 @@ const shopCardSchema = new mongoose.Schema({
 
 const ShopCard = mongoose.model('ShopCard', shopCardSchema);
 
-module.exports = ShopCard;
+export default ShopCard;
+

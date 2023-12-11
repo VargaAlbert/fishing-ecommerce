@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const ShopCard = require('../models/ShopCard');
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import ShopCard from '../models/ShopCard.mjs';
+import User from '../models/User.mjs';
+import jwt from 'jsonwebtoken';
+
+const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
@@ -10,7 +12,7 @@ router.post('/', async (req, res) => {
         // Felhasználó azonosítója
         const userId = await getUserIdFromToken(token); // Tokenből azonosító kinyerése
 
-        //Törlés az előző 'items' tartalmat az adatbázisból és frissítjük az újjal.
+        // Törlés az előző 'items' tartalmat az adatbázisból és frissítjük az újjal.
         await ShopCard.findOneAndUpdate(
             { userId },
             { $set: { items: cartItems } },
@@ -29,7 +31,7 @@ async function getUserIdFromToken(token) {
         const decoded = jwt.verify(token, 'titkoskulcs');
         console.log("ez a dekodolt", decoded);
 
-        const userId = decoded.userId
+        const userId = decoded.userId;
 
         const user = await User.findOne({ _id: userId });
 
@@ -44,4 +46,4 @@ async function getUserIdFromToken(token) {
     }
 }
 
-module.exports = router;
+export default router;
