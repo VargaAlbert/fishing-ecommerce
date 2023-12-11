@@ -1,6 +1,7 @@
 import { useShopContext } from "../../../../context/ShopContext";
 import { FaTrash } from "react-icons/fa6";
-import "./ShopCartItems.scss";
+
+import Style from "./ShopCartItems.module.scss";
 
 type ShopCartItemsProps = {
     id: number
@@ -29,9 +30,9 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
     }
 
     return (
-        <section className="ShopCardItems-main-container">
-            <div className="content-container">
-                <div className="img-container">
+        <section className={Style.mainContainer}>
+            <div className={Style.contentContainer}>
+                <div className={Style.imgContainer}>
                     <img src={`${item.IMGURL_NO_WATER}`} alt={`${item.ID_PRODUC}`} />
                 </div>
 
@@ -40,9 +41,9 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
                     <h4>{item.ROZMER}</h4>
                 </div>
 
-                <div className="delete-icon-con">
+                <div className={Style.deleteIconCon}>
                     <FaTrash
-                        className="icon"
+                        className={Style.icon}
                         onClick={() => removeFromCart(item.ID_PRODUC)}
                     />
                 </div>
