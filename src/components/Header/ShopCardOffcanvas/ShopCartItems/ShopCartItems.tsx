@@ -49,8 +49,8 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
                 </div>
             </div>
 
-            <div className="price-container">
-                <div className="INC-DEC-btn-container">
+            <div className={Style.priceContainer}>
+                <div className={Style.IncDecBtnContainer}>
                     <button onClick={() => decreaseCartQuantity(item.ID_PRODUC)}>
                         -
                     </button>
@@ -65,7 +65,7 @@ const ShopCartItems: React.FC<ShopCartItemsProps> = ({ id, quantity }) => {
                         +
                     </button>
                 </div>
-                <p className="price">
+                <p className={Style.price}>
                     {`${formatPrice((Number(quantity) * roundToNearestMultiple(item.CENA_S_DPH_EU_HUF)))} `}
                     Ft
                 </p>

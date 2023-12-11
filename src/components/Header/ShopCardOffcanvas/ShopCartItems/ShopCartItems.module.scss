@@ -1,7 +1,7 @@
 @use "../../../../scss/variable.scss";
 @use "../../../../scss/ancestor-class.scss";
 
-.ShopCardItems-main-container {
+.mainContainer {
     width: 90%;
     height: 200px;
     min-width: 300px;
@@ -13,7 +13,7 @@
     @include variable.flexBox(column, nowrap, normal, space-between, normal);
     gap: 0.8rem;
 
-    .img-container {
+    .imgContainer {
         width: auto;
         img {
             width: 100px;
@@ -22,7 +22,7 @@
         }
     }
 
-    .content-container {
+    .contentContainer {
         width: 100%;
         @include variable.flexBox(row, nowrap, normal, space-between, normal);
         gap: 1rem;
@@ -37,7 +37,7 @@
             font-size: 1.2rem;
         }
 
-        .delete-icon-con {
+        .deleteIconCon {
             @include variable.flexBox(row, nowrap, normal, space-between, normal);
 
             .icon {
@@ -51,12 +51,12 @@
         }
     }
 
-    .price-container {
+    .priceContainer {
         height: 40px;
         @include variable.flexBox(row, nowrap, normal, space-between, center);
 
-        .INC-DEC-btn-container {
-            @include ancestor-class.INC-DEC-btn-container;
+        .IncDecBtnContainer {
+            @include ancestor-class.IncDecBtnContainer;
         }
 
         .price {
