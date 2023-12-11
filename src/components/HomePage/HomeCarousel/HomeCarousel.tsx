@@ -6,31 +6,31 @@ import carousel00 from "../../../img/carousel00.png";
 import carousel01 from "../../../img/carousel01.png";
 import carousel02 from "../../../img/carousel02.png";
 
-import "./HomeCarousel.scss"
+import Style from "./HomeCarousel.module.scss"
 
 const HomeCarousel: React.FC = () => {
     return (
-        <div className="carousel-container">
+        <div className={Style.container}>
             <Carousel fade>
                 <Carousel.Item>
-                    <div className="car-item-cont">
-                        <img className="car-img-cont" src={carousel00} alt="carousel00" />
-                        <div className="car-item-text">
+                    <div className={Style.carItemCont}>
+                        <img className={Style.carImgCont} src={carousel00} alt="carousel00" />
+                        <div className={Style.carItemText}>
                             <p>Akciós kinálat</p>
                             <h2>DELPHIN NYELETŐFÉKES ORSÓK </h2>
                             <h4>
                                 Válogs több 100 akciós Delphin nyeletőfékes orsóink közül.
                             </h4>
                             <Link to="/Orsók/101001219">
-                                <button className="home-car-btn">MEGNÉZEM</button>
+                                <button className={Style.homeCarBtn}>MEGNÉZEM</button>
                             </Link>
                         </div>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <div className="car-item-cont">
-                        <img className="car-img-cont" src={carousel01} alt="carousel00" />
-                        <div className="car-item-text">
+                    <div className={Style.carItemCont}>
+                        <img className={Style.carImgCont} src={carousel01} alt="carousel00" />
+                        <div className={Style.carItemText}>
                             <p>Újonnan a kínálatba</p>
                             <h2>CARP ZOOM Satellite 301 3+1</h2>
                             <h4>
@@ -38,15 +38,15 @@ const HomeCarousel: React.FC = () => {
                                 mely akár bővíthető 4+1-ig.
                             </h4>
                             <Link to="/Kiegészítők/101001363">
-                                <button className="home-car-btn">MEGNÉZEM</button>
+                                <button className={Style.homeCarBtn}>MEGNÉZEM</button>
                             </Link>
                         </div>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <div className="car-item-cont">
-                        <img className="car-img-cont" src={carousel02} alt="carousel00" />
-                        <div className="car-item-text">
+                    <div className={Style.carItemCont}>
+                        <img className={Style.carImgCont} src={carousel02} alt="carousel00" />
+                        <div className={Style.carItemText}>
                             <p>Akciós kinálat</p>
                             <h2>DELPHIN THORN HOOK</h2>
                             <h4>
@@ -54,7 +54,7 @@ const HomeCarousel: React.FC = () => {
                                 rendelhető.
                             </h4>
                             <Link to="/kiegészítők/101001456">
-                                <button className="home-car-btn">MEGNÉZEM</button>
+                                <button className={Style.homeCarBtn}>MEGNÉZEM</button>
                             </Link>
                         </div>
                     </div>

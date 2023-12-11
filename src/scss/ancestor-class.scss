@@ -90,10 +90,16 @@
     color: variable.$color-font-primary;
 }
 
+/* -----bootstrap class------ */
 .btn-close {
     font-size: variable.$size-r10 + 0.3;
     background-color: variable.$color-basic-white;
     &:hover {
         background-color: variable.$color-main-button-hover;
     }
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    height: 80%;
 }

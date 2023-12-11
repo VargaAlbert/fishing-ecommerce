@@ -1,26 +1,20 @@
 @use "../../../scss/variable.scss";
 @use "../../../scss/ancestor-class.scss";
-
-.carousel-container {
+cart-lin .container {
     margin: 1rem auto;
     width: 90%;
 }
 
-.carousel-control-next,
-.carousel-control-prev {
-    height: 80%;
-}
-
-.car-item-cont {
+.carItemCont {
     @include variable.flexBox(column, nowrap, center, normal, center);
     height: 100%;
 
-    .car-img-cont {
+    .carImgCont {
         display: block;
         width: 100%;
     }
 
-    .car-item-text {
+    .carItemText {
         width: 100%;
         height: 500px;
         @include variable.flexBox(column, nowrap, center, space-between, normal);
@@ -41,7 +35,7 @@
             font-size: variable.$size-r15;
             margin: 2rem 0;
         }
-        .home-car-btn {
+        .homeCarBtn {
             @include ancestor-class.main-button;
             width: 38%;
             z-index: 9;
@@ -50,8 +44,8 @@
 }
 
 @include variable.Small {
-    .car-item-cont {
-        .car-item-text {
+    .carItemCont {
+        .carItemText {
             h2 {
                 font-size: variable.$size-r25;
             }
@@ -59,30 +53,30 @@
     }
 }
 @include variable.Medium {
-    .carousel-container {
+    .container {
         margin: 2rem auto;
         width: 80%;
     }
-    .car-item-cont {
-        .car-img-cont {
+    .carItemCont {
+        .carImgCont {
             width: 80%;
         }
     }
 }
 @include variable.Large {
-    .car-item-cont {
+    .carItemCont {
         @include variable.flexBox(row-reverse, nowrap, center, normal, center);
-        .car-img-cont {
+        .carImgCont {
             width: 50%;
             height: 100%;
         }
-        .car-item-text {
+        .carItemText {
             width: 50%;
         }
     }
 }
 @include variable.Extra-large {
-    .carousel-container {
+    .container {
         margin: 3rem auto;
         width: 70%;
     }
