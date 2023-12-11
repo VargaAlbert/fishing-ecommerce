@@ -1,15 +1,7 @@
 @use "../../../scss/variable.scss";
 @use "../../../scss/ancestor-class.scss";
 
-.btn-close {
-    font-size: variable.$size-r10 + 0.3;
-    background-color: variable.$color-basic-white;
-    &:hover {
-        background-color: variable.$color-main-button-hover;
-    }
-}
-
-.offcanvas-icon-container {
+.offcanvasIconContainer {
     @include variable.flexBox(row, nowrap, center, center, center);
     gap: 1rem;
     .icon {
@@ -17,13 +9,13 @@
     }
 }
 
-.car-zero {
+.carZero {
     margin: 5rem 1rem;
     font-size: variable.$size-r10 + 0.2rem;
     font-weight: variable.$weights-7;
 }
 
-.car-sum-cont {
+.carSumCont {
     width: 400px;
     height: 150px;
     padding: 1.5rem 1.5rem 0.5rem;
@@ -38,11 +30,11 @@
         @include variable.flexBox(row, nowrap, center, space-between, center);
     }
 
-    .car-sum-text {
+    .carSumText {
         font-size: variable.$size-r10 + 0.2;
         font-weight: variable.$weights-5;
     }
-    .car-sum-price {
+    .carSumPrice {
         font-size: variable.$size-r15;
         font-weight: variable.$weights-7;
     }
@@ -54,7 +46,7 @@
     }
 }
 
-.offcanvas {
+.backgroung {
     color: variable.$color-basic-white;
     background-color: variable.$color-basic-black;
 }
