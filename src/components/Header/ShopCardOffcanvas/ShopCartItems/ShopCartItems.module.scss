@@ -56,7 +56,7 @@
         @include variable.flexBox(row, nowrap, normal, space-between, center);
 
         .IncDecBtnContainer {
-            @include ancestor-class.IncDecBtnContainer;
+            @include ancestor-class.INC-DEC-btn-container;
         }
 
         .price {
