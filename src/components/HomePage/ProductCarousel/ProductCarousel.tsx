@@ -3,7 +3,7 @@ import { ProductDataType } from "../../../data/dataType"
 
 import Slider from "./Slider/Slider";
 
-import "./ProductCarousel.scss"
+import Style from "./ProductCarousel.module.scss"
 
 const ProductCarousel: React.FC = () => {
 
@@ -13,15 +13,15 @@ const ProductCarousel: React.FC = () => {
     const newProduct: ProductDataType[] = productsNoFilter.slice(50, 60);
 
     return (
-        <div className="slider-main-container">
+        <div>
 
-            <div className="slider-product-label">
+            <div className={Style.sliderProductLabel}>
                 <h3>Akciós termékeink</h3>
                 <h4>Válogass az akciós kínálatunkból.</h4>
             </div>
 
-            <div className="slider">
-                <div className="slide-track">
+            <div className={Style.slider}>
+                <div className={Style.slideTrack}>
                     {saleProduct.map((newProduct) => {
                         return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
                     })}
@@ -31,13 +31,13 @@ const ProductCarousel: React.FC = () => {
                 </div>
             </div>
 
-            <div className="slider-product-label">
+            <div className={Style.sliderProductLabel}>
                 <h3>Újonnan a kínálatban.</h3>
                 <h4>Válogass az újdonságaink közül.</h4>
             </div>
 
-            <div className="slider">
-                <div className="slide-track">
+            <div className={Style.slider}>
+                <div className={Style.slideTrack}>
                     {newProduct.map((newProduct) => {
                         return <Slider key={newProduct.ID_PRODUC} product={newProduct} />;
                     })}

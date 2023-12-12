@@ -1,7 +1,7 @@
 @use "../../../scss/variable.scss";
 @use "../../../scss/animations.scss";
 
-.slider-product-label {
+.sliderProductLabel {
     margin: 8rem 0 4rem;
     h3 {
         font-size: variable.$size-r35;
@@ -48,7 +48,7 @@
     }
 }
 
-.slide-track {
+.slideTrack {
     height: 500px;
     @include animations.slideScroll;
     @include variable.flexBox(row, nowrap, normal, normal, center);

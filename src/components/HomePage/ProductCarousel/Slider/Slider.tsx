@@ -3,7 +3,7 @@ import { useShopContext } from '../../../../context/ShopContext'
 import { ProductDataType } from "../../../../data/dataType"
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
-import "./Slider.scss"
+import Style from "./Slider.module.scss"
 
 type SliderProps = {
     product: ProductDataType;
@@ -17,9 +17,9 @@ const Slider: React.FC<SliderProps> = ({ product }) => {
     } = useShopContext();
 
     return (
-        <div className="slide-main-container">
-            <div className="slider-product-container" key={product.ID_PRODUC + product.EAN}>
-                <Link className="slider-link"
+        <div className={Style.mainContainer}>
+            <div className={Style.sliderProductContainer} key={product.ID_PRODUC + product.EAN}>
+                <Link className={Style.sliderIink}
                     to={`/${product.SORTIMENT}/${product.ID_PRODUC}`}>
                     <img
                         src={`${product.IMGURL_NO_WATER}`}
@@ -30,19 +30,19 @@ const Slider: React.FC<SliderProps> = ({ product }) => {
                 </Link>
 
                 <div>
-                    <p className="slider-product-id">cikszám: {product.ID_PRODUC}</p>
+                    <p className={Style.sliderProductId}>cikszám: {product.ID_PRODUC}</p>
                 </div>
                 <div>
-                    <p className="slider-price">
+                    <p className={Style.sliderPrice}>
                         {`${roundToNearestMultiple(product.CENA_S_DPH_EU_HUF)}`} Ft
                     </p>
                 </div>
-                <div className="slider-product-item-by-container">
-                    <FaHeart className="slider-btn-heart-icon" />
-                    <button className="slider-by-btn"
+                <div className={Style.sliderProductItemByContainer}>
+                    <FaHeart className={Style.sliderBtnHeartIicon} />
+                    <button className={Style.sliderByBtn}
 
                         onClick={() => { searchValue("1", product.ID_PRODUC, true) }}>
-                        <FaCartShopping className="slider-btn-by-icon" />
+                        <FaCartShopping className={Style.sliderBtnByIcon} />
                         KOSÁRBA
                     </button>
                 </div>
