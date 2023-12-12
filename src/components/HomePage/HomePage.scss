@@ -1,6 +1,6 @@
 @use "../../scss/variable.scss";
 
-.ProductContainerHome-main-container {
+.mainContainer {
     width: 100%;
     max-width: 1650px - 250px;
     background-color: variable.$color-main-background;
@@ -13,7 +13,7 @@
 @include variable.Large {
 }
 @include variable.Extra-large {
-    .ProductContainerHome-main-container {
+    .mainContainer {
         width: calc(100% - 250px);
     }
 }
