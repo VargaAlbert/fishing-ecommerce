@@ -1,12 +1,12 @@
 @use "../../scss/variable.scss";
 @use "../../scss/ancestor-class.scss";
 
-.pagination-container {
+.mainContainer {
     width: 100%;
     min-height: 100%;
 }
 
-.product-container {
+.productContainer {
     width: 100%;
     height: 490px;
     @include variable.flexBox(column, nowrap, center, space-around, center);
@@ -22,11 +22,11 @@
         transition: 0.2s;
     }
 
-    .product-link {
+    .link {
         @include variable.flexBox(column, nowrap, center, space-around, center);
     }
 
-    .productsppage-img {
+    .imgCont {
         display: block;
         width: 85%;
         max-height: 300px;
@@ -49,7 +49,7 @@
         margin: 0rem 0.5rem 0.5rem;
     }
 
-    .product-id {
+    .productId {
         color: variable.$color-font-secondary;
         border-top: 1px solid variable.$color-font-secondary;
     }
@@ -59,18 +59,18 @@
         font-weight: variable.$weights-9;
     }
 
-    .product-item-by-container {
+    .itemByContainer {
         height: 60px;
         width: 90%;
         @include variable.flexBox(row, nowrap, center, space-between, center);
     }
 
-    .btn-by-icon {
+    .btnByIcon {
         font-size: variable.$size-r20;
         color: variable.$color-font-primary;
     }
 
-    .btn-heart-icon {
+    .btnHeartIcon {
         font-size: variable.$size-r20;
         color: variable.$color-font-primary;
 
@@ -82,7 +82,7 @@
         }
     }
 
-    .by-btn {
+    .byBtn {
         @include ancestor-class.main-button;
         font-size: variable.$size-r10;
         width: 65%;
@@ -90,7 +90,7 @@
     }
 }
 
-.product-item-container {
+.productItemContainer {
     width: 100%;
     padding: 2rem;
     display: grid;
@@ -101,24 +101,24 @@
 }
 
 @include variable.Small {
-    .product-item-container {
+    .productItemContainer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 @include variable.Medium {
-    .product-item-container {
+    .productItemContainer {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 @include variable.Large {
-    .product-item-container {
+    .productItemContainer {
         grid-gap: 3rem 3rem;
     }
 }
 @include variable.Extra-large {
 }
 @include variable.XXL-large {
-    .product-item-container {
+    .productItemContainer {
         grid-template-columns: repeat(4, 1fr);
     }
 }

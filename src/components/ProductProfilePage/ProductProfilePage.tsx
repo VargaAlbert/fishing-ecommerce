@@ -1,9 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import { useShopContext } from "../../context/ShopContext";
-
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 
-import "./ProductProfilPage.scss"
+import Style from "./ProductProfilPage.module.scss"
 
 type ProductProfilePageProps = {
     productId: number
@@ -57,29 +56,33 @@ const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }) =>
 
     const product = productsNoFilter.find((product) => product.ID_PRODUC === productId);
     if (!product) {
-        return <div><h2>Nincs ilyen termék!</h2></div>
+        return (
+            <div>
+                <h2>Nincs ilyen termék!</h2>
+            </div>
+        );
     }
 
     return (
         <>
-            <section className="product-page">
-                <div className="product-page-container">
-                    <div className="product-page-img-container">
+            <section className={Style.mainContainer}>
+                <div className={Style.container}>
+                    <div>
                         <img
-                            className="Product-profile-img"
+                            className={Style.img}
                             src={`${product.IMGURL_NO_WATER}`}
                             alt={`${product.ID_PRODUC}`}
                         />
                     </div>
-                    <div className="product-page-text-container">
+                    <div className={Style.textContainer}>
                         <h2>{product.PRODUCT}</h2>
                         <h3>{product.ROZMER}</h3>
-                        <div className="price-container">
+                        <div className={Style.priceContainer}>
                             <p>{`${formatPrice(roundToNearestMultiple(product.CENA_S_DPH_EU_HUF))} `} Ft</p>
                         </div>
-                        <div className="descript-container"></div>
-                        <div className="btn-container">
-                            <div className="INC-DEC-btn-container">
+                        <div className={Style.descriptContainer}></div>
+                        <div className={Style.btnContainer}>
+                            <div className={Style.IncDecBtnContainer}>
                                 <button onClick={valueDecrease}> - </button>
                                 <input
                                     type="number"
@@ -93,21 +96,23 @@ const ProductProfilePage: React.FC<ProductProfilePageProps> = ({ productId }) =>
                                 <button onClick={valueIncrease} > + </button>
                             </div>
                             <button
-                                className="by-btn"
+                                className={Style.byBtn}
                                 onClick={givesValue}
                             >
-                                <FaCartShopping className="btn-by-icon" />
+                                <FaCartShopping className={Style.btnByIcon} />
                                 KOSÁRBA
                             </button>
-                            <FaHeart className="btn-love-icon" />
+                            <div className={Style.btnIoveIconContainer}>
+                                <FaHeart className={Style.btnIoveIcon} />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="product-description-container">
-                    <div className="product-description-head">
+                <div className={Style.productDescriptionContainer}>
+                    <div className={Style.productDescriptionHead}>
                         <h4>Leirás</h4>
                     </div>
-                    <div className="product-description-body">
+                    <div className={Style.productDescriptionBody}>
                         <p>{product.DESCRIPTION}</p>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 @use "../../scss/variable.scss";
 @use "../../scss/ancestor-class.scss";
 
-.product-page {
+.mainContainer {
     width: 100%;
     height: 100%;
     padding: 2rem 0.7rem;
@@ -10,10 +10,10 @@
     @include variable.flexBox(column, nowrap, center, center, center);
 }
 
-.product-page-container {
+.container {
     @include variable.flexBox(column, nowrap, center, center, center);
 
-    .Product-profile-img {
+    .img {
         width: 100%;
     }
 
@@ -32,7 +32,7 @@
         border-bottom: 2px solid variable.$color-font-secondary;
     }
 
-    .price-container {
+    .priceContainer {
         width: 100%;
         text-align: start;
         margin: 0.5rem 0.5rem 1rem;
@@ -47,29 +47,33 @@
     }
 }
 
-.product-page-text-container {
+.textContainer {
     width: 100%;
     padding: 2rem 0.5rem;
     text-align: center;
 
-    .btn-container {
+    .btnContainer {
         width: 100%;
         @include variable.flexBox(row, nowrap, center, space-around, center);
         gap: 1rem;
         margin: 2rem 0rem;
         height: 3rem;
 
-        .INC-DEC-btn-container {
+        .IncDecBtnContainer {
             @include ancestor-class.INC-DEC-btn-container;
         }
 
-        .by-btn {
+        .byBtn {
             @include ancestor-class.main-button;
             width: 40%;
             height: 100%;
         }
 
-        .btn-love-icon {
+        .btnIoveIconContainer {
+            width: 55px;
+        }
+
+        .btnIoveIcon {
             font-size: variable.$size-r25;
 
             &:hover {
@@ -80,23 +84,23 @@
             }
         }
 
-        .btn-by-icon {
+        .btnByIcon {
             font-size: variable.$size-r20;
             color: variable.$color-font-primary;
         }
     }
 }
 
-.product-description-container {
+.productDescriptionContainer {
     width: 100%;
     margin: 2rem 0;
 
-    .product-description-head {
+    .productDescriptionHead {
         margin: 1rem 0;
         border-bottom: 2px solid variable.$color-font-secondary;
     }
 
-    .product-description-body {
+    .productDescriptionBody {
         height: 40rem;
         overflow-y: auto;
     }
@@ -105,16 +109,16 @@
 @include variable.Small {
 }
 @include variable.Medium {
-    .product-page {
+    .mainContainer {
         padding: 2rem 4rem;
     }
 }
 @include variable.Large {
-    .product-page {
+    .mainContainer {
         padding: 4rem 8rem;
     }
 
-    .product-page-container {
+    .container {
         @include variable.flexBox(row, nowrap, center, center, center);
 
         div {

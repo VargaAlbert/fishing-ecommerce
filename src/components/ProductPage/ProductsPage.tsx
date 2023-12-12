@@ -5,7 +5,7 @@ import { useShopContext } from "../../context/ShopContext";
 import Pagination from './Pagination/Pagination';
 import ProductsHead from "./ProductsHead/ProductsHead";
 
-import "./ProductsPage.scss"
+import Style from "./ProductsPage.module.scss"
 
 const ProductsPage: React.FC = () => {
 
@@ -20,18 +20,18 @@ const ProductsPage: React.FC = () => {
     return (
         <>
             {/* FilterBar */}
-            <div className="pagination-container">
+            <div className={Style.mainContainer}>
                 <ProductsHead />
                 <Pagination />
-                <div className="product-item-container">
+                <div className={Style.productItemContainer}>
 
                     {products.map((product) => {
 
                         return (
-                            <div className="product-container" key={product.ID_PRODUC + product.EAN}>
-                                <Link className='product-link' to={`/${category}/${product.ID_PRODUC}`}>
+                            <div className={Style.productContainer} key={product.ID_PRODUC + product.EAN}>
+                                <Link className={Style.link} to={`/${category}/${product.ID_PRODUC}`}>
                                     <img
-                                        className="productsppage-img"
+                                        className={Style.imgCont}
                                         src={`${product.IMGURL_NO_WATER}`}
                                         alt={`${product.ID_PRODUC}`}
                                     />
@@ -39,21 +39,21 @@ const ProductsPage: React.FC = () => {
                                     <h4>{product.ROZMER}</h4>
                                 </Link>
                                 <div>
-                                    <p className="product-id">cikszám: {product.ID_PRODUC}</p>
+                                    <p className={Style.productId}>cikszám: {product.ID_PRODUC}</p>
                                 </div>
                                 <div>
-                                    <p className="price">
+                                    <p className={Style.price}>
                                         {`${formatPrice(roundToNearestMultiple(product.CENA_S_DPH_EU_HUF))} `}
                                         Ft
                                     </p>
                                 </div>
-                                <div className="product-item-by-container">
-                                    <FaHeart className="btn-heart-icon" />
+                                <div className={Style.itemByContainer}>
+                                    <FaHeart className={Style.btnHeartIcon} />
                                     <button
-                                        className="by-btn"
+                                        className={Style.byBtn}
                                         onClick={() => { searchValue("1", product.ID_PRODUC, true) }}
                                     >
-                                        <FaCartShopping className="btn-by-icon" />
+                                        <FaCartShopping className={Style.btnByIcon} />
                                         KOSÁRBA
                                     </button>
                                 </div>
