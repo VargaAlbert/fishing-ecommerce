@@ -10,7 +10,7 @@ import {
 
 import Select from 'react-select'
 
-import "./ProductsHead.scss"
+import Style from "./ProductsHead.module.scss"
 
 const ProductsHead: React.FC = () => {
 
@@ -24,17 +24,17 @@ const ProductsHead: React.FC = () => {
     } = useShopContext();
 
     return (
-        <div className="roductshead-container">
-            <div className="filt-icon-cont">
-                <FaFilter className="icon" />
+        <div className={Style.mainContainer}>
+            <div className={Style.filtIconCont}>
+                <FaFilter className={Style.icon} />
                 <span>SZŰRŐ</span>
             </div>
-            <div className="db-cont">
-                <span className="title">Találatokszáma:</span>
-                <span className="db">{filteredProductsLength} db termék</span>
+            <div className={Style.dbCont}>
+                <span className={Style.title}>Találatokszáma:</span>
+                <span className={Style.db}>{filteredProductsLength} db termék</span>
             </div>
-            <div className="page-select-cont">
-                <div className="label">Termékek száma:</div>
+            <div className={Style.pageSelectCont}>
+                <div className={Style.label}>Termékek száma:</div>
 
                 <Select
                     options={productInPage}
@@ -55,8 +55,8 @@ const ProductsHead: React.FC = () => {
                     })}
                 />
             </div>
-            <div className="filter-cont">
-                <div className="label">
+            <div className={Style.filterCont}>
+                <div className={Style.label}>
                     Termékek rendezése:
                 </div>
 
