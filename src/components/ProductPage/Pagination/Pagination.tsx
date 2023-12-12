@@ -1,20 +1,24 @@
 import { useShopContext } from "../../../context/ShopContext";
 
-import "./Pagination.scss"
+import Style from "./Pagination.module.scss"
 
 const Pagination: React.FC = () => {
 
-    const { pages, currentPage, setCurrentPage } = useShopContext();
+    const {
+        pages,
+        currentPage,
+        setCurrentPage
+    } = useShopContext();
 
     return (
-        <div className="pagenation-container">
-            <div className="pagenation">
+        <div className={Style.container}>
+            <div className={Style.pagenation}>
                 {pages.map((page, index) => {
                     return (
                         <button
                             key={index}
                             onClick={() => setCurrentPage(page)}
-                            className={page === currentPage ? "active" : ""}
+                            className={page === currentPage ? `${Style.active}` : ""}
                         >
                             {page}
                         </button>
