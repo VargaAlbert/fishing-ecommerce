@@ -4,11 +4,11 @@
 .offcanvasIconContainer {
     @include variable.flexBox(row, nowrap, center, center, center);
     gap: 1rem;
-    .icon {
-        font-size: 2rem;
-    }
 }
 
+.icon {
+    font-size: 2rem;
+}
 .carZero {
     margin: 5rem 1rem;
     font-size: variable.$size-r10 + 0.2rem;

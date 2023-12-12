@@ -28,7 +28,7 @@ const ShopCartOffcanvas: React.FC = () => {
             <Offcanvas className={Style.backgroung} show={show} onHide={handleClose} placement="end">
                 <Offcanvas.Header closeButton>
                     <div className={Style.offcanvasIconContainer}>
-                        <FaCartShopping className="icon" />
+                        <FaCartShopping className={Style.icon} />
                         <Offcanvas.Title>KOSARAM</Offcanvas.Title>
                     </div>
                 </Offcanvas.Header>

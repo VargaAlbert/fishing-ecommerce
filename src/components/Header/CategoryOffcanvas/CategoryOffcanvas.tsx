@@ -4,20 +4,22 @@ import { FaList } from "react-icons/fa6";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import MenuList from "../../MenuList/MenuList";
 
+import Style from "../ShopCardOffcanvas/ShopCartOffcanvas.module.scss"
+
 const CategoryOffcanvas: React.FC = () => {
 
     const { showMenu, handleCloseMenu } = useShopContext();
     return (
-        <div className="menu-canvas-container">
-            <Offcanvas show={showMenu} onHide={handleCloseMenu} className="d-xl-none">
+        <div>
+            <Offcanvas className={`${Style.backgroung} d-xl-none`} show={showMenu} onHide={handleCloseMenu} >
                 <Offcanvas.Header closeButton>
-                    <div className="offcanvas-icon-container">
-                        <FaList className="icon" />
+                    <div className={Style.offcanvasIconContainer}>
+                        <FaList className={Style.icon} />
                         <Offcanvas.Title>KATEGORIÁK</Offcanvas.Title>
                     </div>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <div className="vertical-menu-container">
+                    <div>
                         <MenuList />
                     </div>
                 </Offcanvas.Body>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useShopContext } from "../../context/ShopContext";
 
-import "./MenuList.scss"
+import Style from "./MenuList.module.scss"
 
 const MenuList: React.FC = () => {
     const {
@@ -15,7 +15,7 @@ const MenuList: React.FC = () => {
             {menuList.map((category) => {
                 return (
                     <Link
-                        className="link"
+                        className={Style.link}
                         key={category}
                         to={`/${category}`}
                         onClick={() => {
