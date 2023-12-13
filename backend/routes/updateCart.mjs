@@ -29,7 +29,6 @@ router.post('/', async (req, res) => {
 async function getUserIdFromToken(token) {
     try {
         const decoded = jwt.verify(token, 'titkoskulcs');
-        console.log("ez a dekodolt", decoded);
 
         const userId = decoded.userId;
 
