@@ -39,10 +39,10 @@ const Registration: React.FC = () => {
             } catch (error: any) {
                 if (error.response && error.response.data && error.response.data.email) {
                     const existingEmail: string = error.response.data.email;
-                    console.error('Hiba történt a regisztráció közben:', existingEmail, "már foglalt");
+                    //console.error('Hiba történt a regisztráció közben:', existingEmail, "már foglalt");
                     setLoginRegModalInfo("reg-error-existingEmail", existingEmail);
                 } else {
-                    console.error('Hiba történt a regisztráció közben:', error);
+                    //console.error('Hiba történt a regisztráció közben:', error);
                     setLoginRegModalInfo("reg-error");
                 }
             }
@@ -78,7 +78,7 @@ const Registration: React.FC = () => {
                         />
                         <input
                             type="password"
-                            placeholder="Jelszó ujra*"
+                            placeholder="Jelszó újra*"
                             value={passwords[1]}
                             onChange={(e) => handlePasswordChange(1, e.target.value)}
                         />

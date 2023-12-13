@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Footer";
 import CheckCart from "./components/CheckCart/CheckCart";
 import Registration from "./components/Registration/Registration";
 
-import "./scss/App.scss";
+import Style from "./scss/App.module.scss";
 
 const App = () => {
 
@@ -20,9 +20,9 @@ const App = () => {
 
   return (
     <Router>
-      <div className="main-background">
+      <div className={Style.mainBackground}>
         <Header />
-        <div className="main-container">
+        <div className={Style.mainContainer}>
           <Routes>
             <Route path="/" element={<HomePage />} />
 

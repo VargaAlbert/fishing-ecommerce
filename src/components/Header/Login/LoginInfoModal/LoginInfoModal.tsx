@@ -23,22 +23,22 @@ const LoginInfoModal: React.FC = () => {
                 return ["Sikerestelen Bejelentkezés!", "Töltsön ki a felhasználónevet és a jelszót.", "Értettem"]
             }
             case "reg-incomplete": {
-                return ["Sikerestelen Regisztráció!", "Töltsön ki minden * jelölt mezöt.", "Értettem"]
+                return ["Sikerestelen Regisztráció!", "Töltsön ki minden * jelölt mezőt.", "Értettem"]
             }
             case "reg-successful": {
                 return ["Sikeres Regisztráció!", "Jelentkeze be a folytatáshoz", "Bejelentkezés"]
             }
             case "reg-error": {
-                return ["Sikerestelen Regisztráció!", "Valami hiba törént a regisztráció közben", "Értettem"]
+                return ["Sikerestelen Regisztráció!", "Valami hiba történt a regisztráció közben", "Értettem"]
             }
             case "reg-error-password": {
                 return ["Sikerestelen Regisztráció!", "A két jelszó nem egyezik meg!", "Értettem"]
             }
             case "reg-error-existingEmail": {
-                return ["Sikerestelen Regisztráció!", `A ${loginMessage[1]} már foglalt emailcím, kérjük, jelentkezzen be.`, "Értettem"]
+                return ["Sikerestelen Regisztráció!", `A ${loginMessage[1]} már foglalt emailcím, kérjük jelentkezzen be.`, "Értettem"]
             }
             default: {
-                return ["HIBA", "Valami nincs rendben jöjjön vissza késöbb.", "Értettem"]
+                return ["HIBA", "Valami nincs rendben jöjjön vissza később.", "Értettem"]
             }
         }
     }

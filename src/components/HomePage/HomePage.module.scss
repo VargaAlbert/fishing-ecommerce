@@ -2,22 +2,6 @@
 
 .mainContainer {
     width: 100%;
-    max-width: 1650px - 250px;
+    max-width: 1650px;
     background-color: variable.$color-main-background;
-}
-
-@include variable.Small {
-}
-@include variable.Medium {
-}
-@include variable.Large {
-}
-@include variable.Extra-large {
-    .mainContainer {
-        width: calc(100% - 250px);
-    }
-}
-@include variable.XXL-large {
-}
-@include variable.XXXL-large {
 }
