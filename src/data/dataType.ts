@@ -40,6 +40,7 @@ export type ProductDataType = {
 
 export const fetchData = async () => {
     try {
+      console.log(`${URL}/products`)
       const response = await axios.get(`${URL}/products`);
       return response.data;
     } catch (error) {

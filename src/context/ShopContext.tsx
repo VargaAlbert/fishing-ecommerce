@@ -131,6 +131,7 @@ const getData = async () => {
     data = await fetchData();
 };
 getData();
+console.log(data)
 
 const MAX_LIMIT = 999;
 
@@ -140,7 +141,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
 
     /* ----state---- */
     const [products, setProducts] = useState<ProductDataType[]>(data);
-    const [productsNoFilter] = useState<ProductDataType[]>(data);
+    const [productsNoFilter, setProductsNoFilter] = useState<ProductDataType[]>(data);
     const [currentPage, setCurrentPage] = useState(1);
 
     //menu kategoriák beálitása
@@ -192,6 +193,20 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
     const SHIPPING_FREE = 1_290;
 
     const menuList = Array.from(new Set(productsNoFilter.map((item) => item.SORTIMENT))).sort();
+
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const response = await axios.get('https://albihorgaszbolt.azurewebsites.net/products');
+                setProductsNoFilter(response.data);
+            } catch (error) {
+                console.error('Hiba a fetchelés során:', error);
+            }
+        }
+
+        fetchProducts();
+    }, []); // üres dependency array, így csak a komponens mountolásakor hívódik meg
+
 
     useEffect(() => {
         const calculatedPages = Math.ceil(filteredProductsLength / postsPerPage);

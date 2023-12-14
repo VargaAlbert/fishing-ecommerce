@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://vargaalbert.github.io/fishing-ecommerce/",
   "type": "module",
+  "proxy": "https://albihorgaszbolt.azurewebsites.net",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -35,7 +36,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node backend/server.mjs && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
