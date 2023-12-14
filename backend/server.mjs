@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect(dbConfig.mongoURItest).then(() => {
+mongoose.connect(dbConfig.mongoURIsharpSystem).then(() => {
     console.log('Sikeresen csatlakozva az adatbázishoz.');
 }).catch((err) => {
     console.error('Hiba történt az adatbázishoz való csatlakozás közben:', err);
