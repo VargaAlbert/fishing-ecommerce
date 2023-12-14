@@ -388,7 +388,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
     }
 
     useEffect(() => {
-        console.log("tokennnn", token)
+
         if (token) {
             // A kosár frissítése az adatbázisban
             const updateCart = async (token: string, cartItems: CartItem[]) => {
@@ -472,8 +472,6 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
         setLoginMessage([code, vale]);
         toggleInfoModal();
     };
-
-    console.log(cartItems);
 
     const contextValue: ShopContextProps = {
 

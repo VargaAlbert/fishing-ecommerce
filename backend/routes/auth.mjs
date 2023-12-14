@@ -66,6 +66,8 @@ router.post('/login', async (req, res) => {
             shopCard: shopCard ? shopCard.items : []
         });
 
+
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Hiba történt a bejelentkezés közben.');
