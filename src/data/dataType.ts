@@ -1,3 +1,5 @@
+import URL from "../data/Url";
+
 import axios from 'axios';
 
 export type ProductDataType = {
@@ -38,7 +40,7 @@ export type ProductDataType = {
 
 export const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/products');
+      const response = await axios.get(`${URL}/products`);
       return response.data;
     } catch (error) {
       console.error('Hiba történt:', error);

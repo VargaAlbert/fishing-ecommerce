@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useShopContext } from "../../context/ShopContext";
+import URL from "../../data/Url";
 import axios from 'axios';
 
 import Style from "./Registration.module.scss"
@@ -33,7 +34,7 @@ const Registration: React.FC = () => {
         } else {
             const password = passwords[0];
             try {
-                const response = await axios.post('http://localhost:5000/auth/register', { firstName, lastName, password, email, phone });
+                const response = await axios.post(`${URL}/auth/register`, { firstName, lastName, password, email, phone });
                 //console.log('Sikeres regisztráció:', response.data);
                 setLoginRegModalInfo("reg-successful");
             } catch (error: any) {

@@ -10,6 +10,7 @@ import React, {
 import axios from 'axios';
 
 import { ProductDataType, fetchData } from "../data/dataType";
+import URL from "../data/Url";
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 interface ShopProviderProps {
@@ -394,8 +395,8 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
             const updateCart = async (token: string, cartItems: CartItem[]) => {
                 try {
                     // API-hívás az adatok frissítéséhez
-                    await axios.post('http://localhost:5000/update-cart', { token, cartItems });
-                    console.log('A kosár sikeresen frissült az adatbázisban.');
+                    await axios.post(`${URL}/update-cart`, { token, cartItems });
+                    //console.log('A kosár sikeresen frissült az adatbázisban.');
                 } catch (error) {
                     console.error('Hiba történt a kosár frissítése közben:', error);
                 }
@@ -416,7 +417,7 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
             e.preventDefault();
 
             try {
-                const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+                const response = await axios.post(`${URL}/auth/login`, { email, password });
                 const token = response.data.token;
 
                 setUserName(response.data.user.firstName + " " + response.data.user.lastName)
@@ -429,8 +430,6 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
                 if (!isChecked) {
                     localStorage.removeItem('email');
                 }
-
-                console.log("bejelentkezett adat:", response.data.shopCard)
 
                 const loginShopCard = response.data.shopCard
                 if (Array.isArray(loginShopCard) && loginShopCard.length > 0) {
@@ -468,7 +467,6 @@ export const ShopProvider: React.FC<ShopProviderProps> = ({
 
     const setLoginRegModalInfo = (code: string, value?: string) => {
         const vale = value ?? "";
-        console.log([code, vale])
         setLoginMessage([code, vale]);
         toggleInfoModal();
     };
