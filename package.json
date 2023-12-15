@@ -2,6 +2,7 @@
   "name": "fishing-ecommerce",
   "version": "0.1.0",
   "private": true,
+  "main": "backend/server.mjs",
   "homepage": "https://vargaalbert.github.io/fishing-ecommerce/",
   "type": "module",
   "proxy": "https://albihorgaszbolt.azurewebsites.net",
